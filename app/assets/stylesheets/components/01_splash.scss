@@ -29,6 +29,12 @@
   font-size: 16px;
 }
 
+.splash-list li {
+  padding: 5px;
+  list-style: inside;
+  // list-style-image: url(); TODO get image
+}
+
 .splash-left {
   display: flex;
   flex-direction: column;
@@ -42,7 +48,8 @@
 
 .app-name {
   color: white;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
+  font-size: 30px;
 }
 
 .button {
@@ -62,12 +69,12 @@
 }
 
 .splash-right {
-  padding: 30px;
+  padding: 20px;
 }
 
 .separator {
   display: flex;
-  margin: 20px;
+  margin: 30px 20px;
 }
 
 .separator-line {
