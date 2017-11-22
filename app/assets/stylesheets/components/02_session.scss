@@ -24,12 +24,16 @@
 
 .session-form input {
   background: white;
-  border: $gray;
+  border: 1px solid white;
   border-radius: 3px;
   width: 200px;
   color: black;
   padding: 5px;
   margin: 5px;
+}
+
+.session-form input:focus {
+  border: 1px solid $green;
 }
 
 .session-form .button {
@@ -38,6 +42,7 @@
   line-height: 1;
   border-radius: 30px;
   color: white;
+  border: 1px solid $green;
 }
 
 .demo {

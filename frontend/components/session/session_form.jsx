@@ -7,7 +7,6 @@ class SessionForm extends React.Component {
     this.state = {
       username: '',
       password: '',
-      cPassword: '',
       email: ''
     };
 
@@ -66,23 +65,6 @@ class SessionForm extends React.Component {
     return form;
   }
 
-  passwordRepeat() {
-    let password = '';
-    if (this.props.formType === 'signup') {
-      password =
-      <div className="form-item">
-        <label htmlFor="cPassword">Confirm Password</label>
-        <input
-          id="cPassword"
-          type="password"
-          onChange={ this.handleChange('cPassword') }
-          value={ this.state.cPassword }
-        />
-      </div>;
-    }
-    return password;
-  }
-
   demoButton() {
     if (this.props.formType === 'login') {
       return <button
@@ -129,7 +111,6 @@ class SessionForm extends React.Component {
             onChange={ this.handleChange('password') }
             value={ this.state.password }
           />
-          { this.passwordRepeat() }
           <input
             className="button signup"
             type="submit"
