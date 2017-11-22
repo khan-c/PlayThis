@@ -7,15 +7,25 @@
   width: 100%;
 }
 
+.user-auth h1 {
+  margin-bottom: 30px;
+}
+
+.user-auth li {
+  list-style: none;
+}
+
 .session-form {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   align-items: center;
   background: $light-gray;
-  width: 300px;
+  width: 400px;
   border-radius: 5px;
   padding: 10px 5px;
   min-height: 250px;
+  height: 50%;
   z-index: 2;
 }
 

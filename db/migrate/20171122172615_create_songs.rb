@@ -5,7 +5,6 @@ class CreateSongs < ActiveRecord::Migration[5.1]
       t.integer :artist_id, null: false
       t.integer :album_id, null: false
       t.integer :playlist_id
-      t.string :song_url, null: false
 
       t.timestamps
     end

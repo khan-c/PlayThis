@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 20171122173253) do
     t.integer "artist_id", null: false
     t.integer "album_id", null: false
     t.integer "playlist_id"
-    t.string "song_url", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["album_id"], name: "index_songs_on_album_id"
@@ -44,7 +43,6 @@ ActiveRecord::Schema.define(version: 20171122173253) do
     t.string "password_digest", null: false
     t.string "session_token", null: false
     t.string "email", null: false
-    t.string "img_url", default: "default_profile.png", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

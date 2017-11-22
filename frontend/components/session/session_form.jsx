@@ -14,6 +14,7 @@ class SessionForm extends React.Component {
     this.clickDemo = this.clickDemo.bind(this);
 
     this.modalClick = this.modalClick.bind(this);
+    this.escFunc = this.escFunc.bind(this);
   }
 
   handleChange(type) {
@@ -92,12 +93,22 @@ class SessionForm extends React.Component {
     this.props.history.replace('/');
   }
 
+  escFunc(e) {
+    if (event.keyCode === 27) {
+      this.props.history.replace('/');
+    }
+  }
+
+  componentDidMount() {
+    document.addEventListener("keydown", this.escFunc, false);
+  }
+
   render() {
     return(
       <div className="user-auth">
-        <Link className="modal" to="/"> </Link>
+        <button className="modal" onClick={ this.modalClick }/>
         { this.loggedIn() }
-        <Link className="exit" to="/">X</Link>
+        <button className="exit" onClick={ this.modalClick }>X</button>
         { this.header() }
         <form
           className="session-form"
@@ -109,6 +120,7 @@ class SessionForm extends React.Component {
             type="text"
             onChange={ this.handleChange('username') }
             value={ this.state.username }
+            autoFocus
           />
           { this.email() }
           <label htmlFor="password">Password</label>
