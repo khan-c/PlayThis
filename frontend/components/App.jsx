@@ -4,7 +4,6 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import GreetingContainer from './greeting/greeting_container';
 import SessionFormContainer from './session/session_form_container';
 
-//placeholder
 import MainContainer from './main/main_container';
 
 const App = () => (
