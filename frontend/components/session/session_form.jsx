@@ -12,6 +12,7 @@ class SessionForm extends React.Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.clickDemo = this.clickDemo.bind(this);
   }
 
   handleChange(type) {
@@ -21,7 +22,7 @@ class SessionForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const user = Object.assign({}, this.state);
-    this.props.processForm(this.state);
+    this.props.processForm(user);
   }
 
   header() {
@@ -36,7 +37,7 @@ class SessionForm extends React.Component {
 
   errors() {
     return this.props.errors.map( err => (
-      <li key={ err }>{ err }</li>
+      <li className="error" key={ err }>{ err }</li>
     ));
   }
 
@@ -82,6 +83,23 @@ class SessionForm extends React.Component {
     return password;
   }
 
+  demoButton() {
+    if (this.props.formType === 'login') {
+      return <button
+        className="button demo"
+        onClick={ this.clickDemo }>
+          Demo This!
+      </button>;
+    }
+    return '';
+  }
+
+  clickDemo(e) {
+    e.preventDefault();
+    const user = { username: "test", password: "password" };
+    this.props.processForm(user);
+  }
+
   render() {
     return(
       <div className="modal">
@@ -91,6 +109,7 @@ class SessionForm extends React.Component {
         <form
           className="session-form"
           onSubmit={ this.handleSubmit }>
+          { this.errors() }
           <label htmlFor="username">Username</label>
           <input
             id="username"
@@ -112,8 +131,8 @@ class SessionForm extends React.Component {
             type="submit"
             value={ this.props.formType }
           />
+          { this.demoButton() }
         </form>
-        { this.errors() }
       </div>
     );
   }

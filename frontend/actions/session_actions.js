@@ -16,20 +16,20 @@ export const receiveSessionErrors = errors => ({
 export const login = formUser => dispatch => (
   SessionAPIUtil.login(formUser).then(
     currentUser => dispatch(receiveCurrentUser(currentUser)),
-    errors => dispatch(receiveSessionErrors(errors))
+    errors => dispatch(receiveSessionErrors(errors.responseJSON))
   )
 );
 
 export const logout = () => dispatch => (
   SessionAPIUtil.logout().then(
     currentUser => dispatch(receiveCurrentUser(null)),
-    errors => dispatch(receiveSessionErrors(errors))
+    errors => dispatch(receiveSessionErrors(errors.responseJSON))
   )
 );
 
 export const signup = formUser => dispatch => (
   SessionAPIUtil.signup(formUser).then(
     currentUser => dispatch(receiveCurrentUser(currentUser)),
-    errors => dispatch(receiveSessionErrors(errors))
+    errors => dispatch(receiveSessionErrors(errors.responseJSON))
   )
 );
