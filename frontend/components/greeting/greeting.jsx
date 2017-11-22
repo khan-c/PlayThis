@@ -7,7 +7,10 @@ class Greeting extends React.Component {
     return(
       <div className="splash">
         <div className="splash-left">
-          <h1 className="app-name">PlayThis</h1>
+          <div className="app-logo">
+            <img src="https://s3-us-west-1.amazonaws.com/playthismusic/images/logo-white.png"/>
+            <h1 className="app-name">PlayThis</h1>
+          </div>
           <Link className="signup button" to="/signup">Sign Up</Link>
           <div className="separator">
             <div className="separator-line"></div>
