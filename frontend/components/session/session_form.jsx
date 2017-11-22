@@ -12,6 +12,8 @@ class SessionForm extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.clickDemo = this.clickDemo.bind(this);
+
+    this.modalClick = this.modalClick.bind(this);
   }
 
   handleChange(type) {
@@ -86,9 +88,14 @@ class SessionForm extends React.Component {
     this.props.clearErrors();
   }
 
+  modalClick(e) {
+    this.props.history.replace('/');
+  }
+
   render() {
     return(
-      <div className="modal">
+      <div className="user-auth">
+        <Link className="modal" to="/"> </Link>
         { this.loggedIn() }
         <Link className="exit" to="/">X</Link>
         { this.header() }
