@@ -5,6 +5,7 @@ import Root from './components/root';
 
 // TESTING
 import * as SessionAPIUtil from './util/session_api_util';
+import { logout } from './actions/session_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root');
@@ -21,7 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //TESTING
   window.getState = store.getState;
+  window.dispatch = store.dispatch;
   window.login = SessionAPIUtil.login;
   window.signup = SessionAPIUtil.signup;
-  window.logout = SessionAPIUtil.logout;
+  window.logout = logout;
 });

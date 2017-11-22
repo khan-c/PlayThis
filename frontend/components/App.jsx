@@ -5,16 +5,16 @@ import GreetingContainer from './greeting/greeting_container';
 import SessionFormContainer from './session/session_form_container';
 
 //placeholder
-import Main from './main/main';
+import MainContainer from './main/main_container';
 
 const App = () => (
   <div>
     <Switch>
-      <ProtectedRoute path="/browse" component={Main} />
+      <ProtectedRoute path="/browse" component={MainContainer} />
 
       <AuthRoute path="/" component={GreetingContainer} />
     </Switch>
-    
+
     <AuthRoute path="/login" component={SessionFormContainer} />
     <AuthRoute path="/signup" component={SessionFormContainer} />
   </div>
