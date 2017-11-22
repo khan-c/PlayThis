@@ -63,9 +63,17 @@
   background: $green;
 }
 
+.button:hover {
+  background-color: $hover-green;
+}
+
 .login {
   background: white;
   color: black;
+}
+
+.login:hover {
+  background: $light-gray;
 }
 
 .splash-right {

@@ -22,10 +22,10 @@
   align-items: center;
   background: $light-gray;
   width: 400px;
-  border-radius: 5px;
+  border-radius: 30px;
   padding: 10px 5px;
   min-height: 250px;
-  height: 50%;
+  height: 45%;
   z-index: 2;
 }
 
@@ -55,6 +55,7 @@
 
 .session-form input:focus {
   border: 1px solid $green;
+  box-shadow:inset 0 0 5px 1px $green;
 }
 
 .session-form .button {
@@ -64,6 +65,11 @@
   border-radius: 30px;
   color: white;
   border: 1px solid $green;
+}
+
+.session-form .button:hover {
+  background-color: $hover-green;
+  border: 1px solid $hover-green;
 }
 
 .demo {
