@@ -1,0 +1,20 @@
+html {
+  position: relative;
+  height: 100%;
+}
+
+body {
+  font-family: $sans-serif;
+  color: white;
+}
+
+h1 {
+  color: $green;
+  font-size: 48px;
+  font-weight: 500;
+}
+
+h3 {
+  font-weight: 200;
+  font-size: 20px;
+}

@@ -1,0 +1,41 @@
+.session-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: $light-gray;
+  width: 300px;
+  border-radius: 5px;
+  padding: 10px 5px;
+}
+
+.form-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.session-form label {
+  margin: 5px;
+}
+
+.session-form input {
+  background: white;
+  border: $gray;
+  border-radius: 3px;
+  width: 200px;
+  color: black;
+  padding: 5px;
+  margin: 5px;
+}
+
+.session-form .button {
+  background: $green;
+  height: 30px;
+  line-height: 1;
+  border-radius: 30px;
+  color: white;
+}
+
+.exit {
+  font-size: 40px;
+}

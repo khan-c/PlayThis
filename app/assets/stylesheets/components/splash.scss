@@ -1,0 +1,89 @@
+.splash {
+  background-image: url(https://open.scdn.co/static/images/login-background.jpg);
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: -2;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.splash::before {
+  background-color: rgba(0, 0, 0, 0.5);
+  bottom: 0;
+  height: 100%;
+  position: absolute;
+  display: block;
+  content: "";
+  right: 0;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.splash-list {
+  font-size: 16px;
+}
+
+.splash-left {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 50px;
+  align-items: center;
+  border-right: 1px solid $light-gray;
+  margin: 20px;
+  height: 400px;
+}
+
+.app-name {
+  color: white;
+  margin-bottom: 30px;
+}
+
+.button {
+  border-radius: 30px;
+  width: 275px;
+  height: 50px;
+  text-align: center;
+  line-height: 3;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.signup {
+  background: $green;
+}
+
+.login {
+  background: white;
+  color: black;
+}
+
+.splash-right {
+  flex: 5;
+  padding: 30px;
+}
+
+.separator {
+  display: flex;
+  margin: 20px;
+}
+
+.separator-line {
+  background-color: $light-gray;
+  width: 20px;
+  height: 1px;
+  margin: 7px 10px;
+}
+
+.separator-text {
+  color: $light-gray;
+  text-transform: uppercase;
+  font-size: 12px;
+}
