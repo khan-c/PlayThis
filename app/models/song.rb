@@ -2,14 +2,16 @@
 #
 # Table name: songs
 #
-#  id          :integer          not null, primary key
-#  title       :string           not null
-#  artist_id   :integer          not null
-#  album_id    :integer          not null
-#  playlist_id :integer
-#  song_url    :string           not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id                    :integer          not null, primary key
+#  title                 :string           not null
+#  artist_id             :integer          not null
+#  album_id              :integer          not null
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
+#  song_url_file_name    :string
+#  song_url_content_type :string
+#  song_url_file_size    :integer
+#  song_url_updated_at   :datetime
 #
 
 class Song < ApplicationRecord
@@ -17,9 +19,12 @@ class Song < ApplicationRecord
   validates :title, uniqueness: { scope: :artist_id }
   validates :title, uniqueness: { scope: :album_id }
 
-  belongs_to :playlist,
-    class_name: :Playlist,
-    foreign_key: :playlist_id,
-    primary_key: :id,
-    optional: true
+  has_attached_file :song_url, default_url: "https://s3-us-west-1.amazonaws.com/playthismusic/music/DOCTOR+VOX+-+Heatstroke.mp3"
+  validates_attachment_content_type :song_url, content_type: /^audio\/(x-xm)/
+
+  has_many :playlist_songs
+
+  has_many :playlists,
+    through: :playlist_songs,
+    source: :playlist
 end

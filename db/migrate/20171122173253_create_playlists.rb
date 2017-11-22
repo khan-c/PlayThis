@@ -3,7 +3,6 @@ class CreatePlaylists < ActiveRecord::Migration[5.1]
     create_table :playlists do |t|
       t.string :title, null: false
       t.integer :author_id, null: false
-      t.string :img_url
 
       t.timestamps
     end

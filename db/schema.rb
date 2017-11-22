@@ -10,17 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171122173253) do
+ActiveRecord::Schema.define(version: 20171122220427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "playlist_songs", force: :cascade do |t|
+    t.integer "playlist_id", null: false
+    t.integer "song_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["playlist_id"], name: "index_playlist_songs_on_playlist_id"
+    t.index ["song_id"], name: "index_playlist_songs_on_song_id"
+  end
+
   create_table "playlists", force: :cascade do |t|
     t.string "title", null: false
     t.integer "author_id", null: false
-    t.string "img_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
     t.index ["author_id"], name: "index_playlists_on_author_id"
   end
 
@@ -28,12 +40,14 @@ ActiveRecord::Schema.define(version: 20171122173253) do
     t.string "title", null: false
     t.integer "artist_id", null: false
     t.integer "album_id", null: false
-    t.integer "playlist_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "song_url_file_name"
+    t.string "song_url_content_type"
+    t.integer "song_url_file_size"
+    t.datetime "song_url_updated_at"
     t.index ["album_id"], name: "index_songs_on_album_id"
     t.index ["artist_id"], name: "index_songs_on_artist_id"
-    t.index ["playlist_id"], name: "index_songs_on_playlist_id"
     t.index ["title", "album_id"], name: "index_songs_on_title_and_album_id", unique: true
     t.index ["title", "artist_id"], name: "index_songs_on_title_and_artist_id", unique: true
   end
@@ -45,6 +59,10 @@ ActiveRecord::Schema.define(version: 20171122173253) do
     t.string "email", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "avatar_file_name"
+    t.string "avatar_content_type"
+    t.integer "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["session_token"], name: "index_users_on_session_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true

@@ -4,14 +4,12 @@ class CreateSongs < ActiveRecord::Migration[5.1]
       t.string :title, null: false
       t.integer :artist_id, null: false
       t.integer :album_id, null: false
-      t.integer :playlist_id
 
       t.timestamps
     end
 
     add_index :songs, :artist_id
     add_index :songs, :album_id
-    add_index :songs, :playlist_id
     add_index :songs, [:title, :artist_id], unique: true
     add_index :songs, [:title, :album_id], unique: true
   end
