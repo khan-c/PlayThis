@@ -18,7 +18,7 @@ class Song < ApplicationRecord
   validates :title, uniqueness: { scope: :album_id }
 
   belongs_to :playlist,
-    class: :Playlist,
+    class_name: :Playlist,
     foreign_key: :playlist_id,
     primary_key: :id,
     optional: true
