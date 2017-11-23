@@ -1,3 +1,62 @@
 .main {
-  background: $gray;
+  background: linear-gradient(#594640, black);
+  height: 100%;
+  width: 100%;
+}
+
+.main-stuff {
+  padding-left: 220px;
+}
+
+.above-playback {
+  display: flex;
+  height: 100%;
+}
+
+.nav-bar-container {
+  background: rgba(#000000, 0.5);
+  height: 100vh;
+  width: 220px;
+  position: fixed;
+}
+
+.nav-bar {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  // justify-content: space-between;
+  height: 100%;
+  padding-bottom: 120px;
+}
+
+.nav-bar-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid $gray;
+}
+
+.nav-bar .logo {
+  height: 30px;
+  width: 30px;
+}
+
+.nav-bar .logo:hover {
+  cursor: pointer;
+}
+
+.nav-bar-user {
+  display: flex;
+  align-items: center;
+}
+
+.nav-bar-user img {
+  border: 1px solid $gray;
+  margin-right: 5px;
+}
+
+.playback {
+  background: $playback-gray;
+  height: 80px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
 }
