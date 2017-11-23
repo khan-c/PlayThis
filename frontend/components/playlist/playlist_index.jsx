@@ -1,4 +1,5 @@
 import React from 'react';
+import PlaylistIndexItem from './playlist_index_item';
 
 class PlaylistIndex extends React.Component {
   componentDidMount() {
@@ -7,16 +8,11 @@ class PlaylistIndex extends React.Component {
 
   render() {
     const playlists = this.props.playlists.map( playlist => (
-      <li key={ playlist.id }>
-        <h2>
-          { playlist.title }
-        </h2>
-        <img src={ playlist.image_url } />
-      </li>
+      <PlaylistIndexItem key={ playlist.id } playlist={ playlist }/>
     ));
 
     return(
-      <div>
+      <div className="playlist-index">
         PLACELIST INDEX
         <ul>
           { playlists }
