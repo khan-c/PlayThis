@@ -22,7 +22,8 @@ class Song < ApplicationRecord
   has_attached_file :song_url, default_url: "https://s3-us-west-1.amazonaws.com/playthismusic/music/DOCTOR+VOX+-+Heatstroke.mp3"
   validates_attachment_content_type :song_url, content_type: /^audio\/(x-xm)/
 
-  has_many :playlist_songs
+  has_many :playlist_songs,
+    dependent: :destroy
 
   has_many :playlists,
     through: :playlist_songs,

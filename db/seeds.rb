@@ -7,3 +7,21 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.create(username: 'test', password: 'password', email: 'test@test.com')
+
+Playlist.create(title: 'playlist1', author_id: 1);
+Playlist.create(title: 'playlist2', author_id: 1);
+Playlist.create(title: 'playlist3', author_id: 1);
+
+Song.create(title: 'song1', album_id: 1, artist_id: 1);
+Song.create(title: 'song2', album_id: 1, artist_id: 1);
+Song.create(title: 'song3', album_id: 1, artist_id: 1);
+Song.create(title: 'song4', album_id: 1, artist_id: 1);
+
+PlaylistSong.create(playlist_id: 1, song_id: 1);
+PlaylistSong.create(playlist_id: 1, song_id: 2);
+PlaylistSong.create(playlist_id: 1, song_id: 3);
+PlaylistSong.create(playlist_id: 1, song_id: 4);
+PlaylistSong.create(playlist_id: 2, song_id: 1);
+PlaylistSong.create(playlist_id: 2, song_id: 2);
+PlaylistSong.create(playlist_id: 3, song_id: 3);
+PlaylistSong.create(playlist_id: 3, song_id: 4);

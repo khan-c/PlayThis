@@ -24,7 +24,8 @@ class Playlist < ApplicationRecord
     primary_key: :id,
     foreign_key: :author_id
 
-  has_many :playlist_songs
+  has_many :playlist_songs,
+    dependent: :destroy
 
   has_many :songs,
     through: :playlist_songs,
