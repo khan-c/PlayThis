@@ -1,5 +1,12 @@
-.main {
+.main-background {
   background: linear-gradient(#594640, black);
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+}
+
+.main {
   height: 100%;
   width: 100%;
 }
@@ -15,7 +22,7 @@
 
 .nav-bar-container {
   background: rgba(#000000, 0.5);
-  height: 100vh;
+  height: 100%;
   width: 220px;
   position: fixed;
 }
@@ -24,9 +31,10 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
-  // justify-content: space-between;
+  justify-content: space-between;
   height: 100%;
-  padding-bottom: 120px;
+  padding-bottom: 100px;
+  box-sizing: border-box;
 }
 
 .nav-bar-header {
@@ -43,9 +51,16 @@
   cursor: pointer;
 }
 
+.nav-bar-user-container {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid $gray;
+}
+
 .nav-bar-user {
   display: flex;
   align-items: center;
+  margin: 5px;
 }
 
 .nav-bar-user img {
@@ -61,12 +76,11 @@
   bottom: 0;
 }
 
-.nav-bar-b {
+.nav-bar-logout {
   font-size: 14px;
   padding: 3px 5px;
   border-radius: 20px;
   background: $green;
   width: 100px;
   text-align: center;
-  align-self: center;
 }

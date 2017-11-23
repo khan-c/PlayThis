@@ -1,0 +1,29 @@
+.playlist-index-container {
+  padding-left: 220px;
+  padding-bottom: 100px;
+  height: 100vh;
+}
+
+.playlist-title{
+  text-align: center;
+  padding-top: 10px;
+}
+
+.playlist-index {
+  padding: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+}
+
+.playlist-index-item {
+  margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.playlist-index-item img {
+  height: 200px;
+  width: 200px;
+}

@@ -12,11 +12,11 @@ class PlaylistIndex extends React.Component {
     ));
 
     return(
-      <div className="playlist-index">
-        PLACELIST INDEX
-        <ul>
+      <div className="playlist-index-container">
+        <h1 className="playlist-title">PLAYLIST INDEX</h1>
+        <div className="playlist-index">
           { playlists }
-        </ul>
+        </div>
       </div>
     );
   }

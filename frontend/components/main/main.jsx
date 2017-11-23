@@ -8,6 +8,7 @@ class Main extends React.Component {
   render() {
     return(
       <div className="main">
+        <div className="main-background"></div>
         <div className="above-playback">
           <NavBar user={ this.props.user } logout={ this.props.logout }/>
           <PlaylistIndexContainer />

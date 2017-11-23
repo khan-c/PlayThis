@@ -13,13 +13,15 @@ class NavBar extends React.Component {
             </Link>
           </div>
 
-          <div className="nav-bar-user">
-            <img className="avatar" src={ this.props.user.image_url } />
-            { this.props.user.username }
+          <div className="nav-bar-user-container">
+            <div className="nav-bar-user">
+              <img className="avatar" src={ this.props.user.image_url } />
+              { this.props.user.username }
+            </div>
+            <button
+              className="nav-bar-logout"
+              onClick={ this.props.logout }>Log Out</button>
           </div>
-          <button
-            className="nav-bar-b"
-            onClick={ this.props.logout }>Log Out</button>
         </div>
       </div>
     );
