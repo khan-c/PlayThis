@@ -1,11 +1,11 @@
-import { RECEIVE_SONG_ERRORS } from '../actions/song_actions';
+import { RECEIVE_PLAYLIST_ERRORS } from '../actions/playlist_actions';
 import { CLEAR_ERRORS } from '../actions/error_actions';
 
-const songErrorsReducer = (oldState = [], action) => {
+const playlistErrorsReducer = (oldState = [], action) => {
   Object.freeze(oldState);
 
   switch (action.type) {
-    case RECEIVE_SONG_ERRORS:
+    case RECEIVE_PLAYLIST_ERRORS:
       return [...action.errors];
     case CLEAR_ERRORS:
       return [];
@@ -14,4 +14,4 @@ const songErrorsReducer = (oldState = [], action) => {
   }
 };
 
-export default songErrorsReducer;
+export default playlistErrorsReducer;
