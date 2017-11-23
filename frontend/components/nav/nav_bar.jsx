@@ -17,6 +17,9 @@ class NavBar extends React.Component {
             <img className="avatar" src={ this.props.user.image_url } />
             { this.props.user.username }
           </div>
+          <button
+            className="nav-bar-b"
+            onClick={ this.props.logout }>Log Out</button>
         </div>
       </div>
     );

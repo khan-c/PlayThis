@@ -8,12 +8,9 @@ class Main extends React.Component {
     return(
       <div className="main">
         <div className="above-playback">
-          <NavBar user={ this.props.user }/>
+          <NavBar user={ this.props.user } logout={ this.props.logout }/>
           <div className="main-stuff">
             <h1>Main Page Placeholder text</h1>
-            <button
-              className="button"
-              onClick={ this.props.logout }>Log Out</button>
           </div>
         </div>
         <Playback />
