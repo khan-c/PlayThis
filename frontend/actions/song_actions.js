@@ -28,20 +28,20 @@ export const receiveSongErrors = errors => ({
 export const fetchSongs = (playlistId) => dispatch => (
   SongAPIUtil.fetchSongs(playlistId).then(
     songs => dispatch(receiveSongs(songs)),
-    errors => dispatch(receiveSongErrors(errors))
+    errors => dispatch(receiveSongErrors(errors.responseJSON))
   )
 );
 
 export const addSongToPlaylist = playlistSong => dispatch => (
   SongAPIUtil.addSongToPlaylist(playlistSong).then(
     newSongToPlaylist => dispatch(receiveSong(newSongToPlaylist)),
-    errors => dispatch(receiveSongErrors(errors))
+    errors => dispatch(receiveSongErrors(errors.responseJSON))
   )
 );
 
 export const removeSongFromPlaylist = playlistSongId => dispatch => (
-  SongAPIUtil.removeSongToPlaylist(playlistSongId).then(
-    song => dispatch(removeSong(song.id)),
-    errors => dispatch(receiveSongErrors(errors))
+  SongAPIUtil.removeSongFromPlaylist(playlistSongId).then(
+    null,
+    errors => dispatch(receiveSongErrors(errors.responseJSON))
   )
 );
