@@ -11,6 +11,11 @@ import {
   updatePlaylist,
   deletePlaylist
 } from './actions/playlist_actions';
+import {
+  fetchSongs,
+  addSongToPlaylist,
+  removeSongFromPlaylist
+} from './util/song_api_util';
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root');
@@ -31,6 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
   window.createPlaylist = createPlaylist;
   window.updatePlaylist = updatePlaylist;
   window.deletePlaylist = deletePlaylist;
+  window.fetchSongs = fetchSongs;
+  window.addSongToPlaylist = addSongToPlaylist;
+  window.removeSongFromPlaylist = removeSongFromPlaylist;
   window.dispatch = store.dispatch;
   window.getState = store.getState;
 });

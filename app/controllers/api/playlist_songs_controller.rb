@@ -1,8 +1,11 @@
 class Api::PlaylistSongsController < ApplicationController
+  before_action :require_login
+
   def create
     @playlist_song = PlaylistSong.new(playlist_song_params)
     if @playlist_song.save
-      render json: ["Track was added to your playlist!"]
+      @song = @playlist_song.song
+      render 'api/songs/show'
     else
       render json: ["Error adding song"], status: 422
     end
@@ -12,7 +15,8 @@ class Api::PlaylistSongsController < ApplicationController
     @playlist_song = PlaylistSong.find_by(id: params[:id])
     if @playlist_song
       @playlist_song.destroy!
-      render json: ["Song removed!"]
+      @song = @playlist_song.song
+      render 'api/songs/show'
     else
       render json: ["Error removing song"], status: 422
     end

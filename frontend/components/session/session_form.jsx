@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter, Redirect, Link } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 class SessionForm extends React.Component {
   constructor(props) {
@@ -58,6 +58,7 @@ class SessionForm extends React.Component {
         <div className="form-item">
           <label htmlFor="email">Email</label>
           <input
+            className="input"
             id="email"
             type="text"
             onChange={ this.handleChange('email') }
@@ -116,6 +117,7 @@ class SessionForm extends React.Component {
           { this.errors() }
           <label htmlFor="username">Username</label>
           <input
+            className="input"
             id="username"
             type="text"
             onChange={ this.handleChange('username') }
@@ -125,6 +127,7 @@ class SessionForm extends React.Component {
           { this.email() }
           <label htmlFor="password">Password</label>
           <input
+            className="input"
             id="password"
             type="password"
             onChange={ this.handleChange('password') }

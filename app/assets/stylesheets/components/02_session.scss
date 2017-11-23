@@ -27,6 +27,7 @@
   min-height: 250px;
   height: 45%;
   z-index: 2;
+  box-shadow: 1px 1px 10px 0px $text-gray;
 }
 
 .form-item {
@@ -55,9 +56,14 @@
   cursor: text;
 }
 
-.session-form input:focus {
+.session-form .input:focus {
   border: 1px solid $green;
   box-shadow:inset 0 0 5px 1px $green;
+}
+
+.session-form .input:hover {
+  border: 1px solid #5d80fb;
+  box-shadow:inset 0 0 5px 1px #5d80fb;
 }
 
 .session-form .button {
@@ -73,6 +79,7 @@
 .session-form .button:hover {
   background-color: $hover-green;
   border: 1px solid $hover-green;
+  box-shadow: 1px 2px 3px 0 $gray;
 }
 
 .demo {

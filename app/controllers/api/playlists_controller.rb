@@ -1,4 +1,6 @@
 class Api::PlaylistsController < ApplicationController
+  before_action :require_login
+
   def create
     @playlist = Playlist.new(playlist_params)
     @playlist.author_id = current_user.id
@@ -29,12 +31,12 @@ class Api::PlaylistsController < ApplicationController
   end
 
   def show
-    @playlist = Playlist.includes(:songs).find_by(id: params[:id])
+    @playlist = Playlist.includes(:playlist_songs).find_by(id: params[:id])
     render 'api/playlists/show.json.jbuilder'
   end
 
   def index
-    @playlists = Playlist.all
+    @playlists = Playlist.includes(:playlist_songs).all
     render 'api/playlists/index.json.jbuilder'
   end
 
