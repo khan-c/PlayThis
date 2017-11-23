@@ -15,7 +15,7 @@ import {
   fetchSongs,
   addSongToPlaylist,
   removeSongFromPlaylist
-} from './util/song_api_util';
+} from './actions/song_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root');
