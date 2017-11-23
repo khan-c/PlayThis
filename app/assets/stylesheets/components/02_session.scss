@@ -20,10 +20,11 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  background: rgba(101, 101, 101, 0.95);
+  background: linear-gradient(to bottom right, rgba(101, 52, 52, 0.95), rgba(46, 46, 46, 0.95));
   width: 400px;
   border-radius: 30px;
   padding: 10px 5px;
+  padding-bottom: 40px;
   min-height: 250px;
   height: 45%;
   z-index: 2;
@@ -41,15 +42,11 @@
   font-size: 14px;
 }
 
-.session-form label {
-  margin: 5px;
-}
-
 .session-form input {
   background: white;
   border: 1px solid white;
   border-radius: 3px;
-  width: 200px;
+  width: 250px;
   color: black;
   padding: 5px;
   margin: 5px;
@@ -84,7 +81,7 @@
 
 .demo {
   margin: 5px;
-  width: 200px;
+  width: 250px;
   padding: 5px;
 }
 
