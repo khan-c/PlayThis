@@ -7,10 +7,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.create(username: 'test', password: 'password', email: 'test@test.com')
+User.create(username: 'test2', password: 'password', email: 'test2@test.com')
 
 Playlist.create(title: 'playlist1', author_id: 1);
 Playlist.create(title: 'playlist2', author_id: 1);
 Playlist.create(title: 'playlist3', author_id: 1);
+Playlist.create(title: 'playlist4', author_id: 2);
 
 Song.create(title: 'song1', album_id: 1, artist_id: 1);
 Song.create(title: 'song2', album_id: 1, artist_id: 1);

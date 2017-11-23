@@ -22,8 +22,8 @@ class Api::PlaylistsController < ApplicationController
   end
 
   def update
-    @playlist = Playlist.find_by(id: params[:id])
-    if @playlist.update_attributes(playlist_params)
+    @playlist = current_user.playlists.find_by(id: params[:id])
+    if @playlist && @playlist.update_attributes(playlist_params)
       render :show
     else
       render json: @playlist.errors.full_messages, status: 401
@@ -31,12 +31,12 @@ class Api::PlaylistsController < ApplicationController
   end
 
   def show
-    @playlist = Playlist.includes(:playlist_songs).find_by(id: params[:id])
+    @playlist = Playlist.includes(:songs).find_by(id: params[:id])
     render 'api/playlists/show.json.jbuilder'
   end
 
   def index
-    @playlists = Playlist.includes(:playlist_songs).all
+    @playlists = Playlist.includes(:songs).all
     render 'api/playlists/index.json.jbuilder'
   end
 

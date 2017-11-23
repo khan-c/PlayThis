@@ -24,6 +24,11 @@ class User < ApplicationRecord
   has_attached_file :avatar, default_url: "https://s3-us-west-1.amazonaws.com/playthismusic/images/default_profile.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
+  has_many :playlists,
+    class_name: :Playlist,
+    foreign_key: :author_id,
+    primary_key: :id
+
   attr_reader :password
 
   def self.find_by_credentials(username, password)

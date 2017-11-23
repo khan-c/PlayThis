@@ -33,6 +33,6 @@ class Playlist < ApplicationRecord
     source: :song
 
   def playlist_songs_ids
-    self.playlist_songs.map(&:id)
+    self.songs.map(&:id)
   end
 end
