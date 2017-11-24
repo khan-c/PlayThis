@@ -23,7 +23,8 @@ export const createPlaylist = playlist => (
 export const updatePlaylist = playlist => (
   $.ajax({
     type: 'PATCH',
-    url: `api/playlists/${playlist.id}`
+    url: `api/playlists/${playlist.id}`,
+    data: { playlist: playlist }
   })
 );
 

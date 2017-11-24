@@ -22,8 +22,10 @@ class Api::PlaylistsController < ApplicationController
   end
 
   def update
-    @playlist = current_user.playlists.find_by(id: params[:id])
+    @playlist = current_user.playlists.includes(:songs).find_by(id: params[:id])
     if @playlist && @playlist.update_attributes(playlist_params)
+      songs = params[:playlist][:song_ids]
+      @playlist.song_ids = songs
       render :show
     else
       render json: @playlist.errors.full_messages, status: 401

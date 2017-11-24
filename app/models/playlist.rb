@@ -31,8 +31,4 @@ class Playlist < ApplicationRecord
   has_many :songs,
     through: :playlist_songs,
     source: :song
-
-  def playlist_songs_ids
-    self.songs.map(&:id)
-  end
 end

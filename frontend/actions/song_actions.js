@@ -31,17 +31,3 @@ export const fetchSongs = (playlistId) => dispatch => (
     errors => dispatch(receiveSongErrors(errors.responseJSON))
   )
 );
-
-export const addSongToPlaylist = playlistSong => dispatch => (
-  SongAPIUtil.addSongToPlaylist(playlistSong).then(
-    newSongToPlaylist => dispatch(receiveSong(newSongToPlaylist)),
-    errors => dispatch(receiveSongErrors(errors.responseJSON))
-  )
-);
-
-export const removeSongFromPlaylist = playlistSongId => dispatch => (
-  SongAPIUtil.removeSongFromPlaylist(playlistSongId).then(
-    null,
-    errors => dispatch(receiveSongErrors(errors.responseJSON))
-  )
-);
