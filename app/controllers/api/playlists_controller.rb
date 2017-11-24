@@ -1,5 +1,6 @@
 class Api::PlaylistsController < ApplicationController
   before_action :require_login
+  rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
 
   def create
     @playlist = Playlist.new(playlist_params)
@@ -12,7 +13,7 @@ class Api::PlaylistsController < ApplicationController
   end
 
   def destroy
-    @playlist = Playlist.find_by(id: params[:id])
+    @playlist = Playlist.find(params[:id])
     if @playlist
       @playlist.destroy!
       render :index
@@ -22,7 +23,7 @@ class Api::PlaylistsController < ApplicationController
   end
 
   def update
-    @playlist = current_user.playlists.includes(:songs).find_by(id: params[:id])
+    @playlist = current_user.playlists.includes(:songs).find(params[:id])
     if @playlist && @playlist.update_attributes(playlist_params)
       songs = params[:playlist][:song_ids]
       @playlist.song_ids = songs
@@ -40,6 +41,10 @@ class Api::PlaylistsController < ApplicationController
   def index
     @playlists = Playlist.includes(:songs).all
     render 'api/playlists/index.json.jbuilder'
+  end
+
+  def record_not_found
+    render json: ["No Playlist Found"], status: 404;
   end
 
   private
