@@ -17,12 +17,14 @@
 }
 
 .pii-sizing {
-  height: 200px;
   width: 20%;
+  margin: 10px;
 }
 
 .playlist-index-item {
   margin-right: 20px;
+  height: 150px;
+  width: 150px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -30,7 +32,11 @@
 
 .playlist-index-item-image {
   box-shadow: 0 0 2px 0px rgba(38, 38, 38, 0.85);
+  position: relative;
   width: 100%;
   height: 100%;
   overflow: hidden;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 20%, 0;
 }
