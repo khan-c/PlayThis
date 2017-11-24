@@ -17,7 +17,8 @@
 
 .above-playback {
   display: flex;
-  height: 100%;
+  height: 95vh;
+  overflow: scroll;
 }
 
 .nav-bar-container {

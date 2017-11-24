@@ -9,11 +9,16 @@ class PlaylistIndexItem extends React.Component {
     return(
       <div className="pii-sizing">
         <div className="playlist-index-item">
-          <div
-            className="playlist-index-item-image"
-            style={ image }>
+          <div className="playlist-index-item-image">
+            <div
+              className="playlist-image"
+              style={ image }>
+              <div className="pi-hover">
+                <img src="https://s3-us-west-1.amazonaws.com/playthismusic/images/logo.png" />
+              </div>
+            </div>
           </div>
-          <h2>{ playlist.title }</h2>
+          <p className="index-playlist-title">{ playlist.title }</p>
         </div>
       </div>
     );

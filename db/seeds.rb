@@ -13,6 +13,16 @@ Playlist.create(title: 'playlist1', author_id: 1);
 Playlist.create(title: 'playlist2', author_id: 1);
 Playlist.create(title: 'playlist3', author_id: 1);
 Playlist.create(title: 'playlist4', author_id: 2);
+Playlist.create(title: 'playlist5', author_id: 2);
+Playlist.create(title: 'playlist6', author_id: 2);
+Playlist.create(title: 'playlist7', author_id: 2);
+Playlist.create(title: 'playlist8', author_id: 2);
+Playlist.create(title: 'playlist9', author_id: 2);
+Playlist.create(title: 'playlist10', author_id: 2);
+Playlist.create(title: 'playlist11', author_id: 2);
+Playlist.create(title: 'playlist12', author_id: 2);
+Playlist.create(title: 'playlist13', author_id: 2);
+Playlist.create(title: 'playlist14', author_id: 2);
 
 Song.create(title: 'song1', album_id: 1, artist_id: 1);
 Song.create(title: 'song2', album_id: 1, artist_id: 1);
