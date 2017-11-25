@@ -39,7 +39,7 @@ class Api::PlaylistsController < ApplicationController
   end
 
   def index
-    @playlists = Playlist.includes(:songs).all
+    @playlists = Playlist.includes(:songs, :author).all
     render 'api/playlists/index.json.jbuilder'
   end
 

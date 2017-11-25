@@ -42,6 +42,11 @@
   font-size: 12px;
 }
 
+.playlist-play:hover {
+  background: $hover-green;
+  cursor: pointer;
+}
+
 .playlist-show-image {
   box-shadow: 0 0 2px 0px rgba(38, 38, 38, 0.85);
   position: relative;
