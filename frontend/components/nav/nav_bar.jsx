@@ -4,6 +4,10 @@ import FaSearch from 'react-icons/lib/fa/search';
 import FaSignOut from 'react-icons/lib/fa/sign-out';
 
 class NavBar extends React.Component {
+  constructor(props) {
+    super(props);
+
+  }
 
   render() {
     const currentUserPage = `/user/${this.props.user.id}`;
@@ -43,6 +47,16 @@ class NavBar extends React.Component {
                 Your Music
               </div>
             </NavLink>
+          </div>
+          <div className="new-playlist-button">
+            <p>
+              <NavLink
+                activeClassName="selected"
+                to="/playlists/new"
+                className="nav-bar-new-playlist">
+                New Playlist
+              </NavLink>
+            </p>
           </div>
           <div className="nav-bar-user-container">
             <NavLink

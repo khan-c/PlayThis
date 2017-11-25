@@ -22,13 +22,14 @@ class PlaylistIndex extends React.Component {
     const playlists = this.props.playlists.map( playlist => (
       <PlaylistIndexItem key={ playlist.id } playlist={ playlist }/>
     ));
-    let header = '';
-    if (this.props.match.path === "/") {
-      header =
-        <div className="playlist-index-header">
-          <p className="playlist-index-options">browse</p>
-          <h1 className="playlist-index-title">Featured Music</h1>
-        </div>;
+    let header =
+      <div className="playlist-index-header">
+        <p className="playlist-index-options">browse</p>
+        <h1 className="playlist-index-title">All Playlists</h1>
+      </div>;
+    if (this.props.match.path === "/user/:userId") {
+      header = '';
+
     }
 
 

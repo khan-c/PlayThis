@@ -35,6 +35,10 @@
   flex-direction: column;
   justify-content: flex-start;
   flex: 2;
+}
+
+.nav-bar-links,
+.new-playlist-button {
   color: $light-gray;
   font-size: 15px;
   font-weight: 700;
@@ -69,25 +73,18 @@
 .nav-bar-search:hover,
 .nav-bar-mag-glass:hover,
 .nav-bar-home:hover,
-.nav-bar-current-user-page:hover {
+.nav-bar-current-user-page:hover,
+.nav-bar-new-playlist:hover {
   color: white;
   cursor: pointer;
 }
 
 .new-playlist-button {
-  display: flex;
-  justify-content: center;
+  padding-bottom: 15px;
 }
 
-.new-p-button {
-  padding: 5px 20px;
-  margin-bottom: 10px;
-  background: $green;
-  border-radius: 30px;
-}
-
-.new-p-button:hover {
-  background: $hover-green;
+.nav-bar-new-playlist {
+  transition: .5s;
 }
 
 .nav-bar-user-container {
@@ -133,5 +130,9 @@
 }
 
 .selected {
+  color: $green;
+}
+
+.selected1 {
   color: $green;
 }

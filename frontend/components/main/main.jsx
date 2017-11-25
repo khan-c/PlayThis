@@ -5,6 +5,7 @@ import NavBar from '../nav/nav_bar';
 import Playback from '../playback/playback';
 import PlaylistIndexContainer from '../playlist/playlist_index_container';
 import PlaylistShowContainer from '../playlist/playlist_show_container';
+import PlaylistFormContainer from '../playlist/playlist_form_container';
 
 class Main extends React.Component {
 
@@ -20,11 +21,9 @@ class Main extends React.Component {
               component={PlaylistShowContainer} />
             <Route
               path="/user/:userId"
-              render={
-                (props) => (
-                  <PlaylistIndexContainer {...props} /> )} />
-
-            <Route path="/" component={PlaylistIndexContainer} />
+              component={PlaylistIndexContainer} />
+            <Route path="/playlists/new" component={PlaylistFormContainer} />
+            <Route exact path="/browse" component={PlaylistIndexContainer} />
           </Switch>
         </div>
         <Playback />
