@@ -46,6 +46,7 @@
   align-items: center;
   border-bottom: 1px solid $gray;
   padding: 15px 0px;
+  transition: .5s;
 }
 
 .nav-bar-mag-glass {
@@ -56,42 +57,77 @@
 
 .nav-bar-home {
   padding: 15px 0px;
+  transition: .5s;
 }
 
 .nav-bar-current-user-page {
   padding-bottom: 15px;
   border-bottom: 1px solid $gray;
+  transition: .5s;
 }
 
 .nav-bar-search:hover,
+.nav-bar-mag-glass:hover,
 .nav-bar-home:hover,
 .nav-bar-current-user-page:hover {
   color: white;
+  cursor: pointer;
+}
+
+.new-playlist-button {
+  display: flex;
+  justify-content: center;
+}
+
+.new-p-button {
+  padding: 5px 20px;
+  margin-bottom: 10px;
+  background: $green;
+  border-radius: 30px;
+}
+
+.new-p-button:hover {
+  background: $hover-green;
 }
 
 .nav-bar-user-container {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
   border-top: 1px solid $gray;
 }
 
+.nav-bar-user-link {
+  overflow: hidden;
+}
+
 .nav-bar-user {
-  padding-top: 15px;
+  padding-top: 10px;
+  padding-bottom: 5px;
   display: flex;
   align-items: center;
-  margin: 5px;
+  margin-right: 3px;
+  font-size: 13px;
+  font-weight: 500;
+  overflow: hidden;
+}
+
+.nav-bar-user:hover,
+.nav-bar-user img:hover {
+  cursor: pointer;
 }
 
 .nav-bar-user img {
-  border: 1px solid $gray;
+  border: 1px solid $alpha-gray;
   margin-right: 5px;
 }
 
 .nav-bar-logout {
-  font-size: 14px;
-  padding: 3px 5px;
-  border-radius: 20px;
-  background: $green;
-  width: 100px;
-  text-align: center;
+ padding: 0px 3px 3px 3px;
+ font-size: 20px;
+}
+
+.nav-bar-logout:hover {
+  background: $hover-green;
+  color: $gray;
 }
