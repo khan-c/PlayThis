@@ -34,12 +34,16 @@ class Api::PlaylistsController < ApplicationController
   end
 
   def show
-    @playlist = Playlist.includes(:songs, :author).find_by(id: params[:id])
+    @playlist = Playlist.includes(:songs, :author).find(params[:id])
     render 'api/playlists/show.json.jbuilder'
   end
 
   def index
-    @playlists = Playlist.includes(:songs, :author).all
+    if params[:userId]
+      @playlists = User.find(params[:userId]).playlists.includes(:songs, :author)
+    else
+      @playlists = Playlist.includes(:songs, :author).all
+    end
     render 'api/playlists/index.json.jbuilder'
   end
 

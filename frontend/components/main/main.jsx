@@ -15,8 +15,16 @@ class Main extends React.Component {
         <div className="above-playback">
           <NavBar user={ this.props.user } logout={ this.props.logout }/>
           <Switch>
-            <Route path="/browse" component={PlaylistIndexContainer} />
-            <Route path="/playlist/:playlistId" component={PlaylistShowContainer} />
+            <Route
+              path="/playlist/:playlistId"
+              component={PlaylistShowContainer} />
+            <Route
+              path="/user/:userId"
+              render={
+                (props) => (
+                  <PlaylistIndexContainer {...props} /> )} />
+
+            <Route path="/" component={PlaylistIndexContainer} />
           </Switch>
         </div>
         <Playback />

@@ -1,6 +1,10 @@
+.playlist-index {
+  height: 100%;
+  width: 100%;
+}
+
 .playlist-index-container {
   padding-left: 220px;
-  // padding-bottom: 100px;
   height: 100vh;
   width: 100%;
   display: flex;
@@ -8,11 +12,28 @@
   align-items: center;
 }
 
+.playlist-index-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .playlist-index-options {
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   padding-top: 35px;
+}
+
+.playlist-index-options::after {
+  content: "";
+  height: 2px;
+  background: $green;
+  width: 30px;
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  top: 4px;
 }
 
 .playlist-index-title {

@@ -7,7 +7,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchPlaylists: () => dispatch(fetchPlaylists())
+  fetchPlaylists: (userId) => dispatch(fetchPlaylists(userId))
 });
 
 export default connect(
