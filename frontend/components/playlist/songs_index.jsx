@@ -34,6 +34,7 @@ class SongsIndex extends React.Component {
               </div>
             </div>
             <p className="playlist-title">{ playlist.title }</p>
+            <p className="playlist-author">{ playlist.author }</p>
           </div>
           <ul className="songs">
             { songs }
