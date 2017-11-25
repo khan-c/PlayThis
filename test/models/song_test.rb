@@ -12,6 +12,7 @@
 #  song_url_content_type :string
 #  song_url_file_size    :integer
 #  song_url_updated_at   :datetime
+#  length                :integer          not null
 #
 
 require 'test_helper'

@@ -3,8 +3,7 @@ import PlaylistIndex from './playlist_index';
 import { fetchPlaylists } from '../../actions/playlist_actions';
 
 const mapStateToProps = state => ({
-  playlists: Object.values(state.entities.playlists),
-  songs: Object.values(state.entities.playlists)
+  playlists: Object.values(state.entities.playlists)
 });
 
 const mapDispatchToProps = dispatch => ({

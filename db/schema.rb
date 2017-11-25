@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171123181615) do
+ActiveRecord::Schema.define(version: 20171124214533) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "albums", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "img_url"
+    t.string "artist_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["artist_id", "id"], name: "index_albums_on_artist_id_and_id", unique: true
+  end
+
+  create_table "artists", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "img_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "playlist_songs", force: :cascade do |t|
     t.integer "playlist_id", null: false
@@ -47,6 +63,7 @@ ActiveRecord::Schema.define(version: 20171123181615) do
     t.string "song_url_content_type"
     t.integer "song_url_file_size"
     t.datetime "song_url_updated_at"
+    t.integer "length", null: false
     t.index ["album_id"], name: "index_songs_on_album_id"
     t.index ["artist_id"], name: "index_songs_on_artist_id"
     t.index ["title", "album_id"], name: "index_songs_on_title_and_album_id", unique: true

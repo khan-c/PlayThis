@@ -1,23 +1,11 @@
 import * as SongAPIUtil from '../util/song_api_util';
 
 export const RECEIVE_SONGS = 'RECEIVE_SONGS';
-export const RECEIVE_SONG = 'RECEIVE_SONG';
-export const REMOVE_SONG = 'REMOVE_SONG';
 export const RECEIVE_SONG_ERRORS = 'RECEIVE_SONG_ERRORS';
 
 export const receiveSongs = songs => ({
   type: RECEIVE_SONGS,
   songs
-});
-
-export const receiveSong = song => ({
-  type: RECEIVE_SONG,
-  song
-});
-
-export const removeSong = songId => ({
-  type: REMOVE_SONG,
-  songId
 });
 
 export const receiveSongErrors = errors => ({

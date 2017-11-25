@@ -1,0 +1,97 @@
+
+.nav-bar-container {
+  background: rgba(#000000, 0.5);
+  height: 100%;
+  width: 220px;
+  position: fixed;
+}
+
+.nav-bar {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding-bottom: 100px;
+  box-sizing: border-box;
+}
+
+.nav-bar-header {
+  padding-bottom: 15px;
+  border-bottom: 1px solid $gray;
+}
+
+.nav-bar .logo {
+  height: 30px;
+  width: 30px;
+}
+
+.nav-bar .logo:hover {
+  cursor: pointer;
+}
+
+.nav-bar-links {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex: 2;
+  color: $light-gray;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.nav-bar-search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid $gray;
+  padding: 15px 0px;
+}
+
+.nav-bar-mag-glass {
+  font-size: 20px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.nav-bar-home {
+  padding: 15px 0px;
+}
+
+.nav-bar-current-user-page {
+  padding-bottom: 15px;
+  border-bottom: 1px solid $gray;
+}
+
+.nav-bar-search:hover,
+.nav-bar-home:hover,
+.nav-bar-current-user-page:hover {
+  color: white;
+}
+
+.nav-bar-user-container {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid $gray;
+}
+
+.nav-bar-user {
+  padding-top: 15px;
+  display: flex;
+  align-items: center;
+  margin: 5px;
+}
+
+.nav-bar-user img {
+  border: 1px solid $gray;
+  margin-right: 5px;
+}
+
+.nav-bar-logout {
+  font-size: 14px;
+  padding: 3px 5px;
+  border-radius: 20px;
+  background: $green;
+  width: 100px;
+  text-align: center;
+}

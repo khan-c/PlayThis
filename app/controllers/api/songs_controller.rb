@@ -4,7 +4,7 @@ class Api::SongsController < ApplicationController
   def index
     playlist = Playlist.find_by(id: params[:playlist_id])
     if playlist
-      @songs = playlist.songs
+      @songs = playlist.songs.includes(:album, :artist)
       render 'api/songs/index.json.jbuilder'
     else
       render json: ["Songs cannot be retrieved at this moment"], status: 404

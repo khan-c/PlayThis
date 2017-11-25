@@ -9,11 +9,11 @@ import MainContainer from './main/main_container';
 const App = () => (
   <div>
     <Switch>
-      <ProtectedRoute path="/browse" component={MainContainer} />
-
       <AuthRoute exact path="/" component={GreetingContainer} />
       <AuthRoute exact path="/login" component={GreetingContainer} />
       <AuthRoute exact path="/signup" component={GreetingContainer} />
+
+      <ProtectedRoute path="/" component={MainContainer} />
     </Switch>
 
     <AuthRoute path="/login" component={SessionFormContainer} />
