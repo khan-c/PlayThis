@@ -12,6 +12,7 @@ class SongsIndex extends React.Component {
 
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   openModal() {
@@ -20,6 +21,13 @@ class SongsIndex extends React.Component {
 
   closeModal() {
     this.setState({ modalIsOpen: false });
+  }
+
+  handleDelete() {
+    console.log(this.props.playlist);
+    this.props.deletePlaylist(this.props.playlist.id).then(
+      this.props.history.push("/browse")
+    );
   }
 
   componentWillMount() {
@@ -59,7 +67,7 @@ class SongsIndex extends React.Component {
             <p className="playlist-play">PLAY</p>
             <p
               onClick={ this.openModal }
-              className="playlist-options">...
+              className="playlist-options">Delete
             </p>
             <Modal
               isOpen={ this.state.modalIsOpen }
@@ -75,7 +83,25 @@ class SongsIndex extends React.Component {
                 beforeClose: 'playlist-options-overlay-before-close'
               }}
               >
-              <p>Delete Playlist</p>
+              <h1
+                onClick={ this.closeModal }
+                className="playlist-form-exit-x">X</h1>
+              <h1 className="playlist-form-title">
+                Do you really want to delete this playlist?
+              </h1>
+              <div
+                className="playlist-delete-buttons" >
+                <input
+                  onClick={ this.closeModal }
+                  className="playlist-delete-cancel"
+                  type="button"
+                  value="cancel" />
+                <input
+                  onClick={ this.handleDelete }
+                  className="playlist-delete"
+                  type="button"
+                  value="delete" />
+              </div>
             </Modal>
           </div>
           <ul className="songs">

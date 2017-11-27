@@ -13,10 +13,10 @@ class Api::PlaylistsController < ApplicationController
   end
 
   def destroy
-    @playlist = Playlist.find(params[:id])
+    @playlist = current_user.playlists.find(params[:id])
     if @playlist
       @playlist.destroy!
-      render :index
+      render json: ["Playlist deleted"]
     else
       render json: ["No playlist to delete"], status: 404
     end

@@ -43,28 +43,37 @@
   position: relative;
 }
 
-.playlist-options-overlay-open {
-  position: absolute;
-  top: 10px;
-  background: white;
-}
-
-.playlist-options-modal {
-}
-
 .playlist-play:hover {
   background: $hover-green;
   cursor: pointer;
 }
 
 .playlist-options {
-  font-size: 40px;
-  margin-top: 10px;
+  font-size: 12px;
+  margin-top: 40px;
+  color: $light-gray;
 }
 
 .playlist-options:hover {
   cursor: pointer;
+}
 
+.playlist-options-overlay-open {
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  background: rgba(0, 0, 0, 0.85);
+}
+
+.playlist-options-open {
+  position: absolute;
+  top: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
 .playlist-show-image {
@@ -85,4 +94,47 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 20%, 0;
+}
+
+.playlist-delete-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.playlist-delete-cancel,
+.playlist-delete {
+  text-transform: uppercase;
+  font-size: 12px;
+  padding: 10px 40px;
+  border-radius: 30px;
+}
+
+.playlist-delete-cancel {
+  border: 2px solid $light-gray;
+  margin-right: 20px;
+}
+
+.playlist-delete-cancel:hover {
+  transform: scale(1.05);
+  border: 2px solid white;
+  cursor: pointer;
+}
+
+.playlist-delete-cancel:active {
+  transform: scale(1);
+}
+
+.playlist-delete {
+  background: $green;
+}
+
+.playlist-delete:hover {
+  background: $hover-green;
+  transform: scale(1.05);
+}
+
+.playlist-delete:active {
+  background: $green;
+  transform: scale(1);
 }
