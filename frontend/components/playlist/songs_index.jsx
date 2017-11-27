@@ -1,5 +1,6 @@
 import React from 'react';
 import SongIndexItem from './song_index_item';
+import FaEllipsisH from 'react-icons/lib/fa/ellipsis-h';
 
 class SongsIndex extends React.Component {
   componentWillMount() {
@@ -37,6 +38,7 @@ class SongsIndex extends React.Component {
             <p className="playlist-author">{ playlist.author }</p>
             <p className="playlist-song-count">{ songs.length } SONGS</p>
             <p className="playlist-play">PLAY</p>
+            <p className="playlist-options">...</p>
           </div>
           <ul className="songs">
             { songs }

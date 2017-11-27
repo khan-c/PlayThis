@@ -22,7 +22,6 @@ class Main extends React.Component {
             <Route
               path="/user/:userId"
               component={PlaylistIndexContainer} />
-            <Route path="/playlists/new" component={PlaylistFormContainer} />
             <Route exact path="/browse" component={PlaylistIndexContainer} />
           </Switch>
         </div>

@@ -3,7 +3,6 @@ import PlaylistIndexItem from './playlist_index_item';
 
 class PlaylistIndex extends React.Component {
   componentDidMount() {
-    console.log(this.props);
     this.props.fetchPlaylists(this.props.match.params.userId);
   }
 

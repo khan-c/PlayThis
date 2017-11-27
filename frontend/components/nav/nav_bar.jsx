@@ -2,11 +2,26 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import FaSearch from 'react-icons/lib/fa/search';
 import FaSignOut from 'react-icons/lib/fa/sign-out';
+import Modal from 'react-modal';
+import PlaylistFormContainer from '../playlist/playlist_form_container';
 
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      modalIsOpen: false
+    };
 
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+  }
+
+  openModal() {
+    this.setState({ modalIsOpen: true });
+  }
+
+  closeModal() {
+    this.setState({ modalIsOpen: false });
   }
 
   render() {
@@ -49,13 +64,8 @@ class NavBar extends React.Component {
             </NavLink>
           </div>
           <div className="new-playlist-button">
-            <p>
-              <NavLink
-                activeClassName="selected"
-                to="/playlists/new"
-                className="nav-bar-new-playlist">
-                New Playlist
-              </NavLink>
+            <p onClick={ this.openModal }>
+              New Playlist
             </p>
           </div>
           <div className="nav-bar-user-container">
@@ -73,6 +83,23 @@ class NavBar extends React.Component {
               onClick={ this.props.logout }><FaSignOut /></button>
           </div>
         </div>
+        <Modal
+          isOpen={ this.state.modalIsOpen }
+          onRequestClose={ this.closeModal }
+          className={{
+            base: 'playlist-form',
+            afterOpen: 'playlist-form-open',
+            beforeClose: 'playlist-form-before-close'
+          }}
+          overlayClassName={{
+            base: 'playlist-form-overlay',
+            afterOpen: 'playlist-form-overlay-open',
+            beforeClose: 'playlist-form-overlay-before-close'
+          }}
+          >
+          <PlaylistFormContainer
+            closeModal={ this.closeModal }/>
+        </Modal>
       </div>
     );
   }

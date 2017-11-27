@@ -1,9 +1,98 @@
-.playlist-form-modal {
-  background: rgba(0, 0, 0, 0.85);
+.playlist-form-overlay-open {
   position: fixed;
   top: 0;
   right: 0;
-  bottom: 0;
   left: 0;
-  z-index: 10;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+}
+
+.playlist-form-open {
+  position: absolute;
+  top: 25%;
+  width: 100%;
+}
+
+.playlist-form-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.playlist-form-exit-x {
+  font-weight: 400;
+  color: white;
+  box-sizing: border-box;
+  height: 50px;
+  width: 50px;
+  margin-bottom: 50px;
+}
+
+.playlist-form-exit-x:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.playlist-form-title {
+  font-size: 46px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.playlist-form {
+  width: 100%;
+}
+
+.playlist-form-form {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  width: 60%;
+  background: $alpha-gray;
+  padding: 30px 20%;
+}
+
+.playlist-form-label {
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.playlist-form-input {
+  font-size: 46px;
+  font-weight: 700;
+}
+
+.playlist-form-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.playlist-form-cancel,
+.playlist-form-create {
+  text-transform: uppercase;
+  font-size: 12px;
+  padding: 10px 40px;
+  border-radius: 30px;
+}
+
+.playlist-form-cancel {
+  border: 2px solid $light-gray;
+  margin-right: 20px;
+}
+
+.playlist-form-cancel:hover {
+  transform: scale(1.05);
+  border: 2px solid white;
+  cursor: pointer;
+}
+
+.playlist-form-create {
+  background: $green;
+}
+
+.playlist-form-create:hover {
+  background: $hover-green;
+  transform: scale(1.05);
 }
