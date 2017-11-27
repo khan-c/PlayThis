@@ -63,8 +63,10 @@ class NavBar extends React.Component {
               </div>
             </NavLink>
           </div>
-          <div className="new-playlist-button">
-            <p onClick={ this.openModal }>
+          <div className="nav-bar-new-playlist">
+            <p
+              className="new-playlist-button"
+              onClick={ this.openModal }>
               New Playlist
             </p>
           </div>

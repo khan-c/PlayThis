@@ -74,16 +74,13 @@
 .nav-bar-mag-glass:hover,
 .nav-bar-home:hover,
 .nav-bar-current-user-page:hover,
-.nav-bar-new-playlist:hover {
+.new-playlist-button:hover {
   color: white;
   cursor: pointer;
 }
 
 .new-playlist-button {
   padding-bottom: 15px;
-}
-
-.nav-bar-new-playlist {
   transition: .5s;
 }
 
