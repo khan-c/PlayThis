@@ -20,7 +20,7 @@ class PlaylistForm extends React.Component {
     if (this.state.title !== '') {
       const playlist = Object.assign({}, this.state);
       this.props.createPlaylist(playlist).then(
-        this.props.history.replace("/browse")
+        newPlaylist => this.props.history.replace(`/playlist/${newPlaylist.id}`)
       );
       this.props.closeModal();
     }

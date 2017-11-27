@@ -41,7 +41,10 @@ export const fetchPlaylist = playlistId => dispatch => (
 
 export const createPlaylist = formPlaylist => dispatch => (
   PlaylistAPIUtil.createPlaylist(formPlaylist).then(
-    playlist => dispatch(receivePlaylist(playlist)),
+    playlist => {
+      dispatch(receivePlaylist(playlist));
+      return playlist;
+    },
     errors => dispatch(receivePlaylistErrors(errors))
   )
 );

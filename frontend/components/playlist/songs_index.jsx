@@ -1,8 +1,27 @@
 import React from 'react';
 import SongIndexItem from './song_index_item';
 import FaEllipsisH from 'react-icons/lib/fa/ellipsis-h';
+import Modal from 'react-modal';
 
 class SongsIndex extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      modalIsOpen: false
+    };
+
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+  }
+
+  openModal() {
+    this.setState({ modalIsOpen: true });
+  }
+
+  closeModal() {
+    this.setState({ modalIsOpen: false });
+  }
+
   componentWillMount() {
     this.props.fetchPlaylist(this.props.match.params.playlistId);
     this.props.fetchSongs(this.props.match.params.playlistId);
@@ -38,7 +57,26 @@ class SongsIndex extends React.Component {
             <p className="playlist-author">{ playlist.author }</p>
             <p className="playlist-song-count">{ songs.length } SONGS</p>
             <p className="playlist-play">PLAY</p>
-            <p className="playlist-options">...</p>
+            <p
+              onClick={ this.openModal }
+              className="playlist-options">...
+            </p>
+            <Modal
+              isOpen={ this.state.modalIsOpen }
+              onRequestClose={ this.closeModal }
+              className={{
+                base: 'playlist-options-modal',
+                afterOpen: 'playlist-options-open',
+                beforeClose: 'playlist-options-before-close'
+              }}
+              overlayClassName={{
+                base: 'playlist-options-overlay',
+                afterOpen: 'playlist-options-overlay-open',
+                beforeClose: 'playlist-options-overlay-before-close'
+              }}
+              >
+              <p>Delete Playlist</p>
+            </Modal>
           </div>
           <ul className="songs">
             { songs }

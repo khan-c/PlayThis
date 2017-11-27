@@ -40,6 +40,16 @@
   background: $green;
   border-radius: 30px;
   font-size: 12px;
+  position: relative;
+}
+
+.playlist-options-overlay-open {
+  position: absolute;
+  top: 10px;
+  background: white;
+}
+
+.playlist-options-modal {
 }
 
 .playlist-play:hover {
