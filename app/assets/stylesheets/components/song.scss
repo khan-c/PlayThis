@@ -113,6 +113,23 @@
   cursor: pointer;
 }
 
+.song-options-overlay-open {
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  background: $modal-overlay;
+}
+
+.song-options-open {
+  position: relative;
+  top: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .song-main {
   display: flex;
   flex-direction: column;
@@ -141,4 +158,17 @@
   margin-top: 7px;
   padding-right: 5px;
   font-size: 14px;
+}
+
+.add {
+  font-size: 60px;
+}
+
+.remove {
+  margin: 0 15%;
+  text-align: center;
+}
+
+.song-remove {
+  top: 20%;
 }

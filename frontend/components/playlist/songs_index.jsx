@@ -41,7 +41,12 @@ class SongsIndex extends React.Component {
     }
     const image = { backgroundImage: `url(${playlist.image_url})` };
     const songs = this.props.songs.map((song, idx) => (
-      <SongIndexItem key={ song.id } song={ song } idx={ idx + 1 } />
+      <SongIndexItem
+        key={ song.id }
+        song={ song }
+        idx={ idx + 1 }
+        userOwnsPlaylist={ (this.props.currentUser.id === playlist.author_id) }
+        />
     ));
     let deleteButton = '';
     if (playlist.author_id === this.props.currentUser.id) {

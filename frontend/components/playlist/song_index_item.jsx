@@ -5,19 +5,30 @@ class SongIndexItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalIsOpen: false
+      addModalIsOpen: false,
+      removeModalIsOpen: false
     };
 
-    this.openModal = this.openModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
+    this.openAddModal = this.openAddModal.bind(this);
+    this.closeAddModal = this.closeAddModal.bind(this);
+    this.openRemoveModal = this.openRemoveModal.bind(this);
+    this.closeRemoveModal = this.closeRemoveModal.bind(this);
   }
 
-  openModal() {
-    this.setState({ modalIsOpen: true });
+  openAddModal() {
+    this.setState({ addModalIsOpen: true });
   }
 
-  closeModal() {
-    this.setState({ modalIsOpen: false });
+  closeAddModal() {
+    this.setState({ addModalIsOpen: false });
+  }
+
+  openRemoveModal() {
+    this.setState({ removeModalIsOpen: true });
+  }
+
+  closeRemoveModal() {
+    this.setState({ removeModalIsOpen: false });
   }
 
   parseTime(time) {
@@ -30,8 +41,14 @@ class SongIndexItem extends React.Component {
   render() {
     const { song } = this.props;
     const length = this.parseTime(song.length);
+    let songRemove = '';
+    if (this.props.userOwnsPlaylist) {
+      songRemove= <li onClick={ this.openRemoveModal }>Remove from playlist</li>;
+    }
+
 
     return(
+
       <li className="song-li">
         <div className="song">
           <div className="song-position">
@@ -53,8 +70,8 @@ class SongIndexItem extends React.Component {
                 ...
                 <div className="song-options-menu">
                   <ul className="song-menu-items">
-                    <li >Add to playlist</li>
-                    <li>Remove from playlist</li>
+                    <li onClick={ this.openAddModal }>Add to playlist</li>
+                    { songRemove }
                   </ul>
                 </div>
               </div>
@@ -63,8 +80,8 @@ class SongIndexItem extends React.Component {
           </div>
         </div>
           <Modal
-          isOpen={ this.state.modalIsOpen }
-          onRequestClose={ this.closeModal }
+          isOpen={ this.state.addModalIsOpen }
+          onRequestClose={ this.closeAddModal }
           className={{
             base: 'song-options-modal',
             afterOpen: 'song-options-open',
@@ -77,14 +94,49 @@ class SongIndexItem extends React.Component {
           }}
           >
           <h1
-            onClick={ this.closeModal }
+            onClick={ this.closeAddModal }
             className="playlist-form-exit-x">X</h1>
-          <h1 className="playlist-form-title">
+          <h1 className="playlist-form-title add">
             Add to playlist
           </h1>
           <ul>
 
           </ul>
+        </Modal>
+        
+        <Modal
+        isOpen={ this.state.removeModalIsOpen }
+        onRequestClose={ this.closeRemoveModal }
+        className={{
+          base: 'song-options-modal',
+          afterOpen: 'song-options-open song-remove',
+          beforeClose: 'song-options-before-close'
+        }}
+        overlayClassName={{
+          base: 'song-options-overlay',
+          afterOpen: 'song-options-overlay-open',
+          beforeClose: 'song-options-overlay-before-close'
+        }}
+        >
+          <h1
+            onClick={ this.closeRemoveModal }
+            className="playlist-form-exit-x">X</h1>
+          <h1 className="playlist-form-title remove">
+            Are you sure you want to remove this song?
+          </h1>
+          <div
+            className="playlist-delete-buttons" >
+            <input
+              onClick={ this.closeRemoveModal }
+              className="playlist-delete-cancel"
+              type="button"
+              value="cancel" />
+            <input
+              onClick={ this.handleUpdate }
+              className="playlist-delete"
+              type="button"
+              value="remove" />
+          </div>
         </Modal>
       </li>
     );
