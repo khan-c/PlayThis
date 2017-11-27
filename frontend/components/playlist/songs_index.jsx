@@ -44,6 +44,10 @@ class SongsIndex extends React.Component {
     const songs = this.props.songs.map((song, idx) => (
       <SongIndexItem key={ song.id } song={ song } idx={ idx + 1 } />
     ));
+    let deleteButton = '';
+    if (playlist.author_id === this.props.currentUser.id) {
+      deleteButton = 'Delete';
+    }
 
     return(
       <div className="playlist-index-container">
@@ -62,12 +66,12 @@ class SongsIndex extends React.Component {
               </div>
             </div>
             <p className="playlist-title">{ playlist.title }</p>
-            <p className="playlist-author">{ playlist.author }</p>
+            <p className="playlist-author">{ playlist.author_name }</p>
             <p className="playlist-song-count">{ songs.length } SONGS</p>
             <p className="playlist-play">PLAY</p>
             <p
               onClick={ this.openModal }
-              className="playlist-options">Delete
+              className="playlist-options">{ deleteButton }
             </p>
             <Modal
               isOpen={ this.state.modalIsOpen }

@@ -9,7 +9,8 @@ import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state, ownProps) => ({
   playlist: state.entities.playlists[ownProps.match.params.playlistId],
-  songs: Object.values(state.entities.songs)
+  songs: Object.values(state.entities.songs),
+  currentUser: state.session.currentUser.user
 });
 
 const mapDispatchToProps = dispatch => ({
