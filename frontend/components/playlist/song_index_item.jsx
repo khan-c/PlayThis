@@ -49,15 +49,20 @@ class SongIndexItem extends React.Component {
             </div>
             <div className="song-menu">
               <div
-                onClick={ this.openModal }
-                className="song-add">
-                +
+                className="song-options">
+                ...
+                <div className="song-options-menu">
+                  <ul className="song-menu-items">
+                    <li >Add to playlist</li>
+                    <li>Remove from playlist</li>
+                  </ul>
+                </div>
               </div>
             </div>
             <p className="song-length">{ length }</p>
           </div>
         </div>
-        <Modal
+          <Modal
           isOpen={ this.state.modalIsOpen }
           onRequestClose={ this.closeModal }
           className={{
@@ -78,7 +83,7 @@ class SongIndexItem extends React.Component {
             Add to playlist
           </h1>
           <ul>
-            
+
           </ul>
         </Modal>
       </li>
