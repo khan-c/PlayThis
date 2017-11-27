@@ -40,11 +40,13 @@ class SongsIndex extends React.Component {
       return null;
     }
     const image = { backgroundImage: `url(${playlist.image_url})` };
-    const songs = this.props.songs.map((song, idx) => (
+    const songs = this.props.playlist.song_ids.map((songId, idx) => (
       <SongIndexItem
-        key={ song.id }
-        song={ song }
+        key={ `${idx}${songId}` }
+        song={ this.props.songs[songId] }
         idx={ idx + 1 }
+        playlist={ playlist }
+        updatePlaylist= { this.props.updatePlaylist }
         userOwnsPlaylist={ (this.props.currentUser.id === playlist.author_id) }
         />
     ));

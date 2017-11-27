@@ -48,6 +48,7 @@ Song.create(title: 'song18', album_id: 1, artist_id: 1, length: 200)
 Song.create(title: 'song19', album_id: 1, artist_id: 1, length: 200)
 
 PlaylistSong.create(playlist_id: 1, song_id: 1)
+PlaylistSong.create(playlist_id: 1, song_id: 1)
 PlaylistSong.create(playlist_id: 1, song_id: 2)
 PlaylistSong.create(playlist_id: 1, song_id: 3)
 PlaylistSong.create(playlist_id: 1, song_id: 4)

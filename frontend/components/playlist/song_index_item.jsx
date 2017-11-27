@@ -1,5 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
+import merge from 'lodash/merge';
+import { withRouter } from 'react-router-dom';
 
 class SongIndexItem extends React.Component {
   constructor(props) {
@@ -13,6 +15,9 @@ class SongIndexItem extends React.Component {
     this.closeAddModal = this.closeAddModal.bind(this);
     this.openRemoveModal = this.openRemoveModal.bind(this);
     this.closeRemoveModal = this.closeRemoveModal.bind(this);
+
+    this.handleRemove = this.handleRemove.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
   }
 
   openAddModal() {
@@ -38,14 +43,34 @@ class SongIndexItem extends React.Component {
     return `${minutes}:${seconds}`;
   }
 
+  handleRemove(e) {
+    e.preventDefault();
+    const playlistSongs = this.props.playlist.song_ids.slice();
+    const songId = this.props.song.id;
+    playlistSongs.splice(playlistSongs.indexOf(songId), 1);
+    const playlist = merge({}, this.props.playlist);
+    playlist.song_ids = playlistSongs;
+    this.handleUpdate(playlist);
+  }
+
+  handleUpdate(playlist) {
+    this.props.updatePlaylist(playlist);
+    this.closeRemoveModal();
+  }
+
   render() {
     const { song } = this.props;
+    if (!song) {
+      return null;
+    }
     const length = this.parseTime(song.length);
     let songRemove = '';
     if (this.props.userOwnsPlaylist) {
-      songRemove= <li onClick={ this.openRemoveModal }>Remove from playlist</li>;
+      songRemove =
+        <li onClick={ this.openRemoveModal }>
+          Remove from playlist
+        </li>;
     }
-
 
     return(
 
@@ -53,7 +78,9 @@ class SongIndexItem extends React.Component {
         <div className="song">
           <div className="song-position">
             <p className="song-pos-num">{ this.props.idx }.</p>
-            <img className="song-play-b" src="https://s3-us-west-1.amazonaws.com/playthismusic/images/logo.png" />
+            <img
+              className="song-play-b"
+              src="https://s3-us-west-1.amazonaws.com/playthismusic/images/logo.png" />
           </div>
           <div className="song-details">
             <div className="song-main">
@@ -79,7 +106,8 @@ class SongIndexItem extends React.Component {
             <p className="song-length">{ length }</p>
           </div>
         </div>
-          <Modal
+
+        <Modal
           isOpen={ this.state.addModalIsOpen }
           onRequestClose={ this.closeAddModal }
           className={{
@@ -91,8 +119,7 @@ class SongIndexItem extends React.Component {
             base: 'song-options-overlay',
             afterOpen: 'song-options-overlay-open',
             beforeClose: 'song-options-overlay-before-close'
-          }}
-          >
+          }}>
           <h1
             onClick={ this.closeAddModal }
             className="playlist-form-exit-x">X</h1>
@@ -103,21 +130,20 @@ class SongIndexItem extends React.Component {
 
           </ul>
         </Modal>
-        
+
         <Modal
-        isOpen={ this.state.removeModalIsOpen }
-        onRequestClose={ this.closeRemoveModal }
-        className={{
-          base: 'song-options-modal',
-          afterOpen: 'song-options-open song-remove',
-          beforeClose: 'song-options-before-close'
-        }}
-        overlayClassName={{
-          base: 'song-options-overlay',
-          afterOpen: 'song-options-overlay-open',
-          beforeClose: 'song-options-overlay-before-close'
-        }}
-        >
+          isOpen={ this.state.removeModalIsOpen }
+          onRequestClose={ this.closeRemoveModal }
+          className={{
+            base: 'song-options-modal',
+            afterOpen: 'song-options-open song-remove',
+            beforeClose: 'song-options-before-close'
+          }}
+          overlayClassName={{
+            base: 'song-options-overlay',
+            afterOpen: 'song-options-overlay-open',
+            beforeClose: 'song-options-overlay-before-close'
+          }}>
           <h1
             onClick={ this.closeRemoveModal }
             className="playlist-form-exit-x">X</h1>
@@ -132,7 +158,7 @@ class SongIndexItem extends React.Component {
               type="button"
               value="cancel" />
             <input
-              onClick={ this.handleUpdate }
+              onClick={ this.handleRemove }
               className="playlist-delete"
               type="button"
               value="remove" />
@@ -143,4 +169,4 @@ class SongIndexItem extends React.Component {
   }
 }
 
-export default SongIndexItem;
+export default withRouter(SongIndexItem);
