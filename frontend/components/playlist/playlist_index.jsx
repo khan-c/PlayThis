@@ -15,9 +15,9 @@ class PlaylistIndex extends React.Component {
         <p className="playlist-index-options">browse</p>
         <h1 className="playlist-index-title">All Playlists</h1>
       </div>;
+
     if (this.props.match.path === "/user/:userId") {
       header = '';
-
     }
 
     return(

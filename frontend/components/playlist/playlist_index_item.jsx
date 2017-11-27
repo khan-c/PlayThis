@@ -26,9 +26,7 @@ class PlaylistIndexItem extends React.Component {
             <div
               className="playlist-image"
               style={ image }>
-              <div
-
-                className="pi-hover">
+              <div className="pi-hover">
                 <img src="https://s3-us-west-1.amazonaws.com/playthismusic/images/logo.png" />
               </div>
             </div>

@@ -46,6 +46,12 @@
 .playlist-play:hover {
   background: $hover-green;
   cursor: pointer;
+  transform: scale(1.05);
+}
+
+.playlist-play:active {
+  transform: scale(1);
+  background: $green;
 }
 
 .playlist-options {
@@ -56,6 +62,7 @@
 
 .playlist-options:hover {
   cursor: pointer;
+  color: white;
 }
 
 .playlist-options-overlay-open {

@@ -2,6 +2,8 @@ import React from 'react';
 import Modal from 'react-modal';
 import merge from 'lodash/merge';
 import { withRouter } from 'react-router-dom';
+import PlaylistIndexContainer from './playlist_index_container';
+import FaPlusCircle from 'react-icons/lib/fa/plus-circle';
 
 class SongIndexItem extends React.Component {
   constructor(props) {
@@ -18,6 +20,7 @@ class SongIndexItem extends React.Component {
 
     this.handleRemove = this.handleRemove.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
+    this.handleAdd = this.handleAdd.bind(this);
   }
 
   openAddModal() {
@@ -53,9 +56,19 @@ class SongIndexItem extends React.Component {
     this.handleUpdate(playlist);
   }
 
+  handleAdd(playlistId) {
+    const playlist = merge({}, this.props.currentUserPlaylists[playlistId]);
+    const playlistSongs = playlist.song_ids.slice();
+    playlistSongs.push(this.props.song.id);
+    playlist.song_ids = playlistSongs;
+    return () => this.handleUpdate(playlist);
+  }
+
   handleUpdate(playlist) {
     this.props.updatePlaylist(playlist);
     this.closeRemoveModal();
+    this.closeAddModal();
+    window.location.reload(); // TODO: how to refresh stuff without reoload?
   }
 
   render() {
@@ -72,8 +85,34 @@ class SongIndexItem extends React.Component {
         </li>;
     }
 
-    return(
+    const playlists = Object.values(this.props.currentUserPlaylists).map(playlist => {
+      const image = { backgroundImage: `url(${playlist.image_url})` };
+      if (!playlist.song_ids) {
+        return '';
+      }
+      const numSongs = playlist.song_ids.length;
+      return (
+        <li
+          className="playlist-item-song-add"
+          key={ playlist.id }>
+          <div className="add-to-playlist-image-container">
+            <div
+              className="playlist-item-song-add-image"
+              style={ image }></div>
+            <div
+              onClick={ this.handleAdd(playlist.id) }
+              className="add-hover">
+              <FaPlusCircle className="plus"/>
+            </div>
+          </div>
+          <p className="playlist-add-title">{ playlist.title }</p>
+          <p className="song-count">{ numSongs } songs</p>
+        </li>
+      );
+    });
 
+
+    return(
       <li className="song-li">
         <div className="song">
           <div className="song-position">
@@ -112,7 +151,7 @@ class SongIndexItem extends React.Component {
           onRequestClose={ this.closeAddModal }
           className={{
             base: 'song-options-modal',
-            afterOpen: 'song-options-open',
+            afterOpen: 'song-add-open',
             beforeClose: 'song-options-before-close'
           }}
           overlayClassName={{
@@ -126,8 +165,8 @@ class SongIndexItem extends React.Component {
           <h1 className="playlist-form-title add">
             Add to playlist
           </h1>
-          <ul>
-
+          <ul className="playlist-song-add-options">
+            { playlists }
           </ul>
         </Modal>
 

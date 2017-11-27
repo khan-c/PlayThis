@@ -31,6 +31,7 @@ class SongsIndex extends React.Component {
 
   componentWillMount() {
     this.props.fetchPlaylist(this.props.match.params.playlistId);
+    this.props.fetchPlaylists(this.props.currentUser.id);
     this.props.fetchSongs(this.props.match.params.playlistId);
   }
 
@@ -46,7 +47,8 @@ class SongsIndex extends React.Component {
         song={ this.props.songs[songId] }
         idx={ idx + 1 }
         playlist={ playlist }
-        updatePlaylist= { this.props.updatePlaylist }
+        updatePlaylist={ this.props.updatePlaylist }
+        currentUserPlaylists={ this.props.playlists }
         userOwnsPlaylist={ (this.props.currentUser.id === playlist.author_id) }
         />
     ));
