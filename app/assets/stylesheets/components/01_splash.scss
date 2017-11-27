@@ -76,13 +76,23 @@
   box-shadow: 1px 2px 2px 0 rgba(0, 0, 0, 0.8);
 }
 
+.button:active {
+  background-color: $green;
+  cursor: pointer;
+  box-shadow: none;
+}
+
 .login {
-  background: white;
+  background: #eeeeee;
   color: black;
 }
 
 .login:hover {
-  background: $light-gray;
+  background: white;
+}
+
+.login:active {
+  background: #eeeeee;
 }
 
 .splash-right {

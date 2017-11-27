@@ -17,11 +17,13 @@ class PlaylistForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const playlist = Object.assign({}, this.state);
-    this.props.createPlaylist(playlist).then(
-      this.props.history.replace("/browse")
-    );
-    this.props.closeModal();
+    if (this.state.title !== '') {
+      const playlist = Object.assign({}, this.state);
+      this.props.createPlaylist(playlist).then(
+        this.props.history.replace("/browse")
+      );
+      this.props.closeModal();
+    }
   }
 
   render() {
@@ -43,6 +45,7 @@ class PlaylistForm extends React.Component {
               type="text"
               name="playlist-title"
               value={ this.state.title }
+              autoComplete="off"
               placeholder="Start typing..."></input>
           </div>
           <div

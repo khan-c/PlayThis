@@ -33,6 +33,10 @@
   transform: scale(1.05);
 }
 
+.playlist-form-exit-x:active {
+  transform: scale(1);
+}
+
 .playlist-form-title {
   font-size: 46px;
   font-weight: 700;
@@ -88,6 +92,10 @@
   cursor: pointer;
 }
 
+.playlist-form-cancel:active {
+  transform: scale(1);
+}
+
 .playlist-form-create {
   background: $green;
 }
@@ -95,4 +103,9 @@
 .playlist-form-create:hover {
   background: $hover-green;
   transform: scale(1.05);
+}
+
+.playlist-form-create:active {
+  background: $green;
+  transform: scale(1);
 }
