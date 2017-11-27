@@ -1,7 +1,26 @@
 import React from 'react';
+import Modal from 'react-modal';
 
 class SongIndexItem extends React.Component {
-  parseLength(time) {
+  constructor(props) {
+    super(props);
+    this.state = {
+      modalIsOpen: false
+    };
+
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+  }
+
+  openModal() {
+    this.setState({ modalIsOpen: true });
+  }
+
+  closeModal() {
+    this.setState({ modalIsOpen: false });
+  }
+
+  parseTime(time) {
     let minutes = Math.floor(time / 60);
     let sec = time % 60;
     let seconds = (sec < 10) ? `0${sec}` : `${sec}`;
@@ -10,7 +29,7 @@ class SongIndexItem extends React.Component {
 
   render() {
     const { song } = this.props;
-    const length = this.parseLength(song.length);
+    const length = this.parseTime(song.length);
 
     return(
       <li className="song-li">
@@ -28,9 +47,40 @@ class SongIndexItem extends React.Component {
                 <p className="song-album">{ song.album.title }</p>
               </div>
             </div>
+            <div className="song-menu">
+              <div
+                onClick={ this.openModal }
+                className="song-add">
+                +
+              </div>
+            </div>
             <p className="song-length">{ length }</p>
           </div>
         </div>
+        <Modal
+          isOpen={ this.state.modalIsOpen }
+          onRequestClose={ this.closeModal }
+          className={{
+            base: 'song-options-modal',
+            afterOpen: 'song-options-open',
+            beforeClose: 'song-options-before-close'
+          }}
+          overlayClassName={{
+            base: 'song-options-overlay',
+            afterOpen: 'song-options-overlay-open',
+            beforeClose: 'song-options-overlay-before-close'
+          }}
+          >
+          <h1
+            onClick={ this.closeModal }
+            className="playlist-form-exit-x">X</h1>
+          <h1 className="playlist-form-title">
+            Add to playlist
+          </h1>
+          <ul>
+            
+          </ul>
+        </Modal>
       </li>
     );
   }

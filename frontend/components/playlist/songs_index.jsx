@@ -24,7 +24,6 @@ class SongsIndex extends React.Component {
   }
 
   handleDelete() {
-    console.log(this.props.playlist);
     this.props.deletePlaylist(this.props.playlist.id).then(
       this.props.history.push("/browse")
     );

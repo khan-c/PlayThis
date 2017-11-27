@@ -29,6 +29,10 @@
   .song-pos-num {
     display: none;
   }
+
+  .song-add {
+    display: block;
+  }
 }
 
 .song {
@@ -53,10 +57,34 @@
   width: 20px;
 }
 
+.song-play-b:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
 .song-details {
   width: 100%;
   display: flex;
   justify-content: space-between;
+}
+
+.song-menu {
+  flex: 2;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.song-add {
+  display: none;
+  margin-right: 20px;
+  padding-top: 2px;
+  font-size: 30px;
+}
+
+.song-add:hover {
+  color: white;
+  transform: scale(1.1);
+  cursor: pointer;
 }
 
 .song-main {
