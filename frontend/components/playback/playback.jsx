@@ -13,6 +13,7 @@ class Playback extends React.Component {
     };
 
     this.clickPlay = this.clickPlay.bind(this);
+    this.onSongEnd = this.onSongEnd.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
@@ -25,6 +26,12 @@ class Playback extends React.Component {
   clickPlay(e) {
     this.setState({ isPlaying: !this.state.isPlaying });
   }
+
+  onSongEnd() {
+
+  }
+
+
 
   render() {
     let isPlaying = "";
@@ -44,13 +51,13 @@ class Playback extends React.Component {
     if (currentSong) {
       currentSongUrl = currentSong.song_url;
     }
-    console.log(currentSong);
+    // console.log(currentSong);
     let currentPlaylist = this.props.playlists[this.props.playback.currentPlaylist];
     let image = '';
     if (currentPlaylist) {
       image = currentPlaylist.image_url;
     }
-    console.log(image);
+    // console.log(image);
 
     return(
       <div className="playback">
@@ -93,6 +100,7 @@ class Playback extends React.Component {
           <ReactPlayer
             url={ currentSongUrl }
             playing={ this.state.isPlaying }
+            onEnded={ this.onSongEnd }
             />
         </div>
       </div>
