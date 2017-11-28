@@ -37,7 +37,6 @@ class SongsIndex extends React.Component {
 
   render() {
     const { playlist } = this.props;
-    console.log(this.props);
     if (!playlist) {
       return null;
     }

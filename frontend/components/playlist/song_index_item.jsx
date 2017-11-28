@@ -53,17 +53,18 @@ class SongIndexItem extends React.Component {
     playlistSongs.splice(playlistSongs.indexOf(songId), 1);
     const playlist = merge({}, this.props.playlist);
     playlist.song_ids = playlistSongs;
-
+    console.log(playlist);
     this.handleUpdate(playlist);
   }
 
   handleAdd(playlistId) {
     return () => {
-      const playlist = Object.assign({}, this.props.currentUserPlaylists.find(p =>
+      const playlist = merge({}, this.props.currentUserPlaylists.find(p =>
         p.id === playlistId));
       const playlistSongs = playlist.song_ids.slice();
       playlistSongs.push(this.props.song.id);
       playlist.song_ids = playlistSongs;
+      console.log(playlist);
       this.handleUpdate(playlist);
     };
   }
