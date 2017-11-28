@@ -3,7 +3,7 @@ import Playback from './playback';
 import { fetchPlaylist } from '../../actions/playlist_actions';
 
 const mapStateToProps = state => ({
-  songs: Object.values(state.entities.songs),
+  songs: state.entities.songs,
   playback: state.playback
 });
 

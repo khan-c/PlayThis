@@ -16,7 +16,12 @@ class PlaylistIndex extends React.Component {
 
   render() {
     const playlists = this.props.playlists.map( playlist => (
-      <PlaylistIndexItem key={ playlist.id } playlist={ playlist }/>
+      <PlaylistIndexItem
+        key={ playlist.id }
+        playlist={ playlist }
+        receiveCurrentPlaylist={ this.props.receiveCurrentPlaylist }
+        receivePlaybackSongs={ this.props.receivePlaybackSongs}
+        fetchSongs={ this.props.fetchSongs }/>
     ));
     let header =
       <div className="playlist-index-header">

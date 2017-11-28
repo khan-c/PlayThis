@@ -27,6 +27,16 @@ class Playback extends React.Component {
       isPlaying = "hidden";
       isPaused = "";
     }
+    let currentSongUrl;
+    if (!this.props.playback.playbackQueue) {
+      currentSongUrl = "";
+    } else if (!this.props.songs) {
+      currentSongUrl = '';
+    } else {
+      const songQ = this.props.playback.playbackQueue.slice();
+      currentSongUrl = this.props.songs[songQ.shift()].song_url;
+      console.log(currentSongUrl);
+    }
 
     return(
       <div className="playback">
@@ -59,7 +69,7 @@ class Playback extends React.Component {
         </div>
         <div className="player">
           <ReactPlayer
-            url="https://s3-us-west-1.amazonaws.com/playthismusic/music/DOCTOR+VOX+-+Heatstroke.mp3"
+            url={ currentSongUrl }
             playing={ this.state.isPlaying }
             />
         </div>

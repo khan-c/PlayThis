@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20171124214533) do
     t.string "title", null: false
     t.integer "artist_id", null: false
     t.integer "album_id", null: false
+    t.string "song_url", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "length", null: false

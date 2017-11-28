@@ -131,11 +131,16 @@
   height: 33%;
   width: 33%;
   opacity: 0.5;
+  border: 1px solid white;
+  border-radius: 100px;
 }
 
 .pi-hover img:hover {
   cursor: pointer;
+  transform: scale(1.2);
   opacity: 0.7;
-  border: 1px solid white;
-  border-radius: 40px;
+}
+
+.pi-hover img:active {
+  transform: scale(1);
 }
