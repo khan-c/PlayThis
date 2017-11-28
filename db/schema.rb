@@ -68,12 +68,9 @@ ActiveRecord::Schema.define(version: 20171124214533) do
     t.string "password_digest", null: false
     t.string "session_token", null: false
     t.string "email", null: false
+    t.string "avatar_url", default: "https://s3-us-west-1.amazonaws.com/playthismusic/images/default_profile.png"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "avatar_file_name"
-    t.string "avatar_content_type"
-    t.integer "avatar_file_size"
-    t.datetime "avatar_updated_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["session_token"], name: "index_users_on_session_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true

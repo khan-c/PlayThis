@@ -1,0 +1,68 @@
+.playback {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.current-song {
+  margin-left: 30px;
+}
+
+.playback-controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.playback-buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  line-height: 0;
+  color: $light-gray;
+}
+
+.playback-previous:hover,
+.playback-next:hover,
+.playback-playpause:hover {
+  color: white;
+}
+
+.playback-playpause:hover {
+  transform: scale(1.1);
+}
+
+.playback-previous:active,
+.playback-next:active,
+.playback-playpause:active {
+  color: $light-gray;
+}
+
+.playback-playpause:active {
+  transform: scale(1);
+}
+
+.playback-previous,
+.playback-next {
+  font-size: 24px;
+}
+
+.playback-playpause {
+  font-size: 36px;
+}
+
+.hidden {
+  display: none;
+}
+
+.playback-buttons div {
+  margin: 10px;
+}
+
+.playback-volume {
+  margin-right: 30px;
+}
+
+.player {
+  display: none;
+}

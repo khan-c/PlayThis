@@ -28,6 +28,12 @@
   font-size: 14px;
 }
 
+.playlist-author:hover {
+  color: white;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .playlist-song-count {
   margin-top: 15px;
   color: $light-gray;

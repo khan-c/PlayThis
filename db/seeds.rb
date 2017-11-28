@@ -6,16 +6,13 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-u1 = User.create(username: 'PlayThis', password: 'playthis', email: 'playthis@playthis.com')
-img = File.open('app/assets/images/logo-green.png')
-u1.avatar = img
-u1.save!
-User.create(username: 'kona', password: 'password', email: 'test@test.com', avatar: "https://s3-us-west-1.amazonaws.com/playthismusic/images/kona.png")
-User.create(username: 'coco', password: 'password', email: 'test2@test.com', avatar: "https://s3-us-west-1.amazonaws.com/playthismusic/images/coco.jpg")
-User.create(username: 'dino', password: 'password', email: 'test3@test.com', avatar: "https://s3-us-west-1.amazonaws.com/playthismusic/images/dino.jpg")
-User.create(username: 'bobble', password: 'password', email: 'test5@test.com', avatar: "https://s3-us-west-1.amazonaws.com/playthismusic/images/bobble.jpg")
-User.create(username: 'fluffy', password: 'password', email: 'test6@test.com', avatar: "https://s3-us-west-1.amazonaws.com/playthismusic/images/fluffy.jpg")
-User.create(username: 'chip', password: 'password', email: 'test7@test.com', avatar: "https://s3-us-west-1.amazonaws.com/playthismusic/images/chip.png")
+User.create(username: 'PlayThis', password: 'playthis', email: 'playthis@playthis.com', avatar_url: "https://s3-us-west-1.amazonaws.com/playthismusic/images/logo-green.png")
+User.create(username: 'kona', password: 'password', email: 'test@test.com', avatar_url: "https://s3-us-west-1.amazonaws.com/playthismusic/images/kona.png")
+User.create(username: 'coco', password: 'password', email: 'test2@test.com', avatar_url: "https://s3-us-west-1.amazonaws.com/playthismusic/images/coco.jpg")
+User.create(username: 'dino', password: 'password', email: 'test3@test.com', avatar_url: "https://s3-us-west-1.amazonaws.com/playthismusic/images/dino.jpg")
+User.create(username: 'bobble', password: 'password', email: 'test5@test.com', avatar_url: "https://s3-us-west-1.amazonaws.com/playthismusic/images/bobble.jpg")
+User.create(username: 'fluffy', password: 'password', email: 'test6@test.com', avatar_url: "https://s3-us-west-1.amazonaws.com/playthismusic/images/fluffy.jpg")
+User.create(username: 'chip', password: 'password', email: 'test7@test.com', avatar_url: "https://s3-us-west-1.amazonaws.com/playthismusic/images/chip.png")
 
 Artist.create(name: 'Samantha Harmonies', img_url: 'https://s3-us-west-1.amazonaws.com/playthismusic/music-images/artist.jpeg')
 Artist.create(name: 'Katie TrebelMaker', img_url: 'https://s3-us-west-1.amazonaws.com/playthismusic/music-images/artist2.jpeg')

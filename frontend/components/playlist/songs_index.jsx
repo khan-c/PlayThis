@@ -2,6 +2,7 @@ import React from 'react';
 import SongIndexItem from './song_index_item';
 import FaEllipsisH from 'react-icons/lib/fa/ellipsis-h';
 import Modal from 'react-modal';
+import { Link } from 'react-router-dom';
 
 class SongsIndex extends React.Component {
   constructor(props) {
@@ -59,6 +60,7 @@ class SongsIndex extends React.Component {
     if (playlist.author_id === this.props.currentUser.id) {
       deleteButton = 'Delete';
     }
+    const userUrl = `/user/${playlist.author_id}`;
 
     return(
       <div className="playlist-index-container">
@@ -77,7 +79,11 @@ class SongsIndex extends React.Component {
               </div>
             </div>
             <p className="playlist-title">{ playlist.title }</p>
-            <p className="playlist-author">{ playlist.author_name }</p>
+            <Link
+              to={ userUrl }
+              className="playlist-author">
+              { playlist.author_name }
+            </Link>
             <p className="playlist-song-count">{ songs.length } SONGS</p>
             <p className="playlist-play">PLAY</p>
             <p

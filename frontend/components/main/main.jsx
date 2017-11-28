@@ -2,10 +2,11 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { ProtectedRoute } from '../../util/route_util';
 import NavBar from '../nav/nav_bar';
-import Playback from '../playback/playback';
+import PlaybackContainer from '../playback/playback_container';
 import PlaylistIndexContainer from '../playlist/playlist_index_container';
 import PlaylistShowContainer from '../playlist/playlist_show_container';
 import PlaylistFormContainer from '../playlist/playlist_form_container';
+import ReactDOM from 'react-dom';
 
 class Main extends React.Component {
 
@@ -25,7 +26,7 @@ class Main extends React.Component {
             <Route exact path="/browse" component={PlaylistIndexContainer} />
           </Switch>
         </div>
-        <Playback />
+        <PlaybackContainer />
       </div>
     );
   }
