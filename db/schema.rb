@@ -43,12 +43,9 @@ ActiveRecord::Schema.define(version: 20171124214533) do
   create_table "playlists", force: :cascade do |t|
     t.string "title", null: false
     t.integer "author_id", null: false
+    t.string "image_url", default: "https://s3-us-west-1.amazonaws.com/playthismusic/music-images/playlist-default.png"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "image_file_name"
-    t.string "image_content_type"
-    t.integer "image_file_size"
-    t.datetime "image_updated_at"
     t.index ["author_id", "id"], name: "index_playlists_on_author_id_and_id", unique: true
     t.index ["author_id"], name: "index_playlists_on_author_id"
   end
@@ -59,10 +56,6 @@ ActiveRecord::Schema.define(version: 20171124214533) do
     t.integer "album_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "song_url_file_name"
-    t.string "song_url_content_type"
-    t.integer "song_url_file_size"
-    t.datetime "song_url_updated_at"
     t.integer "length", null: false
     t.index ["album_id"], name: "index_songs_on_album_id"
     t.index ["artist_id"], name: "index_songs_on_artist_id"

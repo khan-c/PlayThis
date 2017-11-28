@@ -2,15 +2,12 @@
 #
 # Table name: playlists
 #
-#  id                 :integer          not null, primary key
-#  title              :string           not null
-#  author_id          :integer          not null
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
-#  image_file_name    :string
-#  image_content_type :string
-#  image_file_size    :integer
-#  image_updated_at   :datetime
+#  id         :integer          not null, primary key
+#  title      :string           not null
+#  author_id  :integer          not null
+#  image_url  :string           default("https://s3-us-west-1.amazonaws.com/playthismusic/music-images/playlist-default.png")
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
