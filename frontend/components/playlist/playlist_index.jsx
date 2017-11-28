@@ -1,9 +1,11 @@
 import React from 'react';
 import PlaylistIndexItem from './playlist_index_item';
+import merge from 'lodash/merge';
 
 class PlaylistIndex extends React.Component {
   componentDidMount() {
     this.props.fetchPlaylists(this.props.match.params.userId);
+    this.props.fetchUsers();
   }
 
   componentWillReceiveProps(newProps) {
@@ -23,13 +25,25 @@ class PlaylistIndex extends React.Component {
       </div>;
 
     if (this.props.match.path === "/user/:userId") {
-      console.log(this.props);
-      header = ``;
+      const user = this.props.users[this.props.match.params.userId];
+      if (!user) {
+        return null;
+      }
+      console.log(user);
+      const image = { backgroundImage: `url(${user.avatar_url})` };
+      header =
+        <div className="user-header">
+          <div className="user-profile-image-container">
+            <div className="user-avatar" style={ image }></div>
+          </div>
+          <h1 className="user-title">{ user.username }</h1>
+          <p>Playlists</p>
+        </div>;
     }
 
     return(
       <div className="playlist-index-container">
-        <div>
+        <div className="header">
           { header }
         </div>
         <div className="playlist-index">

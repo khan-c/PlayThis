@@ -17,7 +17,7 @@ class Playlist < ApplicationRecord
   validates :title, presence: true
   validates :id, uniqueness: { scope: :author_id }
 
-  has_attached_file :image, default_url: "https://s3-us-west-1.amazonaws.com/playthismusic/music-images/sunset.jpeg"
+  has_attached_file :image, default_url: "https://s3-us-west-1.amazonaws.com/playthismusic/music-images/playlist-default.png"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   belongs_to :author,

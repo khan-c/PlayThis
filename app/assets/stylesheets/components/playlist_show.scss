@@ -146,3 +146,47 @@
   background: $green;
   transform: scale(1);
 }
+
+.user-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20%;
+  margin: 0 auto;
+}
+
+.user-profile-image-container {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+  margin-top: 30px;
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.user-avatar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.user-title {
+  color: white;
+  font-size: 42px;
+  font-weight: 700;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.user-header p {
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+}

@@ -11,8 +11,8 @@ const playlistReducer = (oldState = {}, action) => {
 
   switch (action.type) {
     case RECEIVE_PLAYLISTS:
-      // return merge({}, action.playlists);
-      return action.playlists;
+      return merge({}, action.playlists);
+      // return action.playlists;
     case RECEIVE_PLAYLIST:
       newState = merge({}, oldState);
       newState[action.playlist.id] = action.playlist;

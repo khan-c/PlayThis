@@ -82,7 +82,7 @@ class SessionForm extends React.Component {
 
   clickDemo(e) {
     e.preventDefault();
-    const user = { username: "test", password: "password" };
+    const user = { username: "kona", password: "password" };
     this.props.processForm(user);
   }
 
