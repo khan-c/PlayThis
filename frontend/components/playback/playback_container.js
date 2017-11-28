@@ -4,7 +4,8 @@ import { fetchPlaylist } from '../../actions/playlist_actions';
 
 const mapStateToProps = state => ({
   songs: state.entities.songs,
-  playback: state.playback
+  playback: state.playback,
+  playlists: state.entities.playlists
 });
 
 const mapDispatchToProps = dispatch => ({

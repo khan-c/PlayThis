@@ -15,33 +15,55 @@ class Playback extends React.Component {
     this.clickPlay = this.clickPlay.bind(this);
   }
 
+  componentWillReceiveProps(newProps) {
+    console.log(newProps);
+    if (newProps.playback.playbackQueue.length !== this.props.playback.playbackQueue.length) {
+      this.setState({ isPlaying: true });
+    }
+  }
+
   clickPlay(e) {
     this.setState({ isPlaying: !this.state.isPlaying });
   }
 
   render() {
-    console.log(this.props);
     let isPlaying = "";
     let isPaused = "hidden";
     if (this.state.isPlaying) {
       isPlaying = "hidden";
       isPaused = "";
     }
-    let currentSongUrl;
-    if (!this.props.playback.playbackQueue) {
-      currentSongUrl = "";
-    } else if (!this.props.songs) {
-      currentSongUrl = '';
-    } else {
-      const songQ = this.props.playback.playbackQueue.slice();
-      currentSongUrl = this.props.songs[songQ.shift()].song_url;
-      console.log(currentSongUrl);
+
+    const songQ = this.props.playback.playbackQueue.slice();
+    let currentSong = this.props.songs[songQ.shift()];
+
+    if (!currentSong) {
+      return <div className="playback"></div>;
     }
+    let currentSongUrl = '';
+    if (currentSong) {
+      currentSongUrl = currentSong.song_url;
+    }
+    console.log(currentSong);
+    let currentPlaylist = this.props.playlists[this.props.playback.currentPlaylist];
+    let image = '';
+    if (currentPlaylist) {
+      image = currentPlaylist.image_url;
+    }
+    console.log(image);
 
     return(
       <div className="playback">
         <div className="current-song">
-          current song
+          <img className="current-playlist-image" src={ image } />
+          <div className="current-song-details">
+            <p className="current-song-title">
+              { currentSong.title }
+            </p>
+            <p className="current-song-artist">
+              { currentSong.artist.name }
+            </p>
+          </div>
         </div>
         <div className="playback-controls">
           <div className="playback-buttons">

@@ -5,7 +5,12 @@ import {
 } from '../actions/playback_actions';
 import merge from 'lodash/merge';
 
-const playbackReducer = (oldState = {}, action) => {
+const defaultPlayback = {
+  currentPlaylist: 1,
+  playbackQueue: [6,8,10]
+};
+
+const playbackReducer = (oldState = defaultPlayback, action) => {
   Object.freeze(oldState);
   let newState;
 
