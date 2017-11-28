@@ -53,22 +53,25 @@ class SongIndexItem extends React.Component {
     playlistSongs.splice(playlistSongs.indexOf(songId), 1);
     const playlist = merge({}, this.props.playlist);
     playlist.song_ids = playlistSongs;
+
     this.handleUpdate(playlist);
   }
 
   handleAdd(playlistId) {
-    const playlist = merge({}, this.props.currentUserPlaylists[playlistId]);
-    const playlistSongs = playlist.song_ids.slice();
-    playlistSongs.push(this.props.song.id);
-    playlist.song_ids = playlistSongs;
-    return () => this.handleUpdate(playlist);
+    return () => {
+      const playlist = Object.assign({}, this.props.currentUserPlaylists.find(p =>
+        p.id === playlistId));
+      const playlistSongs = playlist.song_ids.slice();
+      playlistSongs.push(this.props.song.id);
+      playlist.song_ids = playlistSongs;
+      this.handleUpdate(playlist);
+    };
   }
 
   handleUpdate(playlist) {
     this.props.updatePlaylist(playlist);
     this.closeRemoveModal();
     this.closeAddModal();
-    window.location.reload(); // TODO: how to refresh stuff without reoload?
   }
 
   render() {
@@ -87,9 +90,6 @@ class SongIndexItem extends React.Component {
 
     const playlists = Object.values(this.props.currentUserPlaylists).map(playlist => {
       const image = { backgroundImage: `url(${playlist.image_url})` };
-      if (!playlist.song_ids) {
-        return '';
-      }
       const numSongs = playlist.song_ids.length;
       return (
         <li

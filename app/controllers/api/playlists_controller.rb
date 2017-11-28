@@ -27,7 +27,7 @@ class Api::PlaylistsController < ApplicationController
     if @playlist && @playlist.update_attributes(playlist_params)
       songs = params[:playlist][:song_ids]
       @playlist.song_ids = songs
-      render json: {}
+      render 'api/playlists/show.json.jbuilder'
     else
       render json: @playlist.errors.full_messages, status: 401
     end

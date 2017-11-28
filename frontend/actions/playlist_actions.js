@@ -27,7 +27,8 @@ export const receivePlaylistErrors = errors => ({
 
 export const fetchPlaylists = (userId) => dispatch => (
   PlaylistAPIUtil.fetchPlaylists(userId).then(
-    playlists => dispatch(receivePlaylists(playlists)),
+    playlists => {
+      return dispatch(receivePlaylists(playlists));},
     errors => dispatch(receivePlaylistErrors(errors))
   )
 );
@@ -51,7 +52,8 @@ export const createPlaylist = formPlaylist => dispatch => (
 
 export const updatePlaylist = formPlaylist => dispatch => (
   PlaylistAPIUtil.updatePlaylist(formPlaylist).then(
-    playlist => dispatch(receivePlaylist(playlist)),
+    playlist => {
+      return dispatch(receivePlaylist(playlist));},
     errors => dispatch(receivePlaylistErrors(errors))
   )
 );

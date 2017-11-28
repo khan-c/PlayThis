@@ -6,6 +6,12 @@ class PlaylistIndex extends React.Component {
     this.props.fetchPlaylists(this.props.match.params.userId);
   }
 
+  componentWillReceiveProps(newProps) {
+    if (this.props.match.params.userId !== newProps.match.params.userId) {
+      this.props.fetchPlaylists(newProps.match.params.userId);
+    }
+  }
+
   render() {
     const playlists = this.props.playlists.map( playlist => (
       <PlaylistIndexItem key={ playlist.id } playlist={ playlist }/>
@@ -17,7 +23,8 @@ class PlaylistIndex extends React.Component {
       </div>;
 
     if (this.props.match.path === "/user/:userId") {
-      header = '';
+      console.log(this.props);
+      header = ``;
     }
 
     return(

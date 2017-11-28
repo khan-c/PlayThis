@@ -31,16 +31,20 @@ class SongsIndex extends React.Component {
 
   componentWillMount() {
     this.props.fetchPlaylist(this.props.match.params.playlistId);
-    this.props.fetchPlaylists(this.props.currentUser.id);
+    this.props.fetchPlaylists();
     this.props.fetchSongs(this.props.match.params.playlistId);
   }
 
   render() {
     const { playlist } = this.props;
+    console.log(this.props);
     if (!playlist) {
       return null;
     }
     const image = { backgroundImage: `url(${playlist.image_url})` };
+    const currentUserPlaylists = Object.values(this.props.playlists).filter(p => (
+      p.author_id === this.props.currentUser.id
+    ));
     const songs = this.props.playlist.song_ids.map((songId, idx) => (
       <SongIndexItem
         key={ `${idx}${songId}` }
@@ -48,7 +52,7 @@ class SongsIndex extends React.Component {
         idx={ idx + 1 }
         playlist={ playlist }
         updatePlaylist={ this.props.updatePlaylist }
-        currentUserPlaylists={ this.props.playlists }
+        currentUserPlaylists={ currentUserPlaylists }
         userOwnsPlaylist={ (this.props.currentUser.id === playlist.author_id) }
         />
     ));
