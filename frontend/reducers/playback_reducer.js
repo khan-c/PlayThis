@@ -1,4 +1,7 @@
-import { RECEIVE_PLAYBACK_SONGS } from '../actions/playback_actions';
+import {
+  RECEIVE_PLAYBACK_SONGS,
+  RECEIVE_CURRENT_SONG
+} from '../actions/playback_actions';
 import merge from 'lodash/merge';
 
 const playbackReducer = (oldState = {}, action) => {
@@ -9,6 +12,10 @@ const playbackReducer = (oldState = {}, action) => {
     case RECEIVE_PLAYBACK_SONGS:
       newState = merge({}, oldState);
       newState['playbackQueue'] = action.songs;
+      return newState;
+    case RECEIVE_CURRENT_SONG:
+      newState = merge({}, oldState);
+      newState['currentSong'] = action.song;
       return newState;
     default:
       return oldState;
