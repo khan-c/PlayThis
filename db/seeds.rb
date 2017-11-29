@@ -189,8 +189,11 @@ Song.create(title: 'Luck', album_id: 12, artist_id: 3, length: 200, song_url: "h
 
 
 rng = Random.new
+ps = []
 1000.times do
   playlist_id = rng.rand(28) + 1
   song_id = rng.rand(120) + 1
+  next if ps.include?([playlist_id, song_id])
   PlaylistSong.create(playlist_id: playlist_id, song_id: song_id)
+  ps << [playlist_id, song_id]
 end

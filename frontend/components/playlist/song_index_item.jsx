@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 import PlaylistIndexContainer from './playlist_index_container';
 import FaPlusCircle from 'react-icons/lib/fa/plus-circle';
 import { parseTime } from '../../util/music_util';
+import { ClipLoader } from 'react-spinners';
 
 class SongIndexItem extends React.Component {
   constructor(props) {
@@ -77,7 +78,9 @@ class SongIndexItem extends React.Component {
   render() {
     const { song } = this.props;
     if (!song) {
-      return null;
+      return (
+        null
+      );
     }
     const length = parseTime(song.length);
     let songRemove = '';

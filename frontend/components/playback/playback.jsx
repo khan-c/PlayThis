@@ -116,7 +116,80 @@ class Playback extends React.Component {
     let currentSong = this.props.songs[songQ[this.state.currentSongIdx]];
 
     if (!currentSong) {
-      return <div className="playback"></div>;
+      return (
+        <div className="playback">
+          <div className="current-song">
+            <img className="current-playlist-image" src={ image } />
+            <div className="current-song-details">
+            </div>
+          </div>
+          <div className="playback-controls">
+            <div className="playback-buttons">
+              <div
+                onClick={ this.handlePrevious }
+                className="playback-previous">
+                <MdPrev />
+              </div>
+              <div className="playback-playpause">
+                <MdPlay
+                  onClick={ this.togglePlay }
+                  className={ isPlaying } />
+                <MdPause
+                  onClick={ this.togglePlay }
+                  className={ isPaused } />
+              </div>
+              <div
+                onClick={ this.handleNext }
+                className="playback-next">
+                <MdNext />
+              </div>
+            </div>
+            <div className="playback-progress">
+              <p className="time">{ parseTime(this.state.playedSeconds) }</p>
+              <input
+                className="progressbar"
+                type='range'
+                min={0}
+                max={1}
+                step='any'
+                value={ this.state.played }
+                onMouseDown={this.onSeekMouseDown}
+                onChange={this.onSeekChange}
+                onMouseUp={this.onSeekMouseUp}
+              />
+            <p className="time">{ parseTime(this.state.duration) }</p>
+            </div>
+          </div>
+          <div className="playback-volume">
+            <div
+              className="volume-button"
+              onClick={ this.toggleMute }>
+              { volumeIcon }
+            </div>
+            <div className="volumeslider">
+              <input
+                onChange={ this.volumeChange }
+                className="volume"
+                type="range"
+                min="0"
+                max="1"
+                step='any'
+                value={ this.state.volume } />
+            </div>
+          </div>
+          <div className="player">
+            <ReactPlayer
+              ref={ this.ref }
+              url={ currentSongUrl }
+              playing={ this.state.isPlaying }
+              volume= { this.state.volume }
+              onEnded={ this.handleNext }
+              onProgress={ this.setProgress }
+              onDuration={duration => this.setState({ duration }) }
+              />
+          </div>
+        </div>
+      );
     }
 
     let currentSongUrl = currentSong.song_url;

@@ -3,6 +3,7 @@ import SongIndexItem from './song_index_item';
 import FaEllipsisH from 'react-icons/lib/fa/ellipsis-h';
 import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
+import { ClipLoader } from 'react-spinners';
 
 class SongsIndex extends React.Component {
   constructor(props) {
@@ -47,25 +48,35 @@ class SongsIndex extends React.Component {
   render() {
     const { playlist } = this.props;
     if (!playlist) {
-      return null;
+      return (
+        null
+      );
     }
     const image = { backgroundImage: `url(${playlist.image_url})` };
     const currentUserPlaylists = Object.values(this.props.playlists).filter(p => (
       p.author_id === this.props.currentUser.id
     ));
-    const songs = this.props.playlist.song_ids.map((songId, idx) => (
-      <SongIndexItem
-        key={ Math.pow(songId, idx)/(songId - idx) }
-        song={ this.props.songs[songId] }
-        idx={ idx + 1 }
-        playlist={ playlist }
-        updatePlaylist={ this.props.updatePlaylist }
-        currentUserPlaylists={ currentUserPlaylists }
-        receivePlaybackSongs={ this.props.receivePlaybackSongs }
-        receivePlayingStatus={ this.props.receivePlayingStatus }
-        userOwnsPlaylist={ (this.props.currentUser.id === playlist.author_id) }
+    const songs = playlist.song_ids.map((songId, idx) => {
+      let key;
+      if (!this.props.songs[songId]) {
+        key = 'test';
+      } else {
+        key = this.props.songs[songId].title + idx;
+      }
+      return (
+        <SongIndexItem
+          key={ key }
+          song={ this.props.songs[songId] }
+          idx={ idx + 1 }
+          playlist={ playlist }
+          updatePlaylist={ this.props.updatePlaylist }
+          currentUserPlaylists={ currentUserPlaylists }
+          receivePlaybackSongs={ this.props.receivePlaybackSongs }
+          receivePlayingStatus={ this.props.receivePlayingStatus }
+          userOwnsPlaylist={ (this.props.currentUser.id === playlist.author_id) }
         />
-    ));
+      );
+    });
     let deleteButton = '';
     if (playlist.author_id === this.props.currentUser.id) {
       deleteButton = 'Delete';
