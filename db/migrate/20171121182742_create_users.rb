@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string :password_digest, null: false
       t.string :session_token, null: false
       t.string :email, null: false
-      t.string :avatar_url, default: "https://s3-us-west-1.amazonaws.com/playthismusic/images/default_profile.png"
+      t.string :avatar_url, default: "https://s3-us-west-1.amazonaws.com/playthismusic/images/default_avatar.png"
 
       t.timestamps
     end

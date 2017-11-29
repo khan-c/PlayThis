@@ -7,7 +7,7 @@
 #  password_digest :string           not null
 #  session_token   :string           not null
 #  email           :string           not null
-#  avatar_url      :string           default("https://s3-us-west-1.amazonaws.com/playthismusic/images/default_profile.png")
+#  avatar_url      :string           default("https://s3-us-west-1.amazonaws.com/playthismusic/images/default_avatar.png")
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
