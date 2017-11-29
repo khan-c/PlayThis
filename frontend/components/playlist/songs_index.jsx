@@ -3,7 +3,6 @@ import SongIndexItem from './song_index_item';
 import FaEllipsisH from 'react-icons/lib/fa/ellipsis-h';
 import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
-import { ClipLoader } from 'react-spinners';
 
 class SongsIndex extends React.Component {
   constructor(props) {
@@ -59,7 +58,7 @@ class SongsIndex extends React.Component {
     const songs = playlist.song_ids.map((songId, idx) => {
       let key;
       if (!this.props.songs[songId]) {
-        key = 'test';
+        key = Math.random();
       } else {
         key = this.props.songs[songId].title + idx;
       }

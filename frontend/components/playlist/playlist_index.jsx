@@ -1,7 +1,6 @@
 import React from 'react';
 import PlaylistIndexItem from './playlist_index_item';
 import merge from 'lodash/merge';
-import { ClipLoader } from 'react-spinners';
 
 class PlaylistIndex extends React.Component {
   componentDidMount() {
@@ -21,13 +20,7 @@ class PlaylistIndex extends React.Component {
       const user = this.props.users[this.props.match.params.userId];
       if (!user) {
         return(
-          <div className="loader">
-            <ClipLoader
-              color={ '#1dbb55' }
-              loading={ true }
-              size={ 100 }
-            />
-          </div>
+          null
         );
       }
 
