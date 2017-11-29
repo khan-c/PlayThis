@@ -6,6 +6,7 @@ import PlaybackContainer from '../playback/playback_container';
 import PlaylistIndexContainer from '../playlist/playlist_index_container';
 import PlaylistShowContainer from '../playlist/playlist_show_container';
 import PlaylistFormContainer from '../playlist/playlist_form_container';
+import Search from '../search/search';
 import ReactDOM from 'react-dom';
 
 class Main extends React.Component {
@@ -23,6 +24,9 @@ class Main extends React.Component {
             <Route
               path="/user/:userId"
               component={PlaylistIndexContainer} />
+            <Route
+              path="/search"
+              component={Search} />
             <Route exact path="/browse" component={PlaylistIndexContainer} />
           </Switch>
         </div>
