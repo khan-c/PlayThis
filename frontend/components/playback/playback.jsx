@@ -14,7 +14,6 @@ class Playback extends React.Component {
     };
 
     this.clickPlay = this.clickPlay.bind(this);
-    this.onSongEnd = this.onSongEnd.bind(this);
     this.handlePrevious = this.handlePrevious.bind(this);
     this.handleNext = this.handleNext.bind(this);
   }
@@ -33,12 +32,12 @@ class Playback extends React.Component {
     this.setState({ isPlaying: !this.state.isPlaying });
   }
 
-  loadSong(currentSong) {
-    return currentSong.song_url;
-  }
-
   handlePrevious() {
-    console.log("previous");
+    console.log("basic previous");
+    this.setState({ currentSongIdx: this.state.currentSongIdx - 1 });
+    if (this.state.currentSongIdx <= 0) {
+      this.setState({ currentSongIdx: 0 });
+    }
   }
 
   handleNext() {
@@ -47,10 +46,6 @@ class Playback extends React.Component {
       this.setState({ isPlaying: false, currentSongIdx: 0 });
       this.props.receivePlayingStatus(false);
     }
-  }
-
-  onSongEnd() {
-
   }
 
   render() {
@@ -68,15 +63,13 @@ class Playback extends React.Component {
       return <div className="playback"></div>;
     }
 
-    let currentSongUrl = this.loadSong(currentSong);
+    let currentSongUrl = currentSong.song_url;
 
-    // console.log(currentSong);
     let currentPlaylist = this.props.playlists[this.props.playback.currentPlaylist];
     let image = '';
     if (currentPlaylist) {
       image = currentPlaylist.image_url;
     }
-    // console.log(image);
 
     return(
       <div className="playback">
@@ -123,7 +116,7 @@ class Playback extends React.Component {
           <ReactPlayer
             url={ currentSongUrl }
             playing={ this.state.isPlaying }
-            onEnded={ this.onSongEnd }
+            onEnded={ this.handleNext }
             />
         </div>
       </div>
