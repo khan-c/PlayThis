@@ -37,9 +37,9 @@
 }
 
 .playback-controls {
-  width: 300px;
+  width: 30%;
   position: absolute;
-  left: calc(50% - 150px);
+  left: 35%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -92,10 +92,68 @@
 
 .playback-volume {
   position: absolute;
-  right: 30px;
+  right: 25px;
   bottom: 40px;
+  display: flex;
+  align-content: center;
+  justify-content: center;
 }
 
 .player {
   display: none;
+}
+
+.playback-progress {
+  width: 100%;
+  padding: 2px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.time {
+  display: inline-block;
+  text-align: center;
+  padding: 0 5px;
+  max-width: 35px;
+  min-width: 35px;
+  font-size: 12px;
+  color: $light-gray;
+  box-sizing: content-box;
+}
+
+.progressbar {
+  width: 100%;
+}
+
+.progressbar:hover {
+  color: $green;
+}
+
+.volume-button {
+  margin: 2px;
+  margin-right: 10px;
+  color: $light-gray;
+}
+
+.volume-button:hover {
+  color: white;
+  cursor: pointer;
+}
+
+.volumeslider {
+  width: 100px;
+}
+
+.volume {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 5px;
+  outline: none;
+  background: $gray;
+}
+
+.volumeslider {
+  border-color: $green;
 }

@@ -4,6 +4,7 @@ import merge from 'lodash/merge';
 import { withRouter } from 'react-router-dom';
 import PlaylistIndexContainer from './playlist_index_container';
 import FaPlusCircle from 'react-icons/lib/fa/plus-circle';
+import { parseTime } from '../../util/music_util';
 
 class SongIndexItem extends React.Component {
   constructor(props) {
@@ -39,13 +40,6 @@ class SongIndexItem extends React.Component {
 
   closeRemoveModal() {
     this.setState({ removeModalIsOpen: false });
-  }
-
-  parseTime(time) {
-    let minutes = Math.floor(time / 60);
-    let sec = time % 60;
-    let seconds = (sec < 10) ? `0${sec}` : `${sec}`;
-    return `${minutes}:${seconds}`;
   }
 
   handleRemove(e) {
@@ -85,7 +79,7 @@ class SongIndexItem extends React.Component {
     if (!song) {
       return null;
     }
-    const length = this.parseTime(song.length);
+    const length = parseTime(song.length);
     let songRemove = '';
     if (this.props.userOwnsPlaylist) {
       songRemove =
