@@ -62,6 +62,10 @@
   cursor: pointer;
 }
 
+.song-play-b:active {
+  transform: scale(1);
+}
+
 .song-details {
   width: 100%;
   display: flex;

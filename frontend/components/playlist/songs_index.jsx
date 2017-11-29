@@ -61,6 +61,8 @@ class SongsIndex extends React.Component {
         playlist={ playlist }
         updatePlaylist={ this.props.updatePlaylist }
         currentUserPlaylists={ currentUserPlaylists }
+        receivePlaybackSongs={ this.props.receivePlaybackSongs }
+        receivePlayingStatus={ this.props.receivePlayingStatus }
         userOwnsPlaylist={ (this.props.currentUser.id === playlist.author_id) }
         />
     ));

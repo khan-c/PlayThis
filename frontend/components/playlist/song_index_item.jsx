@@ -21,6 +21,8 @@ class SongIndexItem extends React.Component {
     this.handleRemove = this.handleRemove.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
     this.handleAdd = this.handleAdd.bind(this);
+
+    this.playSong = this.playSong.bind(this);
   }
 
   openAddModal() {
@@ -73,6 +75,11 @@ class SongIndexItem extends React.Component {
     this.closeAddModal();
   }
 
+  playSong() {
+    this.props.receivePlaybackSongs([this.props.song.id]);
+    this.props.receivePlayingStatus(true);
+  }
+
   render() {
     const { song } = this.props;
     if (!song) {
@@ -112,11 +119,14 @@ class SongIndexItem extends React.Component {
 
 
     return(
-      <li className="song-li">
+      <li
+        onDoubleClick={ this.playSong }
+        className="song-li">
         <div className="song">
           <div className="song-position">
             <p className="song-pos-num">{ this.props.idx }.</p>
             <img
+              onClick={ this.playSong }
               className="song-play-b"
               src="https://s3-us-west-1.amazonaws.com/playthismusic/images/logo.png" />
           </div>
