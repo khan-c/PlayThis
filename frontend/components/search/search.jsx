@@ -1,7 +1,7 @@
 import React from 'react';
 import { searchDatabase } from '../../util/search_api_util';
 import _ from 'lodash';
-import SongIndexItem from '../playlist/song_index_item';
+import SongIndexItemContainer from '../playlist/song_index_item_container';
 
 class Search extends React.Component {
   constructor(props) {
@@ -18,6 +18,7 @@ class Search extends React.Component {
   }
 
   componentDidMount() {
+
     document.getElementById('search-query').addEventListener('keyup', _.debounce(this.handleSearch, 250));
   }
 
@@ -47,6 +48,9 @@ class Search extends React.Component {
           let users = {};
           if (response.songs) {
             songs = response.songs;
+            Object.values(songs).forEach(song => (
+              this.props.receiveSong(song)
+            ));
           }
           if (response.playlists) {
             playlists = response.playlists;
@@ -67,9 +71,10 @@ class Search extends React.Component {
   render() {
     const { songs, playlists, users } = this.state;
     const songResults = Object.values(songs).map( song => (
-      <li key={ song.id }>
-        { song.title }
-      </li>
+      <SongIndexItemContainer
+        key={ song.id }
+        song={ song }
+        />
     ));
 
     const playlistResults = Object.values(playlists).map( playlist => (

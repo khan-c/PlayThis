@@ -1,5 +1,5 @@
 import React from 'react';
-import SongIndexItem from './song_index_item';
+import SongIndexItemContainer from './song_index_item_container';
 import FaEllipsisH from 'react-icons/lib/fa/ellipsis-h';
 import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
@@ -63,15 +63,11 @@ class SongsIndex extends React.Component {
         key = this.props.songs[songId].title + idx;
       }
       return (
-        <SongIndexItem
+        <SongIndexItemContainer
           key={ key }
           song={ this.props.songs[songId] }
           idx={ idx + 1 }
           playlist={ playlist }
-          updatePlaylist={ this.props.updatePlaylist }
-          currentUserPlaylists={ currentUserPlaylists }
-          receivePlaybackSongs={ this.props.receivePlaybackSongs }
-          receivePlayingStatus={ this.props.receivePlayingStatus }
           userOwnsPlaylist={ (this.props.currentUser.id === playlist.author_id) }
         />
       );
