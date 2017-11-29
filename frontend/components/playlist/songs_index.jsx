@@ -14,6 +14,13 @@ class SongsIndex extends React.Component {
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.playPlaylist = this.playPlaylist.bind(this);
+  }
+
+  componentWillMount() {
+    this.props.fetchPlaylist(this.props.match.params.playlistId);
+    this.props.fetchPlaylists();
+    this.props.fetchSongs(this.props.match.params.playlistId);
   }
 
   openModal() {
@@ -30,10 +37,11 @@ class SongsIndex extends React.Component {
     );
   }
 
-  componentWillMount() {
-    this.props.fetchPlaylist(this.props.match.params.playlistId);
-    this.props.fetchPlaylists();
-    this.props.fetchSongs(this.props.match.params.playlistId);
+  playPlaylist() {
+    this.props.receiveCurrentPlaylist(this.props.playlist.id);
+    this.props.receivePlaybackSongs(this.props.playlist.song_ids);
+    this.props.fetchSongs(this.props.playlist.id);
+    this.props.receivePlayingStatus(true);
   }
 
   render() {
@@ -47,7 +55,7 @@ class SongsIndex extends React.Component {
     ));
     const songs = this.props.playlist.song_ids.map((songId, idx) => (
       <SongIndexItem
-        key={ `${idx}${songId}` }
+        key={ Math.pow(songId, idx)/(songId - idx) }
         song={ this.props.songs[songId] }
         idx={ idx + 1 }
         playlist={ playlist }
@@ -85,7 +93,9 @@ class SongsIndex extends React.Component {
               { playlist.author_name }
             </Link>
             <p className="playlist-song-count">{ songs.length } SONGS</p>
-            <p className="playlist-play">PLAY</p>
+            <p
+              onClick={ this.playPlaylist }
+              className="playlist-play">PLAY</p>
             <p
               onClick={ this.openModal }
               className="playlist-options">{ deleteButton }

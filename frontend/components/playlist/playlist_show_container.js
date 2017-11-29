@@ -7,6 +7,11 @@ import {
   deletePlaylist,
   updatePlaylist
 } from '../../actions/playlist_actions';
+import {
+  receiveCurrentPlaylist,
+  receivePlaybackSongs,
+  receivePlayingStatus
+} from '../../actions/playback_actions';
 import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state, ownProps) => ({
@@ -21,7 +26,10 @@ const mapDispatchToProps = dispatch => ({
   fetchPlaylist: (playlistId) => dispatch(fetchPlaylist(playlistId)),
   fetchPlaylists: (userId) => dispatch(fetchPlaylists(userId)),
   deletePlaylist: playlistId => dispatch(deletePlaylist(playlistId)),
-  updatePlaylist: playlist => dispatch(updatePlaylist(playlist))
+  updatePlaylist: playlist => dispatch(updatePlaylist(playlist)),
+  receiveCurrentPlaylist: playlistId => dispatch(receiveCurrentPlaylist(playlistId)),
+  receivePlaybackSongs: songs => dispatch(receivePlaybackSongs(songs)),
+  receivePlayingStatus: isPlaying => dispatch(receivePlayingStatus(isPlaying))
 });
 
 export default withRouter(connect(
