@@ -92,9 +92,10 @@ class SongsIndex extends React.Component {
                 className="playlist-image"
                 style={ image }>
                 <div
-
                   className="pi-hover">
-                  <img src="https://s3-us-west-1.amazonaws.com/playthismusic/images/logo.png" />
+                  <img
+                    onClick={ this.playPlaylist }
+                    src="https://s3-us-west-1.amazonaws.com/playthismusic/images/logo.png" />
                 </div>
               </div>
             </div>

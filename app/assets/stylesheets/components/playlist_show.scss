@@ -109,6 +109,12 @@
   background-position: 20%, 0;
 }
 
+.playlist-image:hover .pi-hover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .playlist-delete-buttons {
   display: flex;
   justify-content: center;
