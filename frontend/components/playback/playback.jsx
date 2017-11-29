@@ -9,15 +9,18 @@ class Playback extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isPlaying: false
+      isPlaying: false,
+      currentSongIdx: 0
     };
 
     this.clickPlay = this.clickPlay.bind(this);
     this.onSongEnd = this.onSongEnd.bind(this);
+    this.handlePrevious = this.handlePrevious.bind(this);
+    this.handleNext = this.handleNext.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
-    console.log(newProps);
+    // console.log(newProps);
     if (newProps.playback.isPlaying) {
       this.setState({ isPlaying: true });
     }
@@ -30,11 +33,25 @@ class Playback extends React.Component {
     this.setState({ isPlaying: !this.state.isPlaying });
   }
 
+  loadSong(currentSong) {
+    return currentSong.song_url;
+  }
+
+  handlePrevious() {
+    console.log("previous");
+  }
+
+  handleNext() {
+    this.setState({ currentSongIdx: this.state.currentSongIdx + 1 });
+    if (this.state.currentSongIdx === this.props.playback.playbackQueue.length - 1) {
+      this.setState({ isPlaying: false, currentSongIdx: 0 });
+      this.props.receivePlayingStatus(false);
+    }
+  }
+
   onSongEnd() {
 
   }
-
-
 
   render() {
     let isPlaying = "";
@@ -45,15 +62,14 @@ class Playback extends React.Component {
     }
 
     const songQ = this.props.playback.playbackQueue.slice();
-    let currentSong = this.props.songs[songQ.shift()];
+    let currentSong = this.props.songs[songQ[this.state.currentSongIdx]];
 
     if (!currentSong) {
       return <div className="playback"></div>;
     }
-    let currentSongUrl = '';
-    if (currentSong) {
-      currentSongUrl = currentSong.song_url;
-    }
+
+    let currentSongUrl = this.loadSong(currentSong);
+
     // console.log(currentSong);
     let currentPlaylist = this.props.playlists[this.props.playback.currentPlaylist];
     let image = '';
@@ -77,7 +93,9 @@ class Playback extends React.Component {
         </div>
         <div className="playback-controls">
           <div className="playback-buttons">
-            <div className="playback-previous">
+            <div
+              onClick={ this.handlePrevious }
+              className="playback-previous">
               <MdPrev />
             </div>
             <div className="playback-playpause">
@@ -88,7 +106,9 @@ class Playback extends React.Component {
                 onClick={ this.clickPlay }
                 className={ isPaused } />
             </div>
-            <div className="playback-next">
+            <div
+              onClick={ this.handleNext }
+              className="playback-next">
               <MdNext />
             </div>
           </div>
