@@ -52,4 +52,9 @@ class User < ApplicationRecord
     self.save!
     self.session_token
   end
+
+  def self.top_five_results(query_params)
+    param = "%" + query_params + "%"
+    User.where('username ILIKE ?', param).limit(5)
+  end
 end

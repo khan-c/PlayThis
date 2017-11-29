@@ -3,7 +3,7 @@ import { logout } from '../../actions/session_actions';
 import Main from './main';
 
 const mapStateToProps = state => ({
-  user: state.session.currentUser.user,
+  user: state.session.currentUser,
   errors: state.errors
 });
 

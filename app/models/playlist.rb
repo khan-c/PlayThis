@@ -25,4 +25,9 @@ class Playlist < ApplicationRecord
   has_many :songs,
     through: :playlist_songs,
     source: :song
+
+  def self.top_five_results(query_params)
+    param = "%" + query_params + "%"
+    Playlist.where('title ILIKE ?', param).limit(5)
+  end
 end

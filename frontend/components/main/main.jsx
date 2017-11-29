@@ -11,6 +11,7 @@ import ReactDOM from 'react-dom';
 class Main extends React.Component {
 
   render() {
+    console.log(this.props);
     return(
       <div className="main">
         <div className="main-background"></div>

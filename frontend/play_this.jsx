@@ -16,6 +16,8 @@ import {
   addSongToPlaylist,
   removeSongFromPlaylist
 } from './actions/song_actions';
+import { searchDatabase } from './util/search_api_util';
+import { logout } from './actions/session_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root');
@@ -41,4 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
   window.removeSongFromPlaylist = removeSongFromPlaylist;
   window.dispatch = store.dispatch;
   window.getState = store.getState;
+  window.searchDatabase = searchDatabase;
+  window.logout = logout;
 });

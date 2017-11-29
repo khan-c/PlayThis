@@ -17,7 +17,7 @@ import { withRouter } from 'react-router-dom';
 const mapStateToProps = (state, ownProps) => ({
   playlist: state.entities.playlists[ownProps.match.params.playlistId],
   songs: state.entities.songs,
-  currentUser: state.session.currentUser.user,
+  currentUser: state.session.currentUser,
   playlists: state.entities.playlists
 });
 

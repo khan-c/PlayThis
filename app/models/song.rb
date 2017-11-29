@@ -27,4 +27,9 @@ class Song < ApplicationRecord
 
   belongs_to :album
   belongs_to :artist
+
+  def self.top_five_results(query_params)
+    param = "%" + query_params + "%"
+    Song.where('title ILIKE ?', param).limit(5)
+  end
 end
