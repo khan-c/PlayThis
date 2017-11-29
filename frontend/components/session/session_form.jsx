@@ -104,6 +104,10 @@ class SessionForm extends React.Component {
     document.addEventListener("keydown", this.escFunc, false);
   }
 
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.escFunc);
+  }
+
   render() {
     return(
       <div className="user-auth">
