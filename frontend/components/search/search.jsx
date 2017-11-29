@@ -22,7 +22,7 @@ class Search extends React.Component {
   }
 
   componentWillUnmount() {
-    document.getElementById('search-query').removeEventListener('keyup');
+    document.getElementById('search-query').removeEventListener('keyup', _.debounce(this.handleSearch, 250));
   }
 
   handleInput(e) {
