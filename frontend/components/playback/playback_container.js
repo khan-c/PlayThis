@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import Playback from './playback';
 import { fetchPlaylist } from '../../actions/playlist_actions';
+import { receivePlayingStatus } from '../../actions/playback_actions';
 
 const mapStateToProps = state => ({
   songs: state.entities.songs,
@@ -9,7 +10,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchPlaylist: playlistId => dispatch(fetchPlaylist(playlistId))
+  fetchPlaylist: playlistId => dispatch(fetchPlaylist(playlistId)),
+  receivePlayingStatus: isPlaying => dispatch(receivePlayingStatus(isPlaying))
 });
 
 export default connect(

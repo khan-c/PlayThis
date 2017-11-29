@@ -24,6 +24,9 @@ class Playback extends React.Component {
   }
 
   clickPlay(e) {
+    if (this.props.playback.isPlaying) {
+      this.props.receivePlayingStatus(false);
+    }
     this.setState({ isPlaying: !this.state.isPlaying });
   }
 
