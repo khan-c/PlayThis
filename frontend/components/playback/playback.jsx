@@ -75,7 +75,7 @@ class Playback extends React.Component {
   }
 
   volumeChange(e) {
-    this.setState({ volume: e.target.value });
+    this.setState({ volume: parseFloat(e.target.value) });
   }
 
   toggleMute() {

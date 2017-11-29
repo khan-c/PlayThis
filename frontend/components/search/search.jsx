@@ -18,7 +18,7 @@ class Search extends React.Component {
   }
 
   componentDidMount() {
-
+    this.props.fetchPlaylists();
     document.getElementById('search-query').addEventListener('keyup', _.debounce(this.handleSearch, 250));
   }
 
@@ -119,16 +119,18 @@ class Search extends React.Component {
             />
         </div>
         <div className="search-results">
-          <div>
-            { songHeader }
-            { songResults }
+          <div className="search-section-result">
+            <div className="search-header">{ songHeader }</div>
+            <div className="song-results">
+              { songResults }
+            </div>
           </div>
-          <div>
-            { playlistHeader }
+          <div className="search-section-result">
+            <div className="search-header">{ playlistHeader }</div>
             { playlistResults }
           </div>
-          <div>
-            { userHeader }
+          <div className="search-section-result">
+            <div className="search-header">{ userHeader }</div>
             { userResults }
           </div>
         </div>

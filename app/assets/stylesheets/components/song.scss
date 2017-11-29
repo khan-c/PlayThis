@@ -151,6 +151,11 @@
   display: flex;
 }
 
+.song-artist,
+.song-album {
+  color: $light-gray;
+}
+
 .artist-album-separator {
   font-size: 16px;
   padding-left: 10px;
