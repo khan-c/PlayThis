@@ -5,7 +5,8 @@ import { fetchUsers } from '../../actions/user_actions';
 import { fetchSongs } from '../../actions/song_actions';
 import {
   receiveCurrentPlaylist,
-  receivePlaybackSongs
+  receivePlaybackSongs,
+  receivePlayingStatus
 } from '../../actions/playback_actions';
 
 const mapStateToProps = state => ({
@@ -18,7 +19,8 @@ const mapDispatchToProps = dispatch => ({
   fetchUsers: () => dispatch(fetchUsers()),
   fetchSongs: playlistId => dispatch(fetchSongs(playlistId)),
   receiveCurrentPlaylist: playlistId => dispatch(receiveCurrentPlaylist(playlistId)),
-  receivePlaybackSongs: songs => dispatch(receivePlaybackSongs(songs))
+  receivePlaybackSongs: songs => dispatch(receivePlaybackSongs(songs)),
+  receivePlayingStatus: isPlaying => dispatch(receivePlayingStatus(isPlaying))
 });
 
 export default connect(

@@ -21,6 +21,7 @@ class PlaylistIndex extends React.Component {
         playlist={ playlist }
         receiveCurrentPlaylist={ this.props.receiveCurrentPlaylist }
         receivePlaybackSongs={ this.props.receivePlaybackSongs}
+        receivePlayingStatus={ this.props.receivePlayingStatus }
         fetchSongs={ this.props.fetchSongs }/>
     ));
     let header =

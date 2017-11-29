@@ -1,13 +1,15 @@
 import {
   RECEIVE_PLAYBACK_SONGS,
   RECEIVE_CURRENT_SONG,
-  RECEIVE_CURRENT_PLAYLIST
+  RECEIVE_CURRENT_PLAYLIST,
+  RECEIVE_PLAYING_STATUS
 } from '../actions/playback_actions';
 import merge from 'lodash/merge';
 
 const defaultPlayback = {
   currentPlaylist: 1,
-  playbackQueue: [6,8,10]
+  playbackQueue: [6,8,10],
+  isPlaying: false
 };
 
 const playbackReducer = (oldState = defaultPlayback, action) => {
@@ -26,6 +28,10 @@ const playbackReducer = (oldState = defaultPlayback, action) => {
     case RECEIVE_CURRENT_PLAYLIST:
       newState = merge({}, oldState);
       newState['currentPlaylist'] = action.playlist;
+      return newState;
+    case RECEIVE_PLAYING_STATUS:
+      newState = merge({}, oldState);
+      newState['isPlaying'] = action.isPlaying;
       return newState;
     default:
       return oldState;

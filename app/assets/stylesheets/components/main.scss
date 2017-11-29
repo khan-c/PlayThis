@@ -17,7 +17,7 @@
 
 .above-playback {
   display: flex;
-  height: 95vh;
+  height: calc(100vh - 90px);
   overflow: scroll;
 }
 

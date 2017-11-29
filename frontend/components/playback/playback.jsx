@@ -18,7 +18,7 @@ class Playback extends React.Component {
 
   componentWillReceiveProps(newProps) {
     console.log(newProps);
-    if (newProps.playback.playbackQueue.length !== this.props.playback.playbackQueue.length) {
+    if (newProps.playback.isPlaying) {
       this.setState({ isPlaying: true });
     }
   }
