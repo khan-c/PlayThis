@@ -104,6 +104,15 @@ class Playback extends React.Component {
   }
 
   render() {
+    let volumeIcon;
+    if (this.state.volume >= .5) {
+      volumeIcon = <FaVolumeHigh />;
+    } else if (this.state.volume < .5 && this.state.volume > 0) {
+      volumeIcon = <FaVolumeLow />;
+    } else if (this.state.volume <= 0.01){
+      volumeIcon = <FaVolumeOff />;
+    }
+
     let isPlaying = "";
     let isPaused = "hidden";
     if (this.state.isPlaying) {
@@ -117,7 +126,65 @@ class Playback extends React.Component {
     if (!currentSong) {
       return (
         <div className="playback">
-
+          <div className="current-song">
+            <img className="current-playlist-image" src={ image } />
+            <div className="current-song-details">
+            </div>
+          </div>
+          <div className="playback-controls">
+            <div className="playback-buttons">
+              <div
+                onClick={ this.handlePrevious }
+                className="playback-previous">
+                <MdPrev />
+              </div>
+              <div className="playback-playpause">
+                <MdPlay
+                  onClick={ this.togglePlay }
+                  className={ isPlaying } />
+                <MdPause
+                  onClick={ this.togglePlay }
+                  className={ isPaused } />
+              </div>
+              <div
+                onClick={ this.handleNext }
+                className="playback-next">
+                <MdNext />
+              </div>
+            </div>
+            <div className="playback-progress">
+              <p className="time">{ parseTime(this.state.playedSeconds) }</p>
+              <input
+                className="progressbar"
+                type='range'
+                min={0}
+                max={1}
+                step='any'
+                value={ this.state.played }
+                onMouseDown={this.onSeekMouseDown}
+                onChange={this.onSeekChange}
+                onMouseUp={this.onSeekMouseUp}
+              />
+            <p className="time">{ parseTime(this.state.duration) }</p>
+            </div>
+          </div>
+          <div className="playback-volume">
+            <div
+              className="volume-button"
+              onClick={ this.toggleMute }>
+              { volumeIcon }
+            </div>
+            <div className="volumeslider">
+              <input
+                onChange={ this.volumeChange }
+                className="volume"
+                type="range"
+                min="0"
+                max="1"
+                step='any'
+                value={ this.state.volume } />
+            </div>
+          </div>
         </div>
       );
     }
@@ -128,15 +195,6 @@ class Playback extends React.Component {
     let image = '';
     if (currentPlaylist) {
       image = currentPlaylist.image_url;
-    }
-
-    let volumeIcon;
-    if (this.state.volume >= .5) {
-      volumeIcon = <FaVolumeHigh />;
-    } else if (this.state.volume < .5 && this.state.volume > 0) {
-      volumeIcon = <FaVolumeLow />;
-    } else if (this.state.volume <= 0.01){
-      volumeIcon = <FaVolumeOff />;
     }
 
     return(
