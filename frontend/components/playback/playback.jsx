@@ -36,7 +36,6 @@ class Playback extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    // console.log(newProps);
     if (newProps.playback.isPlaying) {
       this.setState({ isPlaying: true });
     }
@@ -116,14 +115,13 @@ class Playback extends React.Component {
     let currentSong = this.props.songs[songQ[this.state.currentSongIdx]];
 
     if (!currentSong) {
-      console.log(`no song found ${this.state.currentSongIdx}`);
       return (
         <div className="playback">
 
         </div>
       );
     }
-    console.log(this.state.currentSongIdx);
+
     let currentSongUrl = currentSong.song_url;
 
     let currentPlaylist = this.props.playlists[this.props.playback.currentPlaylist];
