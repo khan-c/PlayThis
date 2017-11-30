@@ -40,6 +40,9 @@ class Playback extends React.Component {
     if (newProps.playback.isPlaying) {
       this.setState({ isPlaying: true });
     }
+    if (newProps.playback.playbackQueue.length === 1) {
+      this.setState({ currentSongIdx: 0 });
+    }
   }
 
   setCurrentSong() {

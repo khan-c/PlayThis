@@ -30,6 +30,10 @@
   width: 100%;
 }
 
+.top-results {
+  z-index: 0;
+}
+
 .search-results {
   background: linear-gradient(rgb(23, 23, 23), black);
   height: calc(100% - 120px);

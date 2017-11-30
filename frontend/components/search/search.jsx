@@ -142,7 +142,7 @@ class Search extends React.Component {
             />
         </div>
         <div className="search-results">
-          <h1>{ topResults }</h1>
+          <h1 className='top-results'>{ topResults }</h1>
           { sResults }
           { pResults }
           { uResults}
