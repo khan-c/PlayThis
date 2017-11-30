@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171124214533) do
+ActiveRecord::Schema.define(version: 20171130063445) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,16 @@ ActiveRecord::Schema.define(version: 20171124214533) do
     t.string "img_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "playlist_follows", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "playlist_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["playlist_id"], name: "index_playlist_follows_on_playlist_id"
+    t.index ["user_id", "playlist_id"], name: "index_playlist_follows_on_user_id_and_playlist_id", unique: true
+    t.index ["user_id"], name: "index_playlist_follows_on_user_id"
   end
 
   create_table "playlist_songs", force: :cascade do |t|
@@ -62,6 +72,16 @@ ActiveRecord::Schema.define(version: 20171124214533) do
     t.index ["artist_id"], name: "index_songs_on_artist_id"
     t.index ["title", "album_id"], name: "index_songs_on_title_and_album_id", unique: true
     t.index ["title", "artist_id"], name: "index_songs_on_title_and_artist_id", unique: true
+  end
+
+  create_table "user_follows", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "followed_user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["followed_user_id"], name: "index_user_follows_on_followed_user_id"
+    t.index ["user_id", "followed_user_id"], name: "index_user_follows_on_user_id_and_followed_user_id", unique: true
+    t.index ["user_id"], name: "index_user_follows_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
