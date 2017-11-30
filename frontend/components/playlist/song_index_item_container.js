@@ -17,7 +17,8 @@ const mapStateToProps = (state, ownProps) => ({
   currentUserPlaylists: currentUserPlaylists(state),
   songs: state.entities.songs,
   currentUser: state.session.currentUser,
-  playlists: state.entities.playlists
+  playlists: state.entities.playlists,
+  playbackStatus: state.playback
 });
 
 const mapDispatchToProps = dispatch => ({

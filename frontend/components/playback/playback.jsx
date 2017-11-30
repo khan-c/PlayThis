@@ -33,12 +33,17 @@ class Playback extends React.Component {
     this.onSeekMouseUp = this.onSeekMouseUp.bind(this);
     this.onSeekChange = this.onSeekChange.bind(this);
     this.ref = this.ref.bind(this);
+    this.setCurrentSong = this.setCurrentSong.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
     if (newProps.playback.isPlaying) {
       this.setState({ isPlaying: true });
     }
+  }
+
+  setCurrentSong() {
+    this.props.receiveCurrentSong(this.props.playback.playbackQueue[this.state.currentSongIdx]);
   }
 
   togglePlay(e) {
@@ -271,6 +276,7 @@ class Playback extends React.Component {
             playing={ this.state.isPlaying }
             volume= { this.state.volume }
             onEnded={ this.handleNext }
+            onStart={ this.setCurrentSong }
             onProgress={ this.setProgress }
             onDuration={duration => this.setState({ duration }) }
             />

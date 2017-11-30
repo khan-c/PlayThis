@@ -4,6 +4,7 @@ import merge from 'lodash/merge';
 import { withRouter } from 'react-router-dom';
 import PlaylistIndexContainer from './playlist_index_container';
 import FaPlusCircle from 'react-icons/lib/fa/plus-circle';
+import MdPause from 'react-icons/lib/md/pause';
 import { parseTime } from '../../util/music_util';
 
 class SongIndexItem extends React.Component {
@@ -112,7 +113,6 @@ class SongIndexItem extends React.Component {
       );
     });
 
-
     return(
       <li
         onDoubleClick={ this.playSong }
@@ -121,8 +121,8 @@ class SongIndexItem extends React.Component {
           <div className="song-position">
             <p className="song-pos-num">{ this.props.idx }.</p>
             <img
-              onClick={ this.playSong }
               className="song-play-b"
+              onClick={ this.playSong }
               src="https://s3-us-west-1.amazonaws.com/playthismusic/images/logo.png" />
           </div>
           <div className="song-details">

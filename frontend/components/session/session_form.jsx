@@ -92,11 +92,13 @@ class SessionForm extends React.Component {
 
   modalClick(e) {
     this.props.history.replace('/');
+    this.props.clearErrors();
   }
 
   escFunc(e) {
     if (event.keyCode === 27) {
       this.props.history.replace('/');
+      this.props.clearErrors();
     }
   }
 

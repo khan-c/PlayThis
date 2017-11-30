@@ -23,7 +23,7 @@ const playbackReducer = (oldState = defaultPlayback, action) => {
       return newState;
     case RECEIVE_CURRENT_SONG:
       newState = merge({}, oldState);
-      newState['currentSong'] = action.song;
+      newState['currentSongId'] = action.songId;
       return newState;
     case RECEIVE_CURRENT_PLAYLIST:
       newState = merge({}, oldState);
