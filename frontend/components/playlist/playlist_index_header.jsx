@@ -18,7 +18,7 @@ class PlaylistIndexHeader extends React.Component {
       header =
       <div className="playlist-index-header">
         <p className="playlist-index-options">browse</p>
-        <h1 className="playlist-index-title">All Playlists</h1>
+        <h1 className="playlist-index-title">Discover</h1>
       </div>;
     } else if (this.props.type === 'user') {
       if (!this.props.user) {
@@ -31,8 +31,9 @@ class PlaylistIndexHeader extends React.Component {
           <div className="user-avatar" style={ image }></div>
         </div>
         <h1 className="user-title">{ this.props.user.username }</h1>
-        <p>{ this.props.user.follower_count } followers</p>
-        <p>Playlists</p>
+        <p className="user-followers-count">
+          { this.props.user.follower_count } followers
+        </p>
       </div>;
     } else {
       header = '';

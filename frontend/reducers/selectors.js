@@ -10,3 +10,8 @@ export const usersPlaylists = (state, userId) => {
   ));
   return results;
 };
+
+export const followedPlaylists = state => (
+  Object.values(state.entities.playlists).filter(playlist =>
+    playlist.currentUserFollows )
+);

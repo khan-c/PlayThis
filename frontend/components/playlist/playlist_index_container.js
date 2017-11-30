@@ -13,12 +13,13 @@ import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state, ownProps) => {
   let playlists = Object.values(state.entities.playlists);
-  if (ownProps.match.params.userId) {
-    playlists = usersPlaylists(state, ownProps.match.params.userId);
-  }
+  // if (ownProps.match.params.userId) {
+  //   playlists = usersPlaylists(state, ownProps.match.params.userId);
+  // }
   return {
     playlists,
-    users: state.entities.users
+    users: state.entities.users,
+    currentUser: state.session.currentUser
   };
 };
 
