@@ -21,11 +21,10 @@ class PlaylistIndexHeader extends React.Component {
         <h1 className="playlist-index-title">All Playlists</h1>
       </div>;
     } else if (this.props.type === 'user') {
-      let user;
       if (!this.props.user) {
         return null;
       }
-      const image = { backgroundImage: `url(${this.props.user.avatar_url})` };
+      const image = { backgroundImage: `url(${this.props.user.image_url})` };
       header =
       <div className="user-header">
         <div className="user-profile-image-container">

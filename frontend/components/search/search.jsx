@@ -3,6 +3,7 @@ import { searchDatabase } from '../../util/search_api_util';
 import _ from 'lodash';
 import SongIndexItemContainer from '../playlist/song_index_item_container';
 import PlaylistIndexContainer from '../playlist/playlist_index_container';
+import UserIndex from '../user/user_index';
 
 class Search extends React.Component {
   constructor(props) {
@@ -83,11 +84,10 @@ class Search extends React.Component {
         searchPlaylists={ this.state.playlists }
       />;
 
-    const userResults = Object.values(users).map( user => (
-      <li key={ user.id }>
-        { user.username }
-      </li>
-    ));
+    const userResults =
+      <UserIndex
+        users={ this.state.users }
+      />;
 
     let sResults = '';
     if (songResults.length > 0) {
@@ -112,11 +112,11 @@ class Search extends React.Component {
     }
 
     let uResults = '';
-    if (userResults.length > 0) {
+    if (Object.keys(this.state.users).length > 0) {
       uResults =
       <div className="search-section-result">
         <div className="search-header">Users</div>
-        <div className="results">
+        <div className="user-results">
           { userResults }
         </div>
       </div>;

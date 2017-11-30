@@ -32,12 +32,13 @@
 
 .search-results {
   background: linear-gradient(rgb(23, 23, 23), black);
-  height: calc(100% - 150px);
+  height: calc(100% - 120px);
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow: scroll;
+  padding-bottom: 50px;
 }
 
 .search-section-result {
@@ -59,4 +60,37 @@
 
 .results {
   width: 90%;
+}
+
+.user-results {
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  .user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    width: 15%;
+  }
+
+  .users-list {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .user-avatar {
+    border-radius: 50%;
+    z-index: 1;
+  }
+
+  .user-title {
+    font-size: 16px;
+  }
+}
+
+.user .user-avatar:hover,
+.user .user-title:hover {
+  cursor:pointer;
 }
