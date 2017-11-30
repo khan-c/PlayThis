@@ -12,7 +12,17 @@ class Api::UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @users = User.includes(:followed_playlists, :followed_users, :followers).all
+    render 'api/users/index.json.jbuilder'
+  end
+
+  def update
+    @user = current_user
+    followed_users = params[:user][:followed_user_ids]
+    followed_playlists = params[:user][:followed_playlist_ids]
+    @user.followed_user_ids = followed_users
+    @user.followed_playlist_ids = followed_playlists
+    @users = User.includes(:followed_playlists, :followed_users, :followers).all
     render 'api/users/index.json.jbuilder'
   end
 

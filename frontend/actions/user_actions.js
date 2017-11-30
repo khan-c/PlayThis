@@ -12,3 +12,11 @@ export const fetchUsers = () => dispatch => (
     users => dispatch(receiveUsers(users))
   )
 );
+
+export const updateUser = formUser => dispatch => (
+  UserAPIUtil.updateUser(formUser).then(
+    users => {
+      dispatch(receiveUsers(users));
+    }
+  )
+);

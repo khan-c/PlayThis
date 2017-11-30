@@ -26,18 +26,23 @@
   margin-top: 5px;
   color: $light-gray;
   font-size: 14px;
+  text-decoration: underline;
 }
 
 .playlist-author:hover {
   color: white;
-  text-decoration: underline;
   cursor: pointer;
 }
 
-.playlist-song-count {
+.playlist-song-count,
+.playlist-follow-count {
   margin-top: 15px;
   color: $light-gray;
   font-size: 12px;
+}
+
+.playlist-follow-count {
+  margin-top: 5px;
 }
 
 .playlist-play {
@@ -90,13 +95,13 @@
 }
 
 .playlist-show-image {
-  box-shadow: 0 0 2px 0px rgba(38, 38, 38, 0.85);
   position: relative;
   width: 100%;
   padding-top: 100%;
 }
 
 .playlist-image {
+  box-shadow: 0 0 15px 2px rgba(38, 38, 38, 0.85);
   position: absolute;
   top: 0;
   left: 0;
@@ -159,51 +164,21 @@
   transform: scale(1);
 }
 
-.user-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 20%;
-  margin: 0 auto;
+.f-button {
+  text-transform: uppercase;
+  font-size: 12px;
+  margin-top: 15px;
 }
 
-.user {
-  height: 100%;
-  width: 100%;
+.f-button:hover {
+  transform: scale(1.1);
+  cursor: pointer;
 }
 
-.user-profile-image-container {
-  position: relative;
-  width: 100%;
-  padding-top: 100%;
-  margin-top: 30px;
-  border-radius: 50%;
-  overflow: hidden;
+.f-button:active {
+  transform: scale(1);
 }
 
-.user-avatar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.user-title {
-  color: white;
-  font-size: 42px;
-  font-weight: 700;
-  margin-top: 20px;
-  margin-bottom: 30px;
-}
-
-.user-header p {
-  font-size: 24px;
-  font-weight: 700;
-  color: white;
+.followed {
+  color: $green;
 }

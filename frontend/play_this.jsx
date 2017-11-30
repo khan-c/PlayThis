@@ -4,20 +4,7 @@ import configureStore from './store/store';
 import Root from './components/root';
 
 //TESTING
-import {
-  fetchPlaylists,
-  fetchPlaylist,
-  createPlaylist,
-  updatePlaylist,
-  deletePlaylist
-} from './actions/playlist_actions';
-import {
-  fetchSongs,
-  addSongToPlaylist,
-  removeSongFromPlaylist
-} from './actions/song_actions';
-import { searchDatabase } from './util/search_api_util';
-import { logout } from './actions/session_actions';
+import { updateUser } from './actions/user_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root');
@@ -33,16 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(<Root store={ store } />, root);
 
   // TESTING
-  window.fetchPlaylist = fetchPlaylist;
-  window.fetchPlaylists = fetchPlaylists;
-  window.createPlaylist = createPlaylist;
-  window.updatePlaylist = updatePlaylist;
-  window.deletePlaylist = deletePlaylist;
-  window.fetchSongs = fetchSongs;
-  window.addSongToPlaylist = addSongToPlaylist;
-  window.removeSongFromPlaylist = removeSongFromPlaylist;
   window.dispatch = store.dispatch;
   window.getState = store.getState;
-  window.searchDatabase = searchDatabase;
-  window.logout = logout;
+  window.updateUser = updateUser;
 });

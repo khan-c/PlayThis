@@ -3,6 +3,7 @@ import SongIndexItemContainer from './song_index_item_container';
 import FaEllipsisH from 'react-icons/lib/fa/ellipsis-h';
 import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
+import merge from 'lodash/merge';
 
 class SongsIndex extends React.Component {
   constructor(props) {
@@ -15,12 +16,20 @@ class SongsIndex extends React.Component {
     this.closeModal = this.closeModal.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.playPlaylist = this.playPlaylist.bind(this);
+    this.toggleFollow = this.toggleFollow.bind(this);
   }
 
   componentWillMount() {
     this.props.fetchPlaylist(this.props.match.params.playlistId);
     this.props.fetchPlaylists();
     this.props.fetchSongs(this.props.match.params.playlistId);
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (this.props.currentUser.followed_playlist_ids.length !==
+        newProps.currentUser.followed_playlist_ids.length) {
+          this.props.fetchPlaylist(this.props.match.params.playlistId);
+        }
   }
 
   openModal() {
@@ -44,6 +53,17 @@ class SongsIndex extends React.Component {
     this.props.receivePlayingStatus(true);
   }
 
+  toggleFollow() {
+    const formUser = merge({}, this.props.currentUser);
+    if (formUser.followed_playlist_ids.includes(this.props.playlist.id)) {
+      formUser.followed_playlist_ids.splice(
+        formUser.followed_playlist_ids.indexOf(this.props.playlist.id), 1);
+    } else {
+      formUser.followed_playlist_ids.push(this.props.playlist.id);
+    }
+    this.props.updateUser(formUser);
+  }
+
   render() {
     const { playlist } = this.props;
     if (!playlist) {
@@ -55,6 +75,8 @@ class SongsIndex extends React.Component {
     const currentUserPlaylists = Object.values(this.props.playlists).filter(p => (
       p.author_id === this.props.currentUser.id
     ));
+    const userOwnsPlaylist= (this.props.currentUser.id === playlist.author_id);
+
     const songs = playlist.song_ids.map((songId, idx) => {
       let key;
       if (!this.props.songs[songId]) {
@@ -68,7 +90,7 @@ class SongsIndex extends React.Component {
           song={ this.props.songs[songId] }
           idx={ idx + 1 }
           playlist={ playlist }
-          userOwnsPlaylist={ (this.props.currentUser.id === playlist.author_id) }
+          userOwnsPlaylist={ userOwnsPlaylist }
         />
       );
     });
@@ -77,6 +99,12 @@ class SongsIndex extends React.Component {
       deleteButton = 'Delete';
     }
     const userUrl = `/user/${playlist.author_id}`;
+
+    let follow = (playlist.current_user_follows) ? 'Unfollow' : 'Follow';
+    const followClass = (playlist.current_user_follows) ? "f-button followed" : "f-button follow";
+    if (userOwnsPlaylist) {
+      follow = '';
+    }
 
     return(
       <div className="playlists">
@@ -102,9 +130,17 @@ class SongsIndex extends React.Component {
               { playlist.author_name }
             </Link>
             <p className="playlist-song-count">{ songs.length } SONGS</p>
+            <p className="playlist-follow-count">
+              { playlist.followers } followers
+            </p>
             <p
               onClick={ this.playPlaylist }
               className="playlist-play">PLAY</p>
+            <p
+              className={ followClass }
+              onClick={ this.toggleFollow }>
+              { follow }
+            </p>
             <p
               onClick={ this.openModal }
               className="playlist-options">{ deleteButton }

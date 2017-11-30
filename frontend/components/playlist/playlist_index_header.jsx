@@ -31,6 +31,7 @@ class PlaylistIndexHeader extends React.Component {
           <div className="user-avatar" style={ image }></div>
         </div>
         <h1 className="user-title">{ this.props.user.username }</h1>
+        <p>{ this.props.user.follower_count } followers</p>
         <p>Playlists</p>
       </div>;
     } else {
