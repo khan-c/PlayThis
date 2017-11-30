@@ -70,31 +70,40 @@
   display: flex;
   justify-content: center;
   width: 90%;
-  .user {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 20px;
-    width: 15%;
-  }
-
-  .users-list {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
 
   .user-avatar {
     border-radius: 50%;
     z-index: 1;
   }
+}
 
-  .user-title {
-    font-size: 16px;
-  }
+.user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  width: 15%;
+}
+
+.user-title {
+  font-size: 16px;
+}
+
+.users-list {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .user .user-avatar:hover,
 .user .user-title:hover {
   cursor:pointer;
+}
+
+.user .user-avatar:hover {
+  transform: scale(1.05);
+}
+
+.header .user-title {
+  font-size: 36px;
 }

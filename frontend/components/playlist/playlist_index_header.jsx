@@ -41,7 +41,9 @@ class PlaylistIndexHeader extends React.Component {
       }
 
       let follow = (user.current_user_follows) ? 'Unfollow' : 'Follow';
-      let followClass = (user.current_user_follows) ? "u-f-button followed" : "u-f-button follow";
+      let followClass = (user.current_user_follows) ?
+                              "u-f-button followed" :
+                              "u-f-button follow";
       if (user.id === currentUser.id) {
         follow = '';
         followClass='';

@@ -3,6 +3,7 @@ import PlaylistIndexItem from './playlist_index_item';
 import PlaylistIndexHeader from './playlist_index_header';
 import merge from 'lodash/merge';
 import { withRouter } from 'react-router-dom';
+import UserIndex from '../user/user_index';
 
 class PlaylistIndex extends React.Component {
   componentDidMount() {
@@ -43,6 +44,11 @@ class PlaylistIndex extends React.Component {
       allPlaylists.filter(playlist => playlist.current_user_follows)
     );
 
+    let followedUsers = Object.values(this.props.users).filter(
+      u => u.current_user_follows
+    );
+
+
     let userPlaylists = [];
     if (this.props.match.path === "/user/:userId") {
       type = 'user';
@@ -57,6 +63,7 @@ class PlaylistIndex extends React.Component {
           allPlaylists.filter(playlist => playlist.author_id === user.id)
         );
         ownPlaylists = [];
+        followedUsers = [];
       }
 
       followedPlaylists = this.mapPlaylistItems(
@@ -76,14 +83,24 @@ class PlaylistIndex extends React.Component {
       otherPlaylists = [];
       userPlaylists = [];
       followedPlaylists = [];
+      followedUsers = [];
       searchPlaylists = this.mapPlaylistItems(
         Object.values(this.props.searchPlaylists)
       );
     }
 
-    const ownTitle = (ownPlaylists.length > 0) ? "Your Playlists" : '';
-    const userTitle = (userPlaylists.length > 0) ? `${user.username}'s playlists` : '';
-    const followedTitle = (followedPlaylists.length > 0) ? "Followed Playlists" : '';
+    const ownTitle = (ownPlaylists.length > 0) ?
+                              "Your Playlists" :
+                              '';
+    const userTitle = (userPlaylists.length > 0) ?
+                  `${user.username}'s playlists` :
+                  '';
+    const followedPlaylistsTitle = (followedPlaylists.length > 0) ?
+                                    "Followed Playlists" :
+                                    '';
+    const followedUsersTitle = (followedUsers.length > 0) ?
+                                    "Followed Users" :
+                                    '';
 
     return(
       <div className="playlists">
@@ -107,15 +124,19 @@ class PlaylistIndex extends React.Component {
               { ownPlaylists }
             </div>
             <div className="playlists-title">{ userTitle }</div>
-            <div className="user playlists">
+            <div className="playlists">
               { userPlaylists }
             </div>
-            <div className="playlists-title">{ followedTitle }</div>
+            <div className="playlists-title">{ followedPlaylistsTitle }</div>
             <div className="following playlists">
               { followedPlaylists }
             </div>
             <div className="searched playlists">
               { searchPlaylists }
+            </div>
+            <div className="playlists-title">{ followedUsersTitle }</div>
+            <div className="playlists">
+              <UserIndex users={ followedUsers } />
             </div>
           </div>
         </div>
