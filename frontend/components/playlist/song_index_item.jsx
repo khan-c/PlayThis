@@ -89,7 +89,6 @@ class SongIndexItem extends React.Component {
           Remove from playlist
         </li>;
     }
-    console.log(this.props);
     const playlists = this.props.currentUserPlaylists.map(playlist => {
       const image = { backgroundImage: `url(${playlist.image_url})` };
       const numSongs = playlist.song_ids.length;

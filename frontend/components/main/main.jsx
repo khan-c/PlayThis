@@ -17,18 +17,20 @@ class Main extends React.Component {
         <div className="main-background"></div>
         <div className="above-playback">
           <NavBar user={ this.props.user } logout={ this.props.logout }/>
-          <Switch>
-            <Route
-              path="/playlist/:playlistId"
-              component={PlaylistShowContainer} />
-            <Route
-              path="/user/:userId"
-              component={PlaylistIndexContainer} />
-            <Route
-              path="/search"
-              component={SearchContainer} />
-            <Route exact path="/browse" component={PlaylistIndexContainer} />
-          </Switch>
+          <div className="playlist-index-container">
+            <Switch>
+              <Route
+                path="/playlist/:playlistId"
+                component={PlaylistShowContainer} />
+              <Route
+                path="/user/:userId"
+                component={PlaylistIndexContainer} />
+              <Route
+                path="/search"
+                component={SearchContainer} />
+              <Route exact path="/browse" component={PlaylistIndexContainer} />
+            </Switch>
+          </div>
         </div>
         <PlaybackContainer />
       </div>

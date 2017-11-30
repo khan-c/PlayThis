@@ -8,11 +8,19 @@ import {
   receivePlaybackSongs,
   receivePlayingStatus
 } from '../../actions/playback_actions';
+import { usersPlaylists } from '../../reducers/selectors';
+import { withRouter } from 'react-router-dom';
 
-const mapStateToProps = state => ({
-  playlists: Object.values(state.entities.playlists),
-  users: state.entities.users
-});
+const mapStateToProps = (state, ownProps) => {
+  let playlists = Object.values(state.entities.playlists);
+  if (ownProps.match.params.userId) {
+    playlists = usersPlaylists(state, ownProps.match.params.userId);
+  }
+  return {
+    playlists,
+    users: state.entities.users
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
   fetchPlaylists: (userId) => dispatch(fetchPlaylists(userId)),
@@ -23,7 +31,7 @@ const mapDispatchToProps = dispatch => ({
   receivePlayingStatus: isPlaying => dispatch(receivePlayingStatus(isPlaying))
 });
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(PlaylistIndex);
+)(PlaylistIndex));

@@ -79,7 +79,7 @@ class SongsIndex extends React.Component {
     const userUrl = `/user/${playlist.author_id}`;
 
     return(
-      <div className="playlist-index-container">
+      <div className="playlists">
         <div className="playlist-show-container">
           <div className="playlist-show-title">
             <div

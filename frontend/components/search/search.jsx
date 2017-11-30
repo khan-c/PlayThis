@@ -2,6 +2,7 @@ import React from 'react';
 import { searchDatabase } from '../../util/search_api_util';
 import _ from 'lodash';
 import SongIndexItemContainer from '../playlist/song_index_item_container';
+import PlaylistIndexContainer from '../playlist/playlist_index_container';
 
 class Search extends React.Component {
   constructor(props) {
@@ -77,11 +78,10 @@ class Search extends React.Component {
         />
     ));
 
-    const playlistResults = Object.values(playlists).map( playlist => (
-      <li key={ playlist.id }>
-        { playlist.title }
-      </li>
-    ));
+    const playlistResults =
+      <PlaylistIndexContainer
+        searchPlaylists={ this.state.playlists }
+      />;
 
     const userResults = Object.values(users).map( user => (
       <li key={ user.id }>
@@ -89,23 +89,46 @@ class Search extends React.Component {
       </li>
     ));
 
-    let songHeader = '';
+    let sResults = '';
     if (songResults.length > 0) {
-      songHeader = 'Songs';
+      sResults =
+      <div className="search-section-result">
+        <div className="search-header">Songs</div>
+        <div className="results">
+          { songResults }
+        </div>
+      </div>;
     }
 
-    let playlistHeader = '';
-    if (playlistResults.length > 0) {
-      playlistHeader = 'Playlists';
+    let pResults = '';
+    if (Object.keys(this.state.playlists).length > 0) {
+      pResults =
+      <div className="search-section-result">
+        <div className="search-header">Playlists</div>
+        <div className="results">
+          { playlistResults }
+        </div>
+      </div>;
     }
 
-    let userHeader = '';
+    let uResults = '';
     if (userResults.length > 0) {
-      userHeader = 'Users';
+      uResults =
+      <div className="search-section-result">
+        <div className="search-header">Users</div>
+        <div className="results">
+          { userResults }
+        </div>
+      </div>;
+    }
+
+    let topResults = '';
+    if (pResults || sResults || uResults) {
+      topResults = 'Top Results';
     }
 
     return(
-      <div className="playlist-index-container">
+      <div className="search">
         <div className="search-bar">
           <p className="search-label">Search for a Song, Playlist, User</p>
           <input
@@ -119,20 +142,10 @@ class Search extends React.Component {
             />
         </div>
         <div className="search-results">
-          <div className="search-section-result">
-            <div className="search-header">{ songHeader }</div>
-            <div className="song-results">
-              { songResults }
-            </div>
-          </div>
-          <div className="search-section-result">
-            <div className="search-header">{ playlistHeader }</div>
-            { playlistResults }
-          </div>
-          <div className="search-section-result">
-            <div className="search-header">{ userHeader }</div>
-            { userResults }
-          </div>
+          <h1>{ topResults }</h1>
+          { sResults }
+          { pResults }
+          { uResults}
         </div>
       </div>
     );
