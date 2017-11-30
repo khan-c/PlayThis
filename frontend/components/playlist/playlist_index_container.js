@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import PlaylistIndex from './playlist_index';
 import { fetchPlaylists } from '../../actions/playlist_actions';
-import { fetchUsers } from '../../actions/user_actions';
+import { fetchUsers, updateUser } from '../../actions/user_actions';
 import { fetchSongs } from '../../actions/song_actions';
 import {
   receiveCurrentPlaylist,
@@ -29,7 +29,8 @@ const mapDispatchToProps = dispatch => ({
   fetchSongs: playlistId => dispatch(fetchSongs(playlistId)),
   receiveCurrentPlaylist: playlistId => dispatch(receiveCurrentPlaylist(playlistId)),
   receivePlaybackSongs: songs => dispatch(receivePlaybackSongs(songs)),
-  receivePlayingStatus: isPlaying => dispatch(receivePlayingStatus(isPlaying))
+  receivePlayingStatus: isPlaying => dispatch(receivePlayingStatus(isPlaying)),
+  updateUser: formUser => dispatch(updateUser(formUser))
 });
 
 export default withRouter(connect(

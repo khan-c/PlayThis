@@ -1,14 +1,28 @@
 import React from 'react';
+import merge from 'lodash/merge';
 
 class PlaylistIndexHeader extends React.Component {
   constructor(props) {
     super(props);
+
+    this.toggleFollow = this.toggleFollow.bind(this);
   }
 
   componentWillReceiveNewProps(newProps) {
     if (this.props.match.path !== newProps.match.path) {
       this.props.fetchUsers();
     }
+  }
+
+  toggleFollow() {
+    const formUser = merge({}, this.props.currentUser);
+    if (formUser.followed_user_ids.includes(this.props.user.id)) {
+      formUser.followed_user_ids.splice(
+        formUser.followed_user_ids.indexOf(this.props.user.id), 1);
+    } else {
+      formUser.followed_user_ids.push(this.props.user.id);
+    }
+    this.props.updateUser(formUser);
   }
 
   render() {
@@ -21,10 +35,20 @@ class PlaylistIndexHeader extends React.Component {
         <h1 className="playlist-index-title">Discover</h1>
       </div>;
     } else if (this.props.type === 'user') {
-      if (!this.props.user) {
+      const { user, currentUser } = this.props;
+      if (!user) {
         return null;
       }
+
+      let follow = (user.current_user_follows) ? 'Unfollow' : 'Follow';
+      let followClass = (user.current_user_follows) ? "u-f-button followed" : "u-f-button follow";
+      if (user.id === currentUser.id) {
+        follow = '';
+        followClass='';
+      }
+
       const image = { backgroundImage: `url(${this.props.user.image_url})` };
+
       header =
       <div className="user-header">
         <div className="user-profile-image-container">
@@ -33,6 +57,11 @@ class PlaylistIndexHeader extends React.Component {
         <h1 className="user-title">{ this.props.user.username }</h1>
         <p className="user-followers-count">
           { this.props.user.follower_count } followers
+        </p>
+        <p
+          className={ followClass }
+          onClick={ this.toggleFollow }>
+          { follow }
         </p>
       </div>;
     } else {

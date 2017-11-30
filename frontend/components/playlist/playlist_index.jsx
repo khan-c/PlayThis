@@ -93,6 +93,8 @@ class PlaylistIndex extends React.Component {
             user={ user }
             users={ this.props.users }
             fetchUsers={ this.props.fetchUsers }
+            updateUser={ this.props.updateUser }
+            currentUser={ this.props.currentUser }
             />
         </div>
         <div className="playlist-index">
