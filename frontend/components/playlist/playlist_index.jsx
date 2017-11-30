@@ -52,16 +52,11 @@ class PlaylistIndex extends React.Component {
         return null;
       }
 
-      if (user.id === currentUser.id) {
-        ownPlaylists = this.mapPlaylistItems(
-          allPlaylists.filter(playlist =>
-            playlist.author_id === currentUser.id
-          )
-        );
-      } else {
+      if (user.id !== currentUser.id) {
         userPlaylists = this.mapPlaylistItems(
           allPlaylists.filter(playlist => playlist.author_id === user.id)
         );
+        ownPlaylists = [];
       }
 
       followedPlaylists = this.mapPlaylistItems(
@@ -87,8 +82,8 @@ class PlaylistIndex extends React.Component {
     }
 
     const ownTitle = (ownPlaylists.length > 0) ? "Your Playlists" : '';
-    const userTitle = (userPlaylists.length > 0) ? "" : '';
-    const followedTitle = (followedPlaylists.length > 0) ? "Your Followed Playlists" : '';
+    const userTitle = (userPlaylists.length > 0) ? `${user.username}'s playlists` : '';
+    const followedTitle = (followedPlaylists.length > 0) ? "Followed Playlists" : '';
 
     return(
       <div className="playlists">
