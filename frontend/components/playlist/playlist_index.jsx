@@ -9,6 +9,11 @@ class PlaylistIndex extends React.Component {
   componentDidMount() {
     this.props.fetchPlaylists();
     this.props.fetchUsers();
+    document.getElementById('above-playback').scrollTo(0,0);
+  }
+
+  componentWillReceiveProps(newProps) {
+    document.getElementById('above-playback').scrollTo(0,0);
   }
 
   mapPlaylistItems(playlists) {
@@ -44,9 +49,7 @@ class PlaylistIndex extends React.Component {
       allPlaylists.filter(playlist => playlist.current_user_follows)
     );
 
-    let followedUsers = Object.values(this.props.users).filter(
-      u => u.current_user_follows
-    );
+    let followedUsers = [];
 
 
     let userPlaylists = [];
@@ -57,6 +60,10 @@ class PlaylistIndex extends React.Component {
       if (!user) {
         return null;
       }
+
+      followedUsers = Object.values(this.props.users).filter(
+        u => u.current_user_follows
+      );
 
       if (user.id !== currentUser.id) {
         userPlaylists = this.mapPlaylistItems(

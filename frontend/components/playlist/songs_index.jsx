@@ -25,6 +25,10 @@ class SongsIndex extends React.Component {
     this.props.fetchSongs(this.props.match.params.playlistId);
   }
 
+  componentDidMount() {
+    document.getElementById('above-playback').scrollTo(0,0);
+  }
+
   componentWillReceiveProps(newProps) {
     if (this.props.currentUser.followed_playlist_ids.length !==
         newProps.currentUser.followed_playlist_ids.length) {

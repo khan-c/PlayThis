@@ -10,12 +10,15 @@ import SearchContainer from '../search/search_container';
 import ReactDOM from 'react-dom';
 
 class Main extends React.Component {
+  componentDidMount() {
+    document.getElementById('above-playback').scrollTo(0,0);
+  }
 
   render() {
     return(
       <div className="main">
         <div className="main-background"></div>
-        <div className="above-playback">
+        <div id="above-playback">
           <NavBar user={ this.props.user } logout={ this.props.logout }/>
           <div className="playlist-index-container">
             <Switch>
