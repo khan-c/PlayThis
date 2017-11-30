@@ -62,8 +62,10 @@ class PlaylistIndex extends React.Component {
         userPlaylists = this.mapPlaylistItems(
           allPlaylists.filter(playlist => playlist.author_id === user.id)
         );
+        followedUsers = Object.values(this.props.users).filter(
+          u => user.followed_user_ids.includes(u.id)
+        );
         ownPlaylists = [];
-        followedUsers = [];
       }
 
       followedPlaylists = this.mapPlaylistItems(
