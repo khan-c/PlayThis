@@ -1,4 +1,4 @@
-# PlayThis ![PlayThis logo](https://github.com/khan-c/PlayThis/blob/master/app/assets/images/logo-green.png)
+# PlayThis ![PlayThis logo](https://github.com/khan-c/PlayThis/blob/master/app/assets/images/logo-green.png =100x100)
 
 
 This README would normally document whatever steps are necessary to get the
