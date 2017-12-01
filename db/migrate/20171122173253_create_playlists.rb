@@ -3,7 +3,7 @@ class CreatePlaylists < ActiveRecord::Migration[5.1]
     create_table :playlists do |t|
       t.string :title, null: false
       t.integer :author_id, null: false
-      t.string :image_url, default: "https://s3-us-west-1.amazonaws.com/playthismusic/music-images/playlist-default.png"
+      t.string :image_url
 
       t.timestamps
     end

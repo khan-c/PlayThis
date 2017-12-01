@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 20171130063445) do
   create_table "playlists", force: :cascade do |t|
     t.string "title", null: false
     t.integer "author_id", null: false
-    t.string "image_url", default: "https://s3-us-west-1.amazonaws.com/playthismusic/music-images/playlist-default.png"
+    t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["author_id", "id"], name: "index_playlists_on_author_id_and_id", unique: true

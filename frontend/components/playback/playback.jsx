@@ -202,7 +202,11 @@ class Playback extends React.Component {
     let currentPlaylist = this.props.playlists[this.props.playback.currentPlaylist];
     let image = '';
     if (currentPlaylist) {
-      image = currentPlaylist.image_url;
+      if (currentPlaylist.image_url) {
+        image = currentPlaylist.image_url;
+      } else {
+        image = currentPlaylist.first_song_image;
+      }
     }
 
     return(

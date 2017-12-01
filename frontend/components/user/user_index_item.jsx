@@ -10,6 +10,7 @@ class UserIndexItem extends React.Component {
 
   handleClick(e) {
     this.props.history.push(`/user/${this.props.user.id}`);
+    document.getElementById('above-playback').scrollTo(0,0);
   }
 
   render() {

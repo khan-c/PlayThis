@@ -24,7 +24,7 @@ class PlaylistIndexItem extends React.Component {
   render() {
     const { playlist } = this.props;
     let image;
-    if (playlist.image_url === "https://s3-us-west-1.amazonaws.com/playthismusic/music-images/playlist-default.png") {
+    if (!playlist.image_url) {
       if (!playlist.first_song_image) {
         image = {};
       } else {
