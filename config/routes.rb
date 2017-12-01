@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'static_pages#root'
 
@@ -10,5 +11,7 @@ Rails.application.routes.draw do
     end
     resources :playlist_songs, only: [:create, :destroy, :index]
     resources :searches, only: [:index]
+    resources :artists, only: [:index, :show]
+    resources :albums, only: [:index, :show]
   end
 end

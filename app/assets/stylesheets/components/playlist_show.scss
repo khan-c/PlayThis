@@ -120,6 +120,12 @@
   align-items: center;
 }
 
+.gen-image:hover .pi-hover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .playlist-delete-buttons {
   display: flex;
   justify-content: center;

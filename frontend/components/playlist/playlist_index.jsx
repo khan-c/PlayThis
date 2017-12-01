@@ -12,6 +12,15 @@ class PlaylistIndex extends React.Component {
     document.getElementById('above-playback').scrollTo(0,0);
   }
 
+  isEmpty(obj) {
+    for (var key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   componentWillReceiveProps(newProps) {
     document.getElementById('above-playback').scrollTo(0,0);
   }
@@ -21,10 +30,14 @@ class PlaylistIndex extends React.Component {
       <PlaylistIndexItem
         key={ playlist.id }
         playlist={ playlist }
+        page="pii-sizing"
+        title="index-playlist-title"
+        songs={ this.props.songs }
         receiveCurrentPlaylist={ this.props.receiveCurrentPlaylist }
         receivePlaybackSongs={ this.props.receivePlaybackSongs}
         receivePlayingStatus={ this.props.receivePlayingStatus }
-        fetchSongs={ this.props.fetchSongs }/>
+        fetchSongs={ this.props.fetchSongs }
+        />
     ));
   }
 
@@ -38,11 +51,10 @@ class PlaylistIndex extends React.Component {
       allPlaylists.filter(playlist => playlist.author_id === currentUser.id)
     );
 
-    let otherPlaylists = this.mapPlaylistItems(
+    let playThisPlaylists = this.mapPlaylistItems(
       allPlaylists.filter(
-        playlist => !(playlist.current_user_follows ||
-          playlist.author_id === currentUser.id ||
-          playlist.author_id === user.id))
+        playlist => playlist.author_id === 1
+      )
     );
 
     let followedPlaylists = this.mapPlaylistItems(
@@ -80,7 +92,7 @@ class PlaylistIndex extends React.Component {
           user.followed_playlist_ids.includes(playlist.id))
       );
 
-      otherPlaylists = [];
+      playThisPlaylists = [];
 
     } else if (this.props.match.path === "/search") {
       type = '';
@@ -89,7 +101,7 @@ class PlaylistIndex extends React.Component {
     let searchPlaylists = [];
     if (this.props.searchPlaylists) {
       ownPlaylists = [];
-      otherPlaylists = [];
+      playThisPlaylists = [];
       userPlaylists = [];
       followedPlaylists = [];
       followedUsers = [];
@@ -126,7 +138,7 @@ class PlaylistIndex extends React.Component {
         <div className="playlist-index">
           <div className='playlist-index-items'>
             <div className="discover playlists">
-              { otherPlaylists }
+              { playThisPlaylists }
             </div>
             <div className="playlists-title">{ ownTitle }</div>
             <div className="own playlists">

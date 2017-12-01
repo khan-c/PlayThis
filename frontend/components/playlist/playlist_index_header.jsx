@@ -32,7 +32,7 @@ class PlaylistIndexHeader extends React.Component {
       header =
       <div className="playlist-index-header">
         <p className="playlist-index-options">browse</p>
-        <h1 className="playlist-index-title">Discover</h1>
+        <h1 className="playlist-index-title">Featured Playlists</h1>
       </div>;
     } else if (this.props.type === 'user') {
       const { user, currentUser } = this.props;

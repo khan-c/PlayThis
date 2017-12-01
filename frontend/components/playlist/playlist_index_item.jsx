@@ -23,11 +23,20 @@ class PlaylistIndexItem extends React.Component {
 
   render() {
     const { playlist } = this.props;
-    const image = { backgroundImage: `url(${playlist.image_url})` };
+    let image;
+    if (playlist.image_url === "https://s3-us-west-1.amazonaws.com/playthismusic/music-images/playlist-default.png") {
+      if (!playlist.first_song_image) {
+        image = {};
+      } else {
+        image = { backgroundImage: `url(${playlist.first_song_image})` };
+      }
+    } else {
+      image = { backgroundImage: `url(${playlist.image_url})` };
+    }
     const link = `/playlist/${ playlist.id }`;
 
     return(
-      <div className="pii-sizing">
+      <div className={ this.props.page }>
         <div className="playlist-index-item">
           <div
             onClick={ this.playlistClick }
@@ -45,7 +54,7 @@ class PlaylistIndexItem extends React.Component {
           </div>
           <p
             onClick={ this.playlistClick }
-            className="index-playlist-title">
+            className={ this.props.title }>
             { playlist.title }
           </p>
         </div>

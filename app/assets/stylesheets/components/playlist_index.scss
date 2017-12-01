@@ -108,12 +108,13 @@
   bottom: 0;
   width: 100%;
   height: 100%;
+  background: url("https://s3-us-west-1.amazonaws.com/playthismusic/images/blank_playlist-1.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 20%, 0;
 }
 
-.playlist-image div {
+.pi-hover {
   display: none;
   position: absolute;
   top: 0;
@@ -224,4 +225,11 @@
 
 .u-f-button:active {
   transform: scale(1);
+}
+
+.playlist-show-page {
+  width: 100%;
+  margin-bottom: 0;
+  margin-left: 0px;
+  box-sizing: content-box;
 }

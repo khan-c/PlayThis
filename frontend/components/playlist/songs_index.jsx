@@ -1,5 +1,6 @@
 import React from 'react';
 import SongIndexItemContainer from './song_index_item_container';
+import PlaylistIndexItem from './playlist_index_item';
 import FaEllipsisH from 'react-icons/lib/fa/ellipsis-h';
 import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
@@ -114,20 +115,16 @@ class SongsIndex extends React.Component {
       <div className="playlists">
         <div className="playlist-show-container">
           <div className="playlist-show-title">
-            <div
-              className="playlist-show-image">
-              <div
-                className="playlist-image"
-                style={ image }>
-                <div
-                  className="pi-hover">
-                  <img
-                    onClick={ this.playPlaylist }
-                    src="https://s3-us-west-1.amazonaws.com/playthismusic/images/logo.png" />
-                </div>
-              </div>
-            </div>
-            <p className="playlist-title">{ playlist.title }</p>
+            <PlaylistIndexItem
+              playlist={ playlist }
+              songs={ this.props.songs }
+              page="playlist-show-page"
+              title="playlist-title"
+              receiveCurrentPlaylist={ this.props.receiveCurrentPlaylist }
+              receivePlaybackSongs={ this.props.receivePlaybackSongs}
+              receivePlayingStatus={ this.props.receivePlayingStatus }
+              fetchSongs={ this.props.fetchSongs }
+              />
             <Link
               to={ userUrl }
               className="playlist-author">
