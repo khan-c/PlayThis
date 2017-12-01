@@ -15,10 +15,12 @@ class PlaylistIndexItem extends React.Component {
 
   playPlaylist(e) {
     e.stopPropagation();
-    this.props.receiveCurrentPlaylist(this.props.playlist.id);
-    this.props.receivePlaybackSongs(this.props.playlist.song_ids);
-    this.props.fetchSongs(this.props.playlist.id);
-    this.props.receivePlayingStatus(true);
+    if (this.props.playlist.song_ids.length !== 0) {
+      this.props.receiveCurrentPlaylist(this.props.playlist.id);
+      this.props.receivePlaybackSongs(this.props.playlist.song_ids);
+      this.props.fetchSongs(this.props.playlist.id);
+      this.props.receivePlayingStatus(true);
+    }
   }
 
   render() {
