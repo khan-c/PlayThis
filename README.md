@@ -129,6 +129,7 @@ document.getElementById('search-query').addEventListener('keyup', _.debounce(thi
 + Show recently played music on navigation bar
 + Retain history of user's last played for uninterrupted use between sessions
 + User feed to receive notification of followed users' activity
++ User can upload own profile image
 + Loop playlist or song
 + Shuffle playlist
 + Click to edit owned playlist name
