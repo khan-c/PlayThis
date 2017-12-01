@@ -21,10 +21,6 @@ class PlaylistIndex extends React.Component {
     return true;
   }
 
-  componentWillReceiveProps(newProps) {
-    document.getElementById('above-playback').scrollTo(0,0);
-  }
-
   mapPlaylistItems(playlists) {
     return playlists.map( playlist => (
       <PlaylistIndexItem
@@ -53,7 +49,7 @@ class PlaylistIndex extends React.Component {
 
     let playThisPlaylists = this.mapPlaylistItems(
       allPlaylists.filter(
-        playlist => playlist.author_id === 1
+        playlist => (playlist.author_id === 1 && !playlist.current_user_follows)
       )
     );
 

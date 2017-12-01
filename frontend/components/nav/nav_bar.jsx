@@ -14,6 +14,7 @@ class NavBar extends React.Component {
 
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.scrollToTop = this.scrollToTop.bind(this);
   }
 
   openModal() {
@@ -24,6 +25,10 @@ class NavBar extends React.Component {
     this.setState({ modalIsOpen: false });
   }
 
+  scrollToTop() {
+    document.getElementById('above-playback').scrollTo(0,0);
+  }
+
   render() {
     const currentUserPage = `/user/${this.props.user.id}`;
 
@@ -32,6 +37,7 @@ class NavBar extends React.Component {
         <div className="nav-bar">
           <div className="nav-bar-header">
             <NavLink
+              onClick={ this.scrollToTop }
               activeClassName="selected"
               to="/browse">
               <img className="logo" src="https://s3-us-west-1.amazonaws.com/playthismusic/images/logo-white.png" />
@@ -49,6 +55,7 @@ class NavBar extends React.Component {
               </div>
             </NavLink>
             <NavLink
+              onClick={ this.scrollToTop }
               activeClassName="selected"
               to="/browse">
               <div className="nav-bar-home">
@@ -56,6 +63,7 @@ class NavBar extends React.Component {
               </div>
             </NavLink>
             <NavLink
+              onClick={ this.scrollToTop }
               activeClassName="selected"
               to={ currentUserPage }>
               <div className="nav-bar-current-user-page">
@@ -72,6 +80,7 @@ class NavBar extends React.Component {
           </div>
           <div className="nav-bar-user-container">
             <NavLink
+              onClick={ this.scrollToTop }
               activeClassName="selected"
               className="nav-bar-user-link"
               to={ currentUserPage } >
