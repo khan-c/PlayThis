@@ -31,6 +31,9 @@ class Main extends React.Component {
                 path="/user/:userId"
                 component={PlaylistIndexContainer} />
               <Route
+                path="/artist/:artistId"
+                component={ArtistContainer} />
+              <Route
                 path="/search"
                 component={SearchContainer} />
               <Route path="/browse" component={PlaylistIndexContainer} />

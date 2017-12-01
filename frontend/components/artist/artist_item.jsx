@@ -9,7 +9,7 @@ class ArtistItem extends React.Component {
   componentWillReceiveProps(newProps) {
     if (this.props.match.params !== newProps.match.params) {
       console.log("test");
-      this.props.fetchArtist(this.props.match.params.artistId);
+      this.props.fetchArtist(newProps.match.params.artistId);
     }
   }
 
@@ -23,9 +23,11 @@ class ArtistItem extends React.Component {
 
     return(
       <div className="artist-header">
-        <img
-          className="artist-image"
-          src={ artist.img_url } />
+        <div className="artist-image-container">
+          <img
+            className="artist-image"
+            src={ artist.img_url } />
+        </div>
         <h1 className="artist-title">{ artist.name }</h1>
       </div>
     );

@@ -6,11 +6,17 @@
   align-items: center;
 }
 
-.artist-image {
+.artist-image-container {
   width: 20%;
   height: 20%;
   border-radius: 50%;
   margin-top: 30px;
+  overflow: hidden;
+}
+
+.artist-image {
+  height: 100%;
+  width: 100%;
 }
 
 .artist-title {
