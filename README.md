@@ -5,7 +5,6 @@
 # PlayThis
 
 # Table of Contents
-![discover](./readme/discover-playthis.png)
 
 - [Introduction](#introduction)
 - [Features](#features)
