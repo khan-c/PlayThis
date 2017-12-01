@@ -86,7 +86,7 @@ class Search extends React.Component {
 
     const userResults =
       <UserIndex
-        users={ this.state.users }
+        users={ Object.values(this.state.users) }
       />;
 
     let sResults = '';

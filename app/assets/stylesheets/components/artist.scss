@@ -1,0 +1,22 @@
+.artist-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.artist-image {
+  width: 20%;
+  height: 20%;
+  border-radius: 50%;
+  margin-top: 30px;
+}
+
+.artist-title {
+  font-size: 36px;
+  color: white;
+  font-weight: 700;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}

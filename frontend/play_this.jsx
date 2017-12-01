@@ -5,6 +5,7 @@ import Root from './components/root';
 
 //TESTING
 import { updateUser } from './actions/user_actions';
+import { fetchArtist } from './actions/artist_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root');
@@ -23,4 +24,5 @@ document.addEventListener('DOMContentLoaded', () => {
   window.dispatch = store.dispatch;
   window.getState = store.getState;
   window.updateUser = updateUser;
+  window.fetchArtist = fetchArtist;
 });

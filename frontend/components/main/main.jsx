@@ -6,6 +6,7 @@ import PlaybackContainer from '../playback/playback_container';
 import PlaylistIndexContainer from '../playlist/playlist_index_container';
 import PlaylistShowContainer from '../playlist/playlist_show_container';
 import PlaylistFormContainer from '../playlist/playlist_form_container';
+import ArtistContainer from '../artist/artist_container';
 import SearchContainer from '../search/search_container';
 import NotFound from '../not_found';
 import ReactDOM from 'react-dom';
