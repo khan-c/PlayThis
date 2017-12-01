@@ -1,4 +1,5 @@
-# README
+# PlayThis ![https://github.com/khan-c/PlayThis/blob/master/app/assets/images/logo-green.png](PlayThis logo)
+
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
