@@ -1,5 +1,9 @@
-# PlayThis ![PlayThis logo](https://github.com/khan-c/PlayThis/blob/master/app/assets/images/logo-green-thumb.png)
+<a href="https://play-this.herokuapp.com/">
+    <img src="https://github.com/khan-c/PlayThis/blob/master/app/assets/images/logo-green-thumb.png" alt="PlayThis logo" title="PlayThis" align="right" height="50" />
+</a>
 
+# PlayThis
+==========
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
