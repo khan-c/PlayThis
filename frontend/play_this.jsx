@@ -19,6 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   ReactDOM.render(<Root store={ store } />, root);
 
+  var http = require("http");
+  setInterval(function() {
+      http.get("http://play-this.herokuapp.com");
+  }, 600000);
+
   // TESTING
   window.dispatch = store.dispatch;
   window.getState = store.getState;
