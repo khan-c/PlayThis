@@ -53,6 +53,14 @@ class PlaylistIndex extends React.Component {
       )
     );
 
+    let otherPlaylists = this.mapPlaylistItems(
+      allPlaylists.filter(
+        playlist => (playlist.author_id !== 1 &&
+               !playlist.current_user_follows &&
+               playlist.author_id !== currentUser.id)
+      )
+    );
+
     let followedPlaylists = this.mapPlaylistItems(
       allPlaylists.filter(playlist => playlist.current_user_follows)
     );
@@ -89,6 +97,7 @@ class PlaylistIndex extends React.Component {
       );
 
       playThisPlaylists = [];
+      otherPlaylists = [];
 
     } else if (this.props.match.path === "/search") {
       type = '';
@@ -100,6 +109,7 @@ class PlaylistIndex extends React.Component {
       playThisPlaylists = [];
       userPlaylists = [];
       followedPlaylists = [];
+      otherPlaylists = [];
       followedUsers = [];
       searchPlaylists = this.mapPlaylistItems(
         Object.values(this.props.searchPlaylists)
@@ -114,6 +124,9 @@ class PlaylistIndex extends React.Component {
                   '';
     const followedPlaylistsTitle = (followedPlaylists.length > 0) ?
                                     "Followed Playlists" :
+                                    '';
+    const otherPlaylistsTitle = (otherPlaylists.length > 0) ?
+                                    "Discover" :
                                     '';
     const followedUsersTitle = (followedUsers.length > 0) ?
                                     "Followed Users" :
@@ -147,6 +160,10 @@ class PlaylistIndex extends React.Component {
             <div className="playlists-title">{ followedPlaylistsTitle }</div>
             <div className="following playlists">
               { followedPlaylists }
+            </div>
+            <div className="playlists-title">{ otherPlaylistsTitle }</div>
+            <div className="other playlists">
+              { otherPlaylists }
             </div>
             <div className="searched playlists">
               { searchPlaylists }
