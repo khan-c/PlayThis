@@ -1,12 +1,18 @@
 <a href="https://play-this.herokuapp.com/">
     <img src="https://github.com/khan-c/PlayThis/blob/master/app/assets/images/logo-green-thumb.png" alt="PlayThis logo" title="PlayThis" align="right" height="50" />
 </a>
-# [PlayThis](https://play-this.herokuapp.com/)
+# [PlayThis][pt]
+
+[pt](https://play-this.herokuapp.com/)
 
 # Table of Contents
 
 - [Introduction](#introduction)
 - [Features](#features)
+  - [User Auth](#user-authentication)
+  - [Playlist Creation](#playlist-creation)
+  - [Play from Search](#play-music-directly-from-search)
+- [In the Future](#in-the-future..)
 
 # Introduction
 
