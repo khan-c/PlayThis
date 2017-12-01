@@ -18,6 +18,7 @@ const App = () => (
 
     <AuthRoute path="/login" component={SessionFormContainer} />
     <AuthRoute path="/signup" component={SessionFormContainer} />
+
   </div>
 );
 

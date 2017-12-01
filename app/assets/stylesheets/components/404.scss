@@ -1,0 +1,50 @@
+#not-found {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+#not-found-cover {
+  background-color: rgba(55, 55, 55, 0.6);
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+#not-found-title {
+  position: absolute;
+  top: 5%;
+  width: 100%;
+  text-align: center;
+  font-size: 26px;
+}
+
+#go-back-container {
+  z-index: 1;
+  position: absolute;
+  bottom: 20%;
+  width: 100%;
+  text-align: center;
+}
+
+#back-to-it {
+  background: $alpha-gray;
+  padding: 5px 10px;
+  border: 2px solid white;
+  border-radius: 30px;
+}
+
+#back-to-it:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+#back-to-it:active {
+  transform: scale(1);
+}

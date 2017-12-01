@@ -56,17 +56,17 @@ Playlist.create(title: 'Rock n Roll', author_id: 1, image_url: "https://s3-us-we
 Playlist.create(title: 'Study', author_id: 1, image_url: "https://s3-us-west-1.amazonaws.com/playthismusic/music-images/p-study.jpeg")
 Playlist.create(title: 'Work Out', author_id: 1, image_url: "https://s3-us-west-1.amazonaws.com/playthismusic/music-images/p-running.png")
 Playlist.create(title: 'my jams', author_id: 2)
+Playlist.create(title: 'squirrels', author_id: 2)
 Playlist.create(title: 'hiphoppy', author_id: 3)
-Playlist.create(title: 'sad day', author_id: 4)
-Playlist.create(title: 'in love', author_id: 5)
-Playlist.create(title: 'squirrels', author_id: 6)
-Playlist.create(title: 'treats', author_id: 7)
-Playlist.create(title: 'dig it', author_id: 8)
-Playlist.create(title: 'chase', author_id: 2)
-Playlist.create(title: 'run', author_id: 3)
-Playlist.create(title: 'funky funk', author_id: 4)
-Playlist.create(title: 'crazy', author_id: 5)
-Playlist.create(title: 'zoomies', author_id: 6)
+Playlist.create(title: 'sad day', author_id: 3)
+Playlist.create(title: 'in love', author_id: 4)
+Playlist.create(title: 'treats', author_id: 4)
+Playlist.create(title: 'dig it', author_id: 5)
+Playlist.create(title: 'chase', author_id: 5)
+Playlist.create(title: 'run', author_id: 6)
+Playlist.create(title: 'funky funk', author_id: 6)
+Playlist.create(title: 'crazy', author_id: 7)
+Playlist.create(title: 'zoomies', author_id: 7)
 
 Song.create(title: 'Prelude', album_id: 1, artist_id: 1, length: 54, song_url: "https://s3-us-west-1.amazonaws.com/playthismusic/music/MH-PD+01+Prelude+copy.wav")
 Song.create(title: 'Garden', album_id: 1, artist_id: 1, length: 185, song_url: "https://s3-us-west-1.amazonaws.com/playthismusic/music/MH-PD+02+Garden.wav")
@@ -190,4 +190,27 @@ ps = []
   next if ps.include?([playlist_id, song_id])
   PlaylistSong.create(playlist_id: playlist_id, song_id: song_id)
   ps << [playlist_id, song_id]
+end
+
+pf = [
+  [1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[1,7],[1,8],[1,9],[1,10],[1,11],
+  [1,12],[1,13],[1,14],[1,15],[1,16],[2,17],[2,18],[3,19],[3,20],
+  [4,21],[4,22],[5,23],[5,24],[6,25],[6,26],[7,27],[7,28]
+]
+30.times do
+  playlist_id = rng.rand(28) + 1
+  user_id = rng.rand(6) + 2
+  next if pf.include?([user_id, playlist_id])
+  PlaylistFollow.create(user_id: user_id, playlist_id: playlist_id)
+  pf << [user_id, playlist_id]
+end
+
+uf = []
+20.times do
+  follow_id = rng.rand(7) + 1
+  user_id = rng.rand(6) + 2
+  next if uf.include?([user_id, follow_id])
+  next if user_id == follow_id
+  UserFollow.create(user_id: user_id, followed_user_id: follow_id)
+  uf << [user_id, follow_id]
 end
