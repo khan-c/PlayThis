@@ -2,6 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import FaSearch from 'react-icons/lib/fa/search';
 import FaSignOut from 'react-icons/lib/fa/sign-out';
+import GoGitHub from 'react-icons/lib/go/mark-github';
+import FaLinkedIn from 'react-icons/lib/fa/linkedin-square';
 import Modal from 'react-modal';
 import PlaylistFormContainer from '../playlist/playlist_form_container';
 
@@ -92,6 +94,10 @@ class NavBar extends React.Component {
             <button
               className="nav-bar-logout"
               onClick={ this.props.logout }><FaSignOut /></button>
+          </div>
+          <div id="my-links">
+            <a href="https://github.com/khan-c/PlayThis"><GoGitHub /></a>
+            <a href="https://www.linkedin.com/in/kylehchen/"><FaLinkedIn /></a>
           </div>
         </div>
         <Modal

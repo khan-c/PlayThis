@@ -106,14 +106,15 @@
   overflow: hidden;
 }
 
-.nav-bar-user:hover,
-.nav-bar-user img:hover {
+.nav-bar-user:hover, {
   cursor: pointer;
+  transform: scale(1.05);
 }
 
 .nav-bar-user img {
   border: 1px solid $alpha-gray;
   margin-right: 5px;
+  border-radius: 50%;
 }
 
 .nav-bar-logout {
@@ -137,4 +138,18 @@
 
 .selected1 {
   color: $green;
+}
+
+#my-links {
+  border-top: 1px solid $gray;
+  margin-top: 5px;
+  padding-top: 5px;
+  display: flex;
+  justify-content: space-around;
+}
+
+#my-links a:hover {
+  cursor: pointer;
+  color: $green;
+  transform: scale(1.05);
 }
