@@ -35,14 +35,14 @@ The current version of PlayThis provides a **lite** range of features, including
 
 Users can create new playlists that are automatically added to their list of playlists.
 
-![playlist creation](./readme/playlist-new.gif)
+![playlist creation](./readme/new-playlist.gif)
 
 [Back to Top](#playthis)
 # Playlist Browse
 
 Playlists are retrieved from `PlaylistsController` using database queries and divided on PlayThis' playlists, owned playlists, followed playlists, and other public playlists by other users.
 
-![playlist browse](./readme/site-browse.gif)
+![playlist browse](./readme/browse-site.gif)
 
 ### Following Users and Playlists
 
@@ -65,11 +65,11 @@ Adding and removing songs from playlists uses the same approach as updating foll
 
 ##### Add songs to playlists:
 
-![song add](./readme/song-add.gif)
+![song add](./readme/add-song.gif)
 
 ##### Remove songs from playlists:
 
-![song remove](./readme/song-remove.gif)  
+![song remove](./readme/remove-song.gif)  
 *whoops, let's not delete that playlist..*
 
 [Back to Top](#playthis)
@@ -77,7 +77,7 @@ Adding and removing songs from playlists uses the same approach as updating foll
 
 What's the point of a music app if every time you navigate to another page the page has to reload? Hence the magic of single page apps!
 
-![playback](./readme/continuous-playback.gif)
+![playback](./readme/continuous-play.gif)
 
 By dedicating a slice of state to the playback, we can ensure that unless the user chooses to leave the site, music will be uninterrupted during navigation.
 
@@ -106,7 +106,7 @@ If interested in only one song, the user can double click on a song item itself 
 
 An added benefit of the single song play implementation is playing single songs directly from the search results.
 
-![search to play](./readme/search-to-play.gif)
+![search to play](./readme/search-play.gif)
 
 Search results are generated with database requests when the user types into the search bar.
 
