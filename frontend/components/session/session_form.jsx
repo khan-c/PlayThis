@@ -9,6 +9,11 @@ class SessionForm extends React.Component {
       password: '',
       email: ''
     };
+    this.demoUsers = ['kona', 'coco', 'bobble', 'chip', 'dino', 'fluffy'];
+    this.demo = {
+      username: this.demoUsers[Math.floor(Math.random() * 6)].split(''),
+      password: 'password'.split('')
+    };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.clickDemo = this.clickDemo.bind(this);
@@ -82,8 +87,34 @@ class SessionForm extends React.Component {
 
   clickDemo(e) {
     e.preventDefault();
-    const user = { username: "kona", password: "password" };
-    this.props.processForm(user);
+    this.animateUserName();
+  }
+
+  animateUserName() {
+    window.setTimeout(() => {
+      let username = this.state.username + this.demo.username.shift();
+      this.setState({ username });
+
+      if (this.demo.username.length > 0) {
+        this.animateUserName();
+      } else {
+        this.animatePassword();
+      }
+    }, 100);
+  }
+
+  animatePassword() {
+    window.setTimeout(() => {
+      let password = this.state.password + this.demo.password.shift();
+      this.setState({ password });
+
+      if (this.demo.password.length > 0) {
+        this.animatePassword();
+      } else {
+        const user = this.state;
+        window.setTimeout(() => this.props.processForm(user), 500);
+      }
+    }, 100);
   }
 
   componentWillUnmount() {
