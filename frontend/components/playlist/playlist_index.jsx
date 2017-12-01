@@ -149,6 +149,10 @@ class PlaylistIndex extends React.Component {
             <div className="discover playlists">
               { playThisPlaylists }
             </div>
+            <div className="playlists-title">{ otherPlaylistsTitle }</div>
+            <div className="other playlists">
+              { otherPlaylists }
+            </div>
             <div className="playlists-title">{ ownTitle }</div>
             <div className="own playlists">
               { ownPlaylists }
@@ -160,10 +164,6 @@ class PlaylistIndex extends React.Component {
             <div className="playlists-title">{ followedPlaylistsTitle }</div>
             <div className="following playlists">
               { followedPlaylists }
-            </div>
-            <div className="playlists-title">{ otherPlaylistsTitle }</div>
-            <div className="other playlists">
-              { otherPlaylists }
             </div>
             <div className="searched playlists">
               { searchPlaylists }
