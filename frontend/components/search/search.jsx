@@ -21,11 +21,11 @@ class Search extends React.Component {
 
   componentDidMount() {
     this.props.fetchPlaylists();
-    document.getElementById('search-query').addEventListener('keyup', _.debounce(this.handleSearch, 250));
+    document.getElementById('search-query').addEventListener('keyup', _.debounce(this.handleSearch, 500));
   }
 
   componentWillUnmount() {
-    document.getElementById('search-query').removeEventListener('keyup', _.debounce(this.handleSearch, 250));
+    document.getElementById('search-query').removeEventListener('keyup', _.debounce(this.handleSearch, 500));
   }
 
   handleInput(e) {

@@ -91,7 +91,10 @@ class SongIndexItem extends React.Component {
         </li>;
     }
     const playlists = this.props.currentUserPlaylists.map(playlist => {
-      const image = { backgroundImage: `url(${playlist.image_url})` };
+
+      const image = (playlist.first_song_image) ?
+        { backgroundImage: `url(${playlist.first_song_image})` } :
+        { backgroundImage: `url(https://s3-us-west-1.amazonaws.com/playthismusic/images/blank_playlist-1.jpg)`} ;
       const numSongs = playlist.song_ids.length;
       return (
         <li
