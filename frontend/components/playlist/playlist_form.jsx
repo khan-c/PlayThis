@@ -1,4 +1,5 @@
 import React from 'react';
+import IoClose from 'react-icons/lib/io/ios-close-empty';
 
 class PlaylistForm extends React.Component {
   constructor(props) {
@@ -31,7 +32,9 @@ class PlaylistForm extends React.Component {
       <div className="playlist-form-content">
         <h1
           className="playlist-form-exit-x"
-          onClick={ this.props.closeModal }>X</h1>
+          onClick={ this.props.closeModal }>
+          <IoClose />
+        </h1>
         <h1 className="playlist-form-title">Create new playlist</h1>
         <form
           className="playlist-form"

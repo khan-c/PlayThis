@@ -1,5 +1,6 @@
 import React from 'react';
 import { Redirect, Link } from 'react-router-dom';
+import IoClose from 'react-icons/lib/io/ios-close-empty';
 
 class SessionForm extends React.Component {
   constructor(props) {
@@ -146,7 +147,9 @@ class SessionForm extends React.Component {
       <div className="user-auth">
         <button className="modal" onClick={ this.modalClick }/>
         { this.loggedIn() }
-        <button className="exit" onClick={ this.modalClick }>X</button>
+        <button className="exit" onClick={ this.modalClick }>
+          <IoClose />
+        </button>
         { this.header() }
         <form
           className="session-form"

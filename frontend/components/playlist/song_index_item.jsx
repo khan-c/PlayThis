@@ -6,6 +6,7 @@ import PlaylistIndexContainer from './playlist_index_container';
 import FaPlusCircle from 'react-icons/lib/fa/plus-circle';
 import MdPause from 'react-icons/lib/md/pause';
 import { parseTime } from '../../util/music_util';
+import IoClose from 'react-icons/lib/io/ios-close-empty';
 
 class SongIndexItem extends React.Component {
   constructor(props) {
@@ -168,7 +169,9 @@ class SongIndexItem extends React.Component {
           }}>
           <h1
             onClick={ this.closeAddModal }
-            className="playlist-form-exit-x">X</h1>
+            className="playlist-form-exit-x">
+            <IoClose />
+          </h1>
           <h1 className="playlist-form-title add">
             Add to playlist
           </h1>

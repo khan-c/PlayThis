@@ -1,5 +1,6 @@
 import React from 'react';
 import merge from 'lodash/merge';
+import FaSignOut from 'react-icons/lib/fa/sign-out';
 
 class PlaylistIndexHeader extends React.Component {
   constructor(props) {
@@ -44,9 +45,11 @@ class PlaylistIndexHeader extends React.Component {
       let followClass = (user.current_user_follows) ?
                               "u-f-button followed" :
                               "u-f-button follow";
+      let logoutClass = 'logout hidden';
       if (user.id === currentUser.id) {
         follow = '';
         followClass='';
+        logoutClass = 'logout';
       }
 
       const image = { backgroundImage: `url(${this.props.user.image_url})` };
@@ -56,6 +59,13 @@ class PlaylistIndexHeader extends React.Component {
         <div className="user-profile-image-container">
           <div className="user-avatar" style={ image }></div>
         </div>
+        <button
+          className={ logoutClass }
+          onClick={ this.props.logout }
+          >
+          <p>Log Out</p>
+          <span><FaSignOut /></span>
+        </button>
         <h1 className="user-title">{ this.props.user.username }</h1>
         <p className="user-followers-count">
           { this.props.user.follower_count } followers

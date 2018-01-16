@@ -10,6 +10,7 @@ import {
 } from '../../actions/playback_actions';
 import { usersPlaylists } from '../../reducers/selectors';
 import { withRouter } from 'react-router-dom';
+import { logout } from '../../actions/session_actions';
 
 const mapStateToProps = (state, ownProps) => {
   let playlists = Object.values(state.entities.playlists);
@@ -31,7 +32,8 @@ const mapDispatchToProps = dispatch => ({
   receiveCurrentPlaylist: playlistId => dispatch(receiveCurrentPlaylist(playlistId)),
   receivePlaybackSongs: songs => dispatch(receivePlaybackSongs(songs)),
   receivePlayingStatus: isPlaying => dispatch(receivePlayingStatus(isPlaying)),
-  updateUser: formUser => dispatch(updateUser(formUser))
+  updateUser: formUser => dispatch(updateUser(formUser)),
+  logout: () => dispatch(logout())
 });
 
 export default withRouter(connect(

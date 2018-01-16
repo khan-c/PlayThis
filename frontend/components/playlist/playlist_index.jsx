@@ -142,6 +142,7 @@ class PlaylistIndex extends React.Component {
             fetchUsers={ this.props.fetchUsers }
             updateUser={ this.props.updateUser }
             currentUser={ this.props.currentUser }
+            logout={ this.props.logout }
             />
         </div>
         <div className="playlist-index">
