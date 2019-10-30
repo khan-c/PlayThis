@@ -1,6 +1,11 @@
 {
   "name": "PlayThis",
   "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack --watch",
+    "postinstall": "webpack"
+  },
   "dependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
@@ -20,7 +25,8 @@
     "webpack": "^3.8.1"
   },
   "devDependencies": {
-    "redux-logger": "^3.0.6"
+    "redux-logger": "^3.0.6",
+    "remote-redux-devtools": "^0.5.16"
   },
   "description": "This README would normally document whatever steps are necessary to get the application up and running.",
   "version": "1.0.0",
@@ -29,11 +35,6 @@
     "doc": "docs",
     "lib": "lib",
     "test": "test"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "webpack": "webpack --watch",
-    "postinstall": "webpack"
   },
   "repository": {
     "type": "git",
