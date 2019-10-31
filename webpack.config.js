@@ -1,5 +1,6 @@
 var path = require("path");
 var webpack = require("webpack");
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 var plugins = []; // if using any plugins for both dev and production
 var devPlugins = []; // if using any plugins for development
@@ -10,11 +11,6 @@ var prodPlugins = [
       'NODE_ENV': JSON.stringify('production')
     }
   }),
-  new webpack.optimize.UglifyJsPlugin({
-    compress: {
-      warnings: true
-    }
-  })
 ];
 
 plugins = plugins.concat(
@@ -22,6 +18,7 @@ plugins = plugins.concat(
 );
 
 module.exports = {
+  mode: 'development',
   context: __dirname,
   entry: './frontend/play_this.jsx',
   output: {
@@ -30,18 +27,25 @@ module.exports = {
   },
   plugins: plugins,
   module: {
-    loaders: [
+    rules: [
       {
         test: [/\.jsx?$/],
         exclude: /(node_modules)/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['es2015', 'react']
-        }
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env', '@babel/react']
+            }
+          }
+        ]
       }
     ]
   },
-  devtool: 'source-map',
+  optimization: {
+    minimizer: [new UglifyJsPlugin()],
+  },
+  devtool: 'eval-source-map',
   resolve: {
     extensions: ['.js', '.jsx', '*']
   }

@@ -36,7 +36,7 @@ class Playback extends React.Component {
     this.setCurrentSong = this.setCurrentSong.bind(this);
   }
 
-  componentWillReceiveProps(newProps) {
+  componentDidUpdate(newProps) {
     if (newProps.playback.isPlaying) {
       this.setState({ isPlaying: true });
     }

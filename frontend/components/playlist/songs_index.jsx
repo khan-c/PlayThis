@@ -20,7 +20,7 @@ class SongsIndex extends React.Component {
     this.toggleFollow = this.toggleFollow.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchPlaylist(this.props.match.params.playlistId);
     this.props.fetchPlaylists();
     this.props.fetchSongs(this.props.match.params.playlistId);
@@ -30,7 +30,7 @@ class SongsIndex extends React.Component {
     document.getElementById('above-playback').scrollTo(0,0);
   }
 
-  componentWillReceiveProps(newProps) {
+  componentDidUpdate(newProps) {
     if (this.props.currentUser.followed_playlist_ids.length !==
         newProps.currentUser.followed_playlist_ids.length) {
           this.props.fetchPlaylist(this.props.match.params.playlistId);
