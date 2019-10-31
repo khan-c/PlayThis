@@ -45,7 +45,7 @@ module.exports = {
   optimization: {
     minimizer: [new UglifyJsPlugin()],
   },
-  devtool: 'source-map',
+  devtool: 'eval-source-map',
   resolve: {
     extensions: ['.js', '.jsx', '*']
   }
