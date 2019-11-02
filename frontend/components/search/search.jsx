@@ -1,6 +1,6 @@
 import React from 'react';
 import { searchDatabase } from '../../util/search_api_util';
-import _ from 'lodash';
+import debounce from 'lodash/debounce';
 import SongIndexItemContainer from '../playlist/song_index_item_container';
 import PlaylistIndexContainer from '../playlist/playlist_index_container';
 import UserIndex from '../user/user_index';
@@ -21,11 +21,11 @@ class Search extends React.Component {
 
   componentDidMount() {
     this.props.fetchPlaylists();
-    document.getElementById('search-query').addEventListener('keyup', _.debounce(this.handleSearch, 500));
+    document.getElementById('search-query').addEventListener('keyup', debounce(this.handleSearch, 500));
   }
 
   componentWillUnmount() {
-    document.getElementById('search-query').removeEventListener('keyup', _.debounce(this.handleSearch, 500));
+    document.getElementById('search-query').removeEventListener('keyup', debounce(this.handleSearch, 500));
   }
 
   handleInput(e) {

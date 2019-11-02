@@ -1,10 +1,9 @@
 import React from 'react';
-import SongIndexItemContainer from './song_index_item_container';
-import PlaylistIndexItem from './playlist_index_item';
-import FaEllipsisH from 'react-icons/lib/fa/ellipsis-h';
 import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
 import merge from 'lodash/merge';
+import SongIndexItemContainer from './song_index_item_container';
+import PlaylistIndexItem from './playlist_index_item';
 
 class SongsIndex extends React.Component {
   constructor(props) {
@@ -24,10 +23,8 @@ class SongsIndex extends React.Component {
     this.props.fetchPlaylist(this.props.match.params.playlistId);
     this.props.fetchPlaylists();
     this.props.fetchSongs(this.props.match.params.playlistId);
-  }
-
-  componentDidMount() {
     document.getElementById('above-playback').scrollTo(0,0);
+    Modal.setAppElement("body")
   }
 
   componentDidUpdate(newProps) {
