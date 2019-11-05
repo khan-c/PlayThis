@@ -1,19 +1,20 @@
-import React from 'react';
-import UserIndexItem from './user_index_item';
+import React from "react";
+import PropTypes from "prop-types";
+import UserIndexItem from "./user_index_item";
 
-class UserIndex extends React.Component {
+const UserIndex = ({ users }) => {
+  const usersList = Object.values(users).map(user => (
+    <UserIndexItem key={user.id} user={user} />
+  ));
 
-  render() {
-    const users = Object.values(this.props.users).map(user => (
-      <UserIndexItem key={ user.id } user={ user } />
-    ));
+  return <div className="users-list">{usersList}</div>;
+};
 
-    return(
-      <div className="users-list">
-        { users }
-      </div>
-    );
-  }
-}
+UserIndex.propTypes = {
+  users: PropTypes.oneOfType([
+    PropTypes.objectOf(PropTypes.any),
+    PropTypes.arrayOf(PropTypes.any)
+  ]).isRequired
+};
 
 export default UserIndex;

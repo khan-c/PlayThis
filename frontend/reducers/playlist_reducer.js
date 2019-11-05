@@ -1,9 +1,9 @@
+import merge from "lodash/merge";
 import {
   RECEIVE_PLAYLISTS,
   RECEIVE_PLAYLIST,
   REMOVE_PLAYLIST
-} from '../actions/playlist_actions';
-import merge from 'lodash/merge';
+} from "../actions/playlist_actions";
 
 const playlistReducer = (oldState = {}, action) => {
   Object.freeze(oldState);
@@ -12,15 +12,15 @@ const playlistReducer = (oldState = {}, action) => {
   switch (action.type) {
     case RECEIVE_PLAYLISTS:
       return merge({}, action.playlists);
-      // return action.playlists;
+    // return action.playlists;
     case RECEIVE_PLAYLIST:
       newState = merge({}, oldState);
       newState[action.playlist.id] = action.playlist;
       return newState;
 
-      // newState = {};
-      // newState[action.playlist.id] = action.playlist;
-      // return merge({}, oldState, newState);
+    // newState = {};
+    // newState[action.playlist.id] = action.playlist;
+    // return merge({}, oldState, newState);
     case REMOVE_PLAYLIST:
       newState = merge({}, oldState);
       delete newState[action.playlistId];

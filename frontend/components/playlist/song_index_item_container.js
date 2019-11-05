@@ -1,16 +1,12 @@
-import { connect } from 'react-redux';
-import SongsIndexItem from './song_index_item';
-import { fetchSongs } from '../../actions/song_actions';
-import {
-  fetchPlaylists,
-  updatePlaylist
-} from '../../actions/playlist_actions';
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import SongsIndexItem from "./song_index_item";
+import { fetchPlaylists, updatePlaylist } from "../../actions/playlist_actions";
 import {
   receivePlaybackSongs,
   receivePlayingStatus
-} from '../../actions/playback_actions';
-import { withRouter } from 'react-router-dom';
-import { currentUserPlaylists } from '../../reducers/selectors';
+} from "../../actions/playback_actions";
+import { currentUserPlaylists } from "../../reducers/selectors";
 
 const mapStateToProps = (state, ownProps) => ({
   playlist: state.entities.playlists[ownProps.match.params.playlistId],
@@ -28,7 +24,9 @@ const mapDispatchToProps = dispatch => ({
   receivePlayingStatus: isPlaying => dispatch(receivePlayingStatus(isPlaying))
 });
 
-export default withRouter(connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SongsIndexItem));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(SongsIndexItem)
+);

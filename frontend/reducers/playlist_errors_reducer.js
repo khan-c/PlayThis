@@ -1,5 +1,5 @@
-import { RECEIVE_PLAYLIST_ERRORS } from '../actions/playlist_actions';
-import { CLEAR_ERRORS } from '../actions/error_actions';
+import { RECEIVE_PLAYLIST_ERRORS } from "../actions/playlist_actions";
+import { CLEAR_ERRORS } from "../actions/error_actions";
 
 const playlistErrorsReducer = (oldState = [], action) => {
   Object.freeze(oldState);

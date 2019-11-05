@@ -1,6 +1,7 @@
-export const fetchSongs = (playlistId) => (
+const fetchSongs = playlistId =>
   $.ajax({
-    type: 'GET',
+    type: "GET",
     url: `api/playlists/${playlistId}/songs`
-  })
-);
+  });
+
+export default { fetchSongs };

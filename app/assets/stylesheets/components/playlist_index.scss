@@ -142,7 +142,7 @@
   cursor: pointer;
 }
 
-.pi-hover img {
+.pi-hover input {
   height: 33%;
   width: 33%;
   opacity: 0.5;
@@ -150,16 +150,15 @@
   border-radius: 100px;
 }
 
-.pi-hover img:hover {
+.pi-hover input:hover {
   cursor: pointer;
   transform: scale(1.1);
   opacity: 0.7;
 }
 
-.pi-hover img:active {
+.pi-hover input:active {
   transform: scale(1);
 }
-
 
 .user-header {
   display: flex;

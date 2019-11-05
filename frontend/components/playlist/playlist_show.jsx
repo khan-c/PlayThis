@@ -3,10 +3,11 @@ import PropTypes from "prop-types";
 import Modal from "react-modal";
 import { Link } from "react-router-dom";
 import merge from "lodash/merge";
+import IoClose from "react-icons/lib/io/ios-close-empty";
 import SongIndexItemContainer from "./song_index_item_container";
 import PlaylistIndexItem from "./playlist_index_item";
 
-class SongsIndex extends React.Component {
+class PlaylistShow extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,11 +25,12 @@ class SongsIndex extends React.Component {
   }
 
   componentDidUpdate(newProps) {
+    const { currentUser, match, fetchPlaylist } = this.props;
     if (
-      this.props.currentUser.followed_playlist_ids.length !==
+      currentUser.followed_playlist_ids.length !==
       newProps.currentUser.followed_playlist_ids.length
     ) {
-      this.props.fetchPlaylist(this.props.match.params.playlistId);
+      fetchPlaylist(match.params.playlistId);
     }
   }
 
@@ -41,31 +43,39 @@ class SongsIndex extends React.Component {
   };
 
   handleDelete = () => {
-    this.props
-      .deletePlaylist(this.props.playlist.id)
-      .then(this.props.history.push("/browse"));
+    const { deletePlaylist, playlist, history } = this.props;
+
+    deletePlaylist(playlist.id).then(history.push("/browse"));
   };
 
   playPlaylist = () => {
-    if (this.props.playlist.song_ids.length !== 0) {
-      this.props.receiveCurrentPlaylist(this.props.playlist.id);
-      this.props.receivePlaybackSongs(this.props.playlist.song_ids);
-      this.props.fetchSongs(this.props.playlist.id);
-      this.props.receivePlayingStatus(true);
+    const {
+      playlist,
+      receiveCurrentPlaylist,
+      receivePlaybackSongs,
+      fetchSongs,
+      receivePlayingStatus
+    } = this.props;
+    if (playlist.song_ids.length !== 0) {
+      receiveCurrentPlaylist(playlist.id);
+      receivePlaybackSongs(playlist.song_ids);
+      fetchSongs(playlist.id);
+      receivePlayingStatus(true);
     }
   };
 
   toggleFollow = () => {
-    const formUser = merge({}, this.props.currentUser);
-    if (formUser.followed_playlist_ids.includes(this.props.playlist.id)) {
+    const { currentUser, playlist, updateUser } = this.props;
+    const formUser = merge({}, currentUser);
+    if (formUser.followed_playlist_ids.includes(playlist.id)) {
       formUser.followed_playlist_ids.splice(
-        formUser.followed_playlist_ids.indexOf(this.props.playlist.id),
+        formUser.followed_playlist_ids.indexOf(playlist.id),
         1
       );
     } else {
-      formUser.followed_playlist_ids.push(this.props.playlist.id);
+      formUser.followed_playlist_ids.push(playlist.id);
     }
-    this.props.updateUser(formUser);
+    updateUser(formUser);
   };
 
   render() {
@@ -78,6 +88,8 @@ class SongsIndex extends React.Component {
       receivePlayingStatus,
       fetchSongs
     } = this.props;
+    const { modalIsOpen } = this.state;
+
     if (!playlist) {
       return null;
     }
@@ -139,17 +151,29 @@ class SongsIndex extends React.Component {
             <p className="playlist-follow-count">
               {`${playlist.followers} followers`}
             </p>
-            <p onClick={this.playPlaylist} className="playlist-play">
+            <button
+              type="button"
+              onClick={this.playPlaylist}
+              className="playlist-play"
+            >
               PLAY
-            </p>
-            <p className={followClass} onClick={this.toggleFollow}>
+            </button>
+            <button
+              type="button"
+              className={followClass}
+              onClick={this.toggleFollow}
+            >
               {follow}
-            </p>
-            <p onClick={this.openModal} className="playlist-options">
+            </button>
+            <button
+              type="button"
+              onClick={this.openModal}
+              className="playlist-options"
+            >
               {deleteButton}
-            </p>
+            </button>
             <Modal
-              isOpen={this.state.modalIsOpen}
+              isOpen={modalIsOpen}
               onRequestClose={this.closeModal}
               className={{
                 base: "playlist-options-modal",
@@ -162,9 +186,13 @@ class SongsIndex extends React.Component {
                 beforeClose: "playlist-options-overlay-before-close"
               }}
             >
-              <h1 onClick={this.closeModal} className="playlist-form-exit-x">
-                X
-              </h1>
+              <button
+                type="button"
+                onClick={this.closeModal}
+                className="playlist-form-exit-x"
+              >
+                <IoClose />
+              </button>
               <h1 className="playlist-form-title">
                 Do you really want to delete this playlist?
               </h1>
@@ -191,11 +219,24 @@ class SongsIndex extends React.Component {
   }
 }
 
-SongsIndex.propTypes = {
+PlaylistShow.propTypes = {
   fetchPlaylist: PropTypes.func.isRequired,
   fetchPlaylists: PropTypes.func.isRequired,
   fetchSongs: PropTypes.func.isRequired,
-  match: PropTypes.objectOf(PropTypes.object).isRequired
+  deletePlaylist: PropTypes.func.isRequired,
+  match: PropTypes.objectOf(PropTypes.any).isRequired,
+  currentUser: PropTypes.objectOf(PropTypes.any).isRequired,
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
+  playlist: PropTypes.objectOf(PropTypes.any),
+  receivePlayingStatus: PropTypes.func.isRequired,
+  receiveCurrentPlaylist: PropTypes.func.isRequired,
+  receivePlaybackSongs: PropTypes.func.isRequired,
+  updateUser: PropTypes.func.isRequired,
+  songs: PropTypes.objectOf(PropTypes.object).isRequired
 };
 
-export default SongsIndex;
+PlaylistShow.defaultProps = {
+  playlist: null
+};
+
+export default PlaylistShow;

@@ -1,10 +1,10 @@
-import React from 'react';
-import { Switch } from 'react-router-dom';
-import { AuthRoute, ProtectedRoute } from '../util/route_util';
-import GreetingContainer from './greeting/greeting_container';
-import SessionFormContainer from './session/session_form_container';
+import React from "react";
+import { Switch } from "react-router-dom";
+import { AuthRoute, ProtectedRoute } from "../util/route_util";
+import GreetingContainer from "./greeting/greeting_container";
+import SessionFormContainer from "./session/session_form_container";
 
-import MainContainer from './main/main_container';
+import MainContainer from "./main/main_container";
 
 const App = () => (
   <div>
@@ -18,7 +18,6 @@ const App = () => (
 
     <AuthRoute path="/login" component={SessionFormContainer} />
     <AuthRoute path="/signup" component={SessionFormContainer} />
-
   </div>
 );
 

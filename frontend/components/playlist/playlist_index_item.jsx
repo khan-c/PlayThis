@@ -1,30 +1,33 @@
-import React from 'react';
-import { withRouter } from 'react-router-dom';
+import React from "react";
+import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
 
 class PlaylistIndexItem extends React.Component {
-  constructor(props) {
-    super(props);
+  playlistClick = () => {
+    const { history, playlist } = this.props;
+    history.push(`/playlist/${playlist.id}`);
+  };
 
-    this.playlistClick = this.playlistClick.bind(this);
-    this.playPlaylist = this.playPlaylist.bind(this);
-  }
-
-  playlistClick() {
-    this.props.history.push(`/playlist/${ this.props.playlist.id }`);
-  }
-
-  playPlaylist(e) {
+  playPlaylist = e => {
     e.stopPropagation();
-    if (this.props.playlist.song_ids.length !== 0) {
-      this.props.receiveCurrentPlaylist(this.props.playlist.id);
-      this.props.receivePlaybackSongs(this.props.playlist.song_ids);
-      this.props.fetchSongs(this.props.playlist.id);
-      this.props.receivePlayingStatus(true);
+    const {
+      playlist,
+      receiveCurrentPlaylist,
+      receivePlaybackSongs,
+      receivePlayingStatus,
+      fetchSongs
+    } = this.props;
+
+    if (playlist.song_ids.length !== 0) {
+      receiveCurrentPlaylist(playlist.id);
+      receivePlaybackSongs(playlist.song_ids);
+      fetchSongs(playlist.id);
+      receivePlayingStatus(true);
     }
-  }
+  };
 
   render() {
-    const { playlist } = this.props;
+    const { playlist, page, title } = this.props;
     let image;
     if (!playlist.image_url) {
       if (!playlist.first_song_image) {
@@ -35,34 +38,44 @@ class PlaylistIndexItem extends React.Component {
     } else {
       image = { backgroundImage: `url(${playlist.image_url})` };
     }
-    const link = `/playlist/${ playlist.id }`;
 
-    return(
-      <div className={ this.props.page }>
+    return (
+      <div className={page}>
         <div className="playlist-index-item">
-          <div
-            onClick={ this.playlistClick }
-            className="playlist-index-item-image">
-            <div
-              className="playlist-image"
-              style={ image }>
-              <div
-                className="pi-hover">
-                <img
-                  onClick={ this.playPlaylist }
-                  src="https://s3-us-west-1.amazonaws.com/playthismusic/images/logo.png" />
+          <button
+            type="button"
+            onClick={this.playlistClick}
+            className="playlist-index-item-image"
+          >
+            <div className="playlist-image" style={image}>
+              <div className="pi-hover">
+                <input
+                  type="image"
+                  alt=">"
+                  src="https://s3-us-west-1.amazonaws.com/playthismusic/images/logo.png"
+                  onClick={this.playPlaylist}
+                />
               </div>
             </div>
-          </div>
-          <p
-            onClick={ this.playlistClick }
-            className={ this.props.title }>
-            { playlist.title }
-          </p>
+          </button>
+          <button type="button" onClick={this.playlistClick} className={title}>
+            {playlist.title}
+          </button>
         </div>
       </div>
     );
   }
 }
+
+PlaylistIndexItem.propTypes = {
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
+  playlist: PropTypes.objectOf(PropTypes.any).isRequired,
+  receiveCurrentPlaylist: PropTypes.func.isRequired,
+  receivePlayingStatus: PropTypes.func.isRequired,
+  receivePlaybackSongs: PropTypes.func.isRequired,
+  fetchSongs: PropTypes.func.isRequired,
+  page: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired
+};
 
 export default withRouter(PlaylistIndexItem);

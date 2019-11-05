@@ -1,6 +1,5 @@
 .songs {
   display: inline-block;
-  float: left;
   width: 100%;
   height: 100%;
   color: $light-gray;
@@ -103,15 +102,17 @@
   right: 10px;
   background: $playback-gray;
   width: 150px;
+  display: flex;
+  flex-direction: column;
 }
 
-.song-menu-items li {
+.song-menu-items button {
   font-size: 12px;
   color: $light-gray;
   padding: 10px;
 }
 
-.song-menu-items li:hover {
+.song-menu-items button:hover {
   color: white;
   background: $gray;
   cursor: pointer;
