@@ -1,11 +1,12 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import FaSearch from 'react-icons/lib/fa/search';
-import FaSignOut from 'react-icons/lib/fa/sign-out';
-import GoGitHub from 'react-icons/lib/go/mark-github';
-import FaLinkedIn from 'react-icons/lib/fa/linkedin-square';
-import Modal from 'react-modal';
-import PlaylistFormContainer from '../playlist/playlist_form_container';
+import React from "react";
+import PropTypes from "prop-types";
+import { NavLink } from "react-router-dom";
+import FaSearch from "react-icons/lib/fa/search";
+import FaSignOut from "react-icons/lib/fa/sign-out";
+import GoGitHub from "react-icons/lib/go/mark-github";
+import FaLinkedIn from "react-icons/lib/fa/linkedin-square";
+import Modal from "react-modal";
+import PlaylistFormContainer from "../playlist/playlist_form_container";
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -13,113 +14,125 @@ class NavBar extends React.Component {
     this.state = {
       modalIsOpen: false
     };
-
-    this.openModal = this.openModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
-    this.scrollToTop = this.scrollToTop.bind(this);
+    Modal.setAppElement("body");
   }
 
-  openModal() {
+  openModal = () => {
     this.setState({ modalIsOpen: true });
-  }
+  };
 
-  closeModal() {
+  closeModal = () => {
     this.setState({ modalIsOpen: false });
-  }
+  };
 
-  scrollToTop() {
-    document.getElementById('above-playback').scrollTo(0,0);
-  }
+  scrollToTop = () => {
+    document.getElementById("above-playback").scrollTo(0, 0);
+  };
 
   render() {
-    const currentUserPage = `/user/${this.props.user.id}`;
+    const { user, logout } = this.props;
+    const { modalIsOpen } = this.state;
 
-    return(
+    const currentUserPage = `/user/${user.id}`;
+
+    return (
       <div className="nav-bar-container">
         <div className="nav-bar">
           <div className="nav-bar-header">
             <NavLink
-              onClick={ this.scrollToTop }
+              onClick={this.scrollToTop}
               activeClassName="selected"
-              to="/browse">
-              <img className="logo" src="https://s3-us-west-1.amazonaws.com/playthismusic/images/logo-white.png" />
+              to="/browse"
+            >
+              <img
+                className="logo"
+                src="https://s3-us-west-1.amazonaws.com/playthismusic/images/logo-white.png"
+                alt="PlayThis"
+              />
             </NavLink>
           </div>
           <div className="nav-bar-links">
-            <NavLink
-              activeClassName="selected"
-              to="/search">
+            <NavLink activeClassName="selected" to="/search">
               <div className="nav-bar-search">
                 Search
-              <div className="nav-bar-mag-glass">
-                <FaSearch />
+                <div className="nav-bar-mag-glass">
+                  <FaSearch />
                 </div>
               </div>
             </NavLink>
             <NavLink
-              onClick={ this.scrollToTop }
+              onClick={this.scrollToTop}
               activeClassName="selected"
-              to="/browse">
-              <div className="nav-bar-home">
-                Home
-              </div>
+              to="/browse"
+            >
+              <div className="nav-bar-home">Home</div>
             </NavLink>
             <NavLink
-              onClick={ this.scrollToTop }
+              onClick={this.scrollToTop}
               activeClassName="selected"
-              to={ currentUserPage }>
-              <div className="nav-bar-current-user-page">
-                Your Music
-              </div>
+              to={currentUserPage}
+            >
+              <div className="nav-bar-current-user-page">Your Music</div>
             </NavLink>
           </div>
           <div className="nav-bar-new-playlist">
-            <p
+            <button
+              type="button"
               className="new-playlist-button"
-              onClick={ this.openModal }>
+              onClick={this.openModal}
+            >
               New Playlist
-            </p>
+            </button>
           </div>
           <div className="nav-bar-user-container">
             <NavLink
-              onClick={ this.scrollToTop }
+              onClick={this.scrollToTop}
               activeClassName="selected"
               className="nav-bar-user-link"
-              to={ currentUserPage } >
+              to={currentUserPage}
+            >
               <div className="nav-bar-user">
-                <img className="avatar" src={ this.props.user.image_url } />
-                { this.props.user.username }
+                <img className="avatar" src={user.image_url} alt="avatar" />
+                {user.username}
               </div>
             </NavLink>
-            <button
-              className="nav-bar-logout"
-              onClick={ this.props.logout }><FaSignOut /></button>
+            <button type="button" className="nav-bar-logout" onClick={logout}>
+              <FaSignOut />
+            </button>
           </div>
           <div id="my-links">
-            <a href="https://github.com/khan-c/PlayThis"><GoGitHub /></a>
-            <a href="https://www.linkedin.com/in/kylehchen/"><FaLinkedIn /></a>
+            <a href="https://github.com/khan-c/PlayThis">
+              <GoGitHub />
+            </a>
+            <a href="https://www.linkedin.com/in/kylehchen/">
+              <FaLinkedIn />
+            </a>
           </div>
         </div>
         <Modal
-          isOpen={ this.state.modalIsOpen }
-          onRequestClose={ this.closeModal }
+          isOpen={modalIsOpen}
+          onRequestClose={this.closeModal}
           className={{
-            base: 'playlist-form',
-            afterOpen: 'playlist-form-open',
-            beforeClose: 'playlist-form-before-close'
+            base: "playlist-form",
+            afterOpen: "playlist-form-open",
+            beforeClose: "playlist-form-before-close"
           }}
           overlayClassName={{
-            base: 'playlist-form-overlay',
-            afterOpen: 'playlist-form-overlay-open',
-            beforeClose: 'playlist-form-overlay-before-close'
+            base: "playlist-form-overlay",
+            afterOpen: "playlist-form-overlay-open",
+            beforeClose: "playlist-form-overlay-before-close"
           }}
-          >
-          <PlaylistFormContainer
-            closeModal={ this.closeModal }/>
+        >
+          <PlaylistFormContainer closeModal={this.closeModal} />
         </Modal>
       </div>
     );
   }
 }
+
+NavBar.propTypes = {
+  user: PropTypes.objectOf(PropTypes.any).isRequired,
+  logout: PropTypes.func.isRequired
+};
 
 export default NavBar;

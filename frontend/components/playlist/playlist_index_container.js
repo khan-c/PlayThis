@@ -1,19 +1,19 @@
-import { connect } from 'react-redux';
-import PlaylistIndex from './playlist_index';
-import { fetchPlaylists } from '../../actions/playlist_actions';
-import { fetchUsers, updateUser } from '../../actions/user_actions';
-import { fetchSongs } from '../../actions/song_actions';
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import PlaylistIndex from "./playlist_index";
+import { fetchPlaylists } from "../../actions/playlist_actions";
+import { fetchUsers, updateUser } from "../../actions/user_actions";
+import { fetchSongs } from "../../actions/song_actions";
 import {
   receiveCurrentPlaylist,
   receivePlaybackSongs,
   receivePlayingStatus
-} from '../../actions/playback_actions';
-import { usersPlaylists } from '../../reducers/selectors';
-import { withRouter } from 'react-router-dom';
-import { logout } from '../../actions/session_actions';
+} from "../../actions/playback_actions";
+// import { usersPlaylists } from "../../reducers/selectors";
+import { logout } from "../../actions/session_actions";
 
-const mapStateToProps = (state, ownProps) => {
-  let playlists = Object.values(state.entities.playlists);
+const mapStateToProps = state => {
+  const playlists = Object.values(state.entities.playlists);
   // if (ownProps.match.params.userId) {
   //   playlists = usersPlaylists(state, ownProps.match.params.userId);
   // }
@@ -26,17 +26,20 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchPlaylists: (userId) => dispatch(fetchPlaylists(userId)),
+  fetchPlaylists: userId => dispatch(fetchPlaylists(userId)),
   fetchUsers: () => dispatch(fetchUsers()),
   fetchSongs: playlistId => dispatch(fetchSongs(playlistId)),
-  receiveCurrentPlaylist: playlistId => dispatch(receiveCurrentPlaylist(playlistId)),
+  receiveCurrentPlaylist: playlistId =>
+    dispatch(receiveCurrentPlaylist(playlistId)),
   receivePlaybackSongs: songs => dispatch(receivePlaybackSongs(songs)),
   receivePlayingStatus: isPlaying => dispatch(receivePlayingStatus(isPlaying)),
   updateUser: formUser => dispatch(updateUser(formUser)),
   logout: () => dispatch(logout())
 });
 
-export default withRouter(connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(PlaylistIndex));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(PlaylistIndex)
+);

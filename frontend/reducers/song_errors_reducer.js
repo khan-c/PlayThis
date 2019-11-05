@@ -1,5 +1,5 @@
-import { RECEIVE_SONG_ERRORS } from '../actions/song_actions';
-import { CLEAR_ERRORS } from '../actions/error_actions';
+import { RECEIVE_SONG_ERRORS } from "../actions/song_actions";
+import { CLEAR_ERRORS } from "../actions/error_actions";
 
 const songErrorsReducer = (oldState = [], action) => {
   Object.freeze(oldState);

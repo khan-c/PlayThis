@@ -1,72 +1,89 @@
-import React from 'react';
-import IoClose from 'react-icons/lib/io/ios-close-empty';
+import React from "react";
+import PropTypes from "prop-types";
+import IoClose from "react-icons/lib/io/ios-close-empty";
 
 class PlaylistForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: ''
+      title: ""
     };
-
-    this.handleInput = this.handleInput.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleInput(e) {
+  handleInput = e => {
     this.setState({ title: e.target.value });
-  }
+  };
 
-  handleSubmit(e) {
+  handleSubmit = e => {
+    const { createPlaylist, history, closeModal } = this.props;
+    const { title } = this.state;
+
     e.preventDefault();
-    if (this.state.title !== '') {
-      const playlist = Object.assign({}, this.state);
-      this.props.createPlaylist(playlist).then(
-        newPlaylist => this.props.history.replace(`/playlist/${newPlaylist.id}`)
+    if (title !== "") {
+      const playlist = { ...this.state };
+      createPlaylist(playlist).then(newPlaylist =>
+        history.replace(`/playlist/${newPlaylist.id}`)
       );
-      this.props.closeModal();
+      closeModal();
     }
-  }
+  };
 
   render() {
-    return(
+    const { closeModal } = this.props;
+    const { title } = this.state;
+
+    return (
       <div className="playlist-form-content">
-        <h1
+        <button
+          type="button"
           className="playlist-form-exit-x"
-          onClick={ this.props.closeModal }>
+          onClick={closeModal}
+        >
           <IoClose />
-        </h1>
+        </button>
         <h1 className="playlist-form-title">Create new playlist</h1>
-        <form
-          className="playlist-form"
-          onSubmit={ this.handleSubmit } >
+        <form className="playlist-form" onSubmit={this.handleSubmit}>
           <div className="playlist-form-form">
-            <label className="playlist-form-label">Playlist Name</label>
-            <input
-              autoFocus
-              className="playlist-form-input"
-              onChange={ this.handleInput }
-              type="text"
-              name="playlist-title"
-              value={ this.state.title }
-              autoComplete="off"
-              placeholder="Start typing..."></input>
+            <label htmlFor="playlist-name" className="playlist-form-label">
+              Playlist Name
+              {/* eslint-disable jsx-a11y/no-autofocus */}
+              <input
+                autoFocus
+                id="playlist-name"
+                className="playlist-form-input"
+                onChange={this.handleInput}
+                type="text"
+                name="playlist-title"
+                value={title}
+                autoComplete="off"
+                placeholder="Start typing..."
+              />
+              {/* eslint-enable jsx-a11y/no-autofocus */}
+            </label>
           </div>
-          <div
-            className="playlist-form-buttons" >
+          <div className="playlist-form-buttons">
             <input
-              onClick={ this.props.closeModal }
+              onClick={closeModal}
               className="playlist-form-cancel"
               type="button"
-              value="cancel" />
+              value="cancel"
+            />
             <input
               className="playlist-form-create"
               type="submit"
-              value="create" />
+              value="create"
+            />
           </div>
         </form>
       </div>
     );
   }
 }
+
+PlaylistForm.propTypes = {
+  createPlaylist: PropTypes.func.isRequired,
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
+  closeModal: PropTypes.func.isRequired
+};
 
 export default PlaylistForm;

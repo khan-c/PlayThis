@@ -1,39 +1,42 @@
-import React from 'react';
-import { withRouter } from 'react-router-dom';
+import React from "react";
+import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
 
 class UserIndexItem extends React.Component {
-  constructor(props) {
-    super(props);
+  handleClick = () => {
+    const { history, user } = this.props;
 
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick(e) {
-    this.props.history.push(`/user/${this.props.user.id}`);
-    document.getElementById('above-playback').scrollTo(0,0);
-  }
+    history.push(`/user/${user.id}`);
+    document.getElementById("above-playback").scrollTo(0, 0);
+  };
 
   render() {
     const { user } = this.props;
 
-    const image = { backgroundImage: `url(${user.image_url})` };
+    // const image = { backgroundImage: `url(${user.image_url})` };
 
-    return(
+    return (
       <div className="user">
         <div className="user-profile-image-container">
-          <div
-            onClick={ this.handleClick }
+          <input
+            type="image"
+            onClick={this.handleClick}
             className="user-avatar"
-            style={ image }></div>
+            src={user.image_url}
+            alt={user.username}
+          />
         </div>
-        <h1
-          onClick={ this.handleClick }
-          className="user-title">
-          { user.username }
-        </h1>
+        <button type="button" onClick={this.handleClick} className="user-title">
+          {user.username}
+        </button>
       </div>
     );
   }
 }
+
+UserIndexItem.propTypes = {
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
+  user: PropTypes.objectOf(PropTypes.any).isRequired
+};
 
 export default withRouter(UserIndexItem);

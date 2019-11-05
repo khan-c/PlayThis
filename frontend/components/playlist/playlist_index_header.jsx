@@ -1,6 +1,7 @@
-import React from 'react';
-import merge from 'lodash/merge';
-import FaSignOut from 'react-icons/lib/fa/sign-out';
+import React from "react";
+import PropTypes from "prop-types";
+import merge from "lodash/merge";
+import FaSignOut from "react-icons/lib/fa/sign-out";
 
 class PlaylistIndexHeader extends React.Component {
   constructor(props) {
@@ -10,82 +11,102 @@ class PlaylistIndexHeader extends React.Component {
   }
 
   componentWillReceiveNewProps(newProps) {
-    if (this.props.match.path !== newProps.match.path) {
-      this.props.fetchUsers();
+    const { match, fetchUsers } = this.props;
+    if (match.path !== newProps.match.path) {
+      fetchUsers();
     }
   }
 
   toggleFollow() {
-    const formUser = merge({}, this.props.currentUser);
-    if (formUser.followed_user_ids.includes(this.props.user.id)) {
+    const { user, currentUser, updateUser } = this.props;
+
+    const formUser = merge({}, currentUser);
+    if (formUser.followed_user_ids.includes(user.id)) {
       formUser.followed_user_ids.splice(
-        formUser.followed_user_ids.indexOf(this.props.user.id), 1);
+        formUser.followed_user_ids.indexOf(user.id),
+        1
+      );
     } else {
-      formUser.followed_user_ids.push(this.props.user.id);
+      formUser.followed_user_ids.push(user.id);
     }
-    this.props.updateUser(formUser);
+    updateUser(formUser);
   }
 
   render() {
+    const { type, user, logout } = this.props;
+
     let header;
 
-    if (this.props.type === 'browse') {
-      header =
-      <div className="playlist-index-header">
-        <p className="playlist-index-options">browse</p>
-        <h1 className="playlist-index-title">Featured Playlists</h1>
-      </div>;
-    } else if (this.props.type === 'user') {
-      const { user, currentUser } = this.props;
+    // where is type being used/coming from?
+    if (type === "browse") {
+      header = (
+        <div className="playlist-index-header">
+          <p className="playlist-index-options">browse</p>
+          <h1 className="playlist-index-title">Featured Playlists</h1>
+        </div>
+      );
+    } else if (type === "user") {
+      const { currentUser } = this.props;
       if (!user) {
         return null;
       }
 
-      let follow = (user.current_user_follows) ? 'Unfollow' : 'Follow';
-      let followClass = (user.current_user_follows) ?
-                              "u-f-button followed" :
-                              "u-f-button follow";
-      let logoutClass = 'logout hidden';
+      let follow = user.current_user_follows ? "Unfollow" : "Follow";
+      let followClass = user.current_user_follows
+        ? "u-f-button followed"
+        : "u-f-button follow";
+      let logoutClass = "hidden";
       if (user.id === currentUser.id) {
-        follow = '';
-        followClass='';
-        logoutClass = 'logout';
+        follow = "";
+        followClass = "";
+        logoutClass = "logout";
       }
 
-      const image = { backgroundImage: `url(${this.props.user.image_url})` };
+      const image = { backgroundImage: `url(${user.image_url})` };
 
-      header =
-      <div className="user-header">
-        <div className="user-profile-image-container">
-          <div className="user-avatar" style={ image }></div>
-        </div>
-        <button
-          className={ logoutClass }
-          onClick={ this.props.logout }
+      header = (
+        <div className="user-header">
+          <div className="user-profile-image-container">
+            <div className="user-avatar" style={image} />
+          </div>
+          <button type="button" className={logoutClass} onClick={logout}>
+            <p>Log Out</p>
+            <span>
+              <FaSignOut />
+            </span>
+          </button>
+          <h1 className="user-title">{user.username}</h1>
+          <p className="user-followers-count">{`${user.follower_count} followers`}</p>
+          <button
+            type="button"
+            className={followClass}
+            onClick={this.toggleFollow}
           >
-          <p>Log Out</p>
-          <span><FaSignOut /></span>
-        </button>
-        <h1 className="user-title">{ this.props.user.username }</h1>
-        <p className="user-followers-count">
-          { this.props.user.follower_count } followers
-        </p>
-        <p
-          className={ followClass }
-          onClick={ this.toggleFollow }>
-          { follow }
-        </p>
-      </div>;
+            {follow}
+          </button>
+        </div>
+      );
     } else {
-      header = '';
+      header = "";
     }
 
-    return (
-      <div>
-        { header }
-      </div>
-    );
+    return header;
   }
 }
+
+PlaylistIndexHeader.propTypes = {
+  match: PropTypes.objectOf(PropTypes.any),
+  user: PropTypes.objectOf(PropTypes.any),
+  currentUser: PropTypes.objectOf(PropTypes.any).isRequired,
+  fetchUsers: PropTypes.func.isRequired,
+  updateUser: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired,
+  type: PropTypes.string.isRequired
+};
+
+PlaylistIndexHeader.defaultProps = {
+  match: null,
+  user: null
+};
 
 export default PlaylistIndexHeader;

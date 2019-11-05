@@ -1,13 +1,14 @@
-import React from 'react';
-import ReactPlayer from 'react-player';
-import MdPrev from 'react-icons/lib/md/skip-previous';
-import MdNext from 'react-icons/lib/md/skip-next';
-import MdPause from 'react-icons/lib/md/pause-circle-outline';
-import MdPlay from 'react-icons/lib/md/play-circle-outline';
-import FaVolumeLow from 'react-icons/lib/fa/volume-down';
-import FaVolumeHigh from 'react-icons/lib/fa/volume-up';
-import FaVolumeOff from 'react-icons/lib/fa/volume-off';
-import { parseTime } from '../../util/music_util';
+import React from "react";
+import PropTypes from "prop-types";
+import ReactPlayer from "react-player";
+import MdPrev from "react-icons/lib/md/skip-previous";
+import MdNext from "react-icons/lib/md/skip-next";
+import MdPause from "react-icons/lib/md/pause-circle-outline";
+import MdPlay from "react-icons/lib/md/play-circle-outline";
+import FaVolumeLow from "react-icons/lib/fa/volume-down";
+import FaVolumeHigh from "react-icons/lib/fa/volume-up";
+import FaVolumeOff from "react-icons/lib/fa/volume-off";
+import parseTime from "../../util/music_util";
 
 class Playback extends React.Component {
   constructor(props) {
@@ -19,188 +20,135 @@ class Playback extends React.Component {
       played: 0,
       playedSeconds: 0,
       volume: 0.7,
-      prevVolume: 0,
-      seeking: false
+      prevVolume: 0
     };
-
-    this.togglePlay = this.togglePlay.bind(this);
-    this.handlePrevious = this.handlePrevious.bind(this);
-    this.handleNext = this.handleNext.bind(this);
-    this.setProgress = this.setProgress.bind(this);
-    this.volumeChange = this.volumeChange.bind(this);
-    this.toggleMute = this.toggleMute.bind(this);
-    this.onSeekMouseDown = this.onSeekMouseDown.bind(this);
-    this.onSeekMouseUp = this.onSeekMouseUp.bind(this);
-    this.onSeekChange = this.onSeekChange.bind(this);
-    this.ref = this.ref.bind(this);
-    this.setCurrentSong = this.setCurrentSong.bind(this);
   }
 
-  componentDidUpdate(newProps) {
-    if (newProps.playback.isPlaying) {
+  componentDidUpdate(prevProps) {
+    const { playback } = this.props;
+    if (playback !== prevProps.playback) {
+      this.onUpdate(playback);
+    }
+  }
+
+  onUpdate = playback => {
+    if (playback.isPlaying) {
       this.setState({ isPlaying: true });
     }
-    if (newProps.playback.playbackQueue.length === 1) {
+    if (playback.playbackQueue.length === 1) {
       this.setState({ currentSongIdx: 0 });
     }
-  }
+  };
 
-  setCurrentSong() {
-    this.props.receiveCurrentSong(this.props.playback.playbackQueue[this.state.currentSongIdx]);
-  }
+  setCurrentSong = () => {
+    const { receiveCurrentSong, playback } = this.props;
+    const { currentSongIdx } = this.state;
+    receiveCurrentSong(playback.playbackQueue[currentSongIdx]);
+  };
 
-  togglePlay(e) {
-    if (this.props.playback.isPlaying) {
-      this.props.receivePlayingStatus(false);
+  togglePlay = () => {
+    const { playback, receivePlayingStatus } = this.props;
+    const { isPlaying } = this.state;
+
+    if (playback.isPlaying) {
+      receivePlayingStatus(false);
     }
-    this.setState({ isPlaying: !this.state.isPlaying });
-  }
+    this.setState({ isPlaying: !isPlaying });
+  };
 
-  handlePrevious() {
-    if (this.state.playedSeconds > 2) {
+  handlePrevious = () => {
+    const { playedSeconds, currentSongIdx } = this.state;
+
+    if (playedSeconds > 2) {
       this.player.seekTo(0);
     } else {
-      this.setState({ currentSongIdx: this.state.currentSongIdx - 1 });
-      if (this.state.currentSongIdx <= 0) {
+      this.setState({ currentSongIdx: currentSongIdx - 1 });
+      if (currentSongIdx <= 0) {
         this.setState({ currentSongIdx: 0 });
       }
     }
-  }
+  };
 
-  handleNext() {
-    this.setState({ currentSongIdx: this.state.currentSongIdx + 1 });
-    if (this.state.currentSongIdx >= this.props.playback.playbackQueue.length - 1) {
+  handleNext = () => {
+    const { playback, receivePlayingStatus } = this.props;
+    const { currentSongIdx } = this.state;
+
+    this.setState({ currentSongIdx: currentSongIdx + 1 });
+    if (currentSongIdx >= playback.playbackQueue.length - 1) {
       this.setState({ isPlaying: false, currentSongIdx: 0 });
-      this.props.receivePlayingStatus(false);
+      receivePlayingStatus(false);
     }
-  }
+  };
 
-  setProgress(progress) {
+  setProgress = progress => {
     this.setState({
       played: progress.played,
       playedSeconds: progress.playedSeconds
     });
-  }
+  };
 
-  volumeChange(e) {
+  volumeChange = e => {
     this.setState({ volume: parseFloat(e.target.value) });
-  }
+  };
 
-  toggleMute() {
-    if (this.state.volume > 0) {
-      this.setState({ prevVolume: this.state.volume, volume: 0 });
+  toggleMute = () => {
+    const { volume, prevVolume } = this.state;
+
+    if (volume > 0) {
+      this.setState({ prevVolume: volume, volume: 0 });
     } else {
-      this.setState({ volume: this.state.prevVolume });
+      this.setState({ volume: prevVolume });
     }
-  }
+  };
 
-  onSeekMouseDown(e) {
-    this.setState({ seeking: true });
-  }
-
-  onSeekChange(e) {
+  onSeekChange = e => {
     this.setState({ played: parseFloat(e.target.value) });
-  }
+  };
 
-  onSeekMouseUp(e) {
-    this.setState({ seeking: false });
+  onSeekMouseUp = e => {
     this.player.seekTo(parseFloat(e.target.value));
-  }
+  };
 
-  ref(player) {
+  ref = player => {
     this.player = player;
-  }
+  };
 
   render() {
+    const { playback, songs, playlists } = this.props;
+    const {
+      volume,
+      isPlaying,
+      currentSongIdx,
+      playedSeconds,
+      played,
+      duration
+    } = this.state;
+
     let volumeIcon;
-    if (this.state.volume >= .5) {
+    if (volume >= 0.5) {
       volumeIcon = <FaVolumeHigh />;
-    } else if (this.state.volume < .5 && this.state.volume > 0) {
+    } else if (volume < 0.5 && volume > 0) {
       volumeIcon = <FaVolumeLow />;
-    } else if (this.state.volume <= 0.01){
+    } else if (volume <= 0.01) {
       volumeIcon = <FaVolumeOff />;
     }
 
-    let isPlaying = "";
+    let isPlayingClassName = "";
     let isPaused = "hidden";
-    if (this.state.isPlaying) {
-      isPlaying = "hidden";
+    if (isPlaying) {
+      isPlayingClassName = "hidden";
       isPaused = "";
     }
 
-    const songQ = this.props.playback.playbackQueue.slice();
-    let currentSong = this.props.songs[songQ[this.state.currentSongIdx]];
+    const songQ = playback.playbackQueue.slice();
+    const currentSong = songs[songQ[currentSongIdx]];
 
-    if (!currentSong) {
-      return (
-        <div className="playback">
-          <div className="current-song">
-            <img className="current-playlist-image" src={ image } />
-            <div className="current-song-details">
-            </div>
-          </div>
-          <div className="playback-controls">
-            <div className="playback-buttons">
-              <div
-                onClick={ this.handlePrevious }
-                className="playback-previous">
-                <MdPrev />
-              </div>
-              <div className="playback-playpause">
-                <MdPlay
-                  onClick={ this.togglePlay }
-                  className={ isPlaying } />
-                <MdPause
-                  onClick={ this.togglePlay }
-                  className={ isPaused } />
-              </div>
-              <div
-                onClick={ this.handleNext }
-                className="playback-next">
-                <MdNext />
-              </div>
-            </div>
-            <div className="playback-progress">
-              <p className="time">{ parseTime(this.state.playedSeconds) }</p>
-              <input
-                className="progressbar"
-                type='range'
-                min={0}
-                max={1}
-                step='any'
-                value={ this.state.played }
-                onMouseDown={this.onSeekMouseDown}
-                onChange={this.onSeekChange}
-                onMouseUp={this.onSeekMouseUp}
-              />
-            <p className="time">{ parseTime(this.state.duration) }</p>
-            </div>
-          </div>
-          <div className="playback-volume">
-            <div
-              className="volume-button"
-              onClick={ this.toggleMute }>
-              { volumeIcon }
-            </div>
-            <div className="volumeslider">
-              <input
-                onChange={ this.volumeChange }
-                className="volume"
-                type="range"
-                min="0"
-                max="1"
-                step='any'
-                value={ this.state.volume } />
-            </div>
-          </div>
-        </div>
-      );
-    }
+    if (!currentSong) return null;
 
-    let currentSongUrl = currentSong.song_url;
+    const currentSongUrl = currentSong.song_url;
 
-    let currentPlaylist = this.props.playlists[this.props.playback.currentPlaylist];
-    let image = '';
+    const currentPlaylist = playlists[playback.currentPlaylist];
+    let image = "";
     if (currentPlaylist) {
       if (currentPlaylist.image_url) {
         image = currentPlaylist.image_url;
@@ -209,88 +157,102 @@ class Playback extends React.Component {
       }
     }
 
-    return(
+    return (
       <div className="playback">
         <div className="current-song">
-          <img className="current-playlist-image" src={ image } />
+          <img
+            className="current-playlist-image"
+            src={image}
+            alt="playlist cover"
+          />
           <div className="current-song-details">
-            <p className="current-song-title">
-              { currentSong.title }
-            </p>
-            <p className="current-song-artist">
-              { currentSong.artist.name }
-            </p>
+            <p className="current-song-title">{currentSong.title}</p>
+            <p className="current-song-artist">{currentSong.artist.name}</p>
           </div>
         </div>
         <div className="playback-controls">
           <div className="playback-buttons">
-            <div
-              onClick={ this.handlePrevious }
-              className="playback-previous">
+            <button
+              type="button"
+              onClick={this.handlePrevious}
+              className="playback-previous"
+            >
               <MdPrev />
-            </div>
+            </button>
             <div className="playback-playpause">
               <MdPlay
-                onClick={ this.togglePlay }
-                className={ isPlaying } />
-              <MdPause
-                onClick={ this.togglePlay }
-                className={ isPaused } />
+                onClick={this.togglePlay}
+                className={isPlayingClassName}
+              />
+              <MdPause onClick={this.togglePlay} className={isPaused} />
             </div>
-            <div
-              onClick={ this.handleNext }
-              className="playback-next">
+            <button
+              type="button"
+              onClick={this.handleNext}
+              className="playback-next"
+            >
               <MdNext />
-            </div>
+            </button>
           </div>
           <div className="playback-progress">
-            <p className="time">{ parseTime(this.state.playedSeconds) }</p>
+            <p className="time">{parseTime(playedSeconds)}</p>
             <input
               className="progressbar"
-              type='range'
+              type="range"
               min={0}
               max={1}
-              step='any'
-              value={ this.state.played }
-              onMouseDown={this.onSeekMouseDown}
+              step="any"
+              value={played}
+              // onMouseDown={this.onSeekMouseDown}
               onChange={this.onSeekChange}
               onMouseUp={this.onSeekMouseUp}
             />
-          <p className="time">{ parseTime(this.state.duration) }</p>
+            <p className="time">{parseTime(duration)}</p>
           </div>
         </div>
         <div className="playback-volume">
-          <div
+          <button
+            type="button"
             className="volume-button"
-            onClick={ this.toggleMute }>
-            { volumeIcon }
-          </div>
+            onClick={this.toggleMute}
+          >
+            {volumeIcon}
+          </button>
           <div className="volumeslider">
             <input
-              onChange={ this.volumeChange }
+              onChange={this.volumeChange}
               className="volume"
               type="range"
               min="0"
               max="1"
-              step='any'
-              value={ this.state.volume } />
+              step="any"
+              value={volume}
+            />
           </div>
         </div>
         <div className="player">
           <ReactPlayer
-            ref={ this.ref }
-            url={ currentSongUrl }
-            playing={ this.state.isPlaying }
-            volume= { this.state.volume }
-            onEnded={ this.handleNext }
-            onStart={ this.setCurrentSong }
-            onProgress={ this.setProgress }
-            onDuration={duration => this.setState({ duration }) }
-            />
+            ref={this.ref}
+            url={currentSongUrl}
+            playing={isPlaying}
+            volume={volume}
+            onEnded={this.handleNext}
+            onStart={this.setCurrentSong}
+            onProgress={this.setProgress}
+            onDuration={newDuration => this.setState({ duration: newDuration })}
+          />
         </div>
       </div>
     );
   }
 }
+
+Playback.propTypes = {
+  receiveCurrentSong: PropTypes.func.isRequired,
+  receivePlayingStatus: PropTypes.func.isRequired,
+  playback: PropTypes.objectOf(PropTypes.any).isRequired,
+  songs: PropTypes.objectOf(PropTypes.object).isRequired,
+  playlists: PropTypes.objectOf(PropTypes.object).isRequired
+};
 
 export default Playback;
