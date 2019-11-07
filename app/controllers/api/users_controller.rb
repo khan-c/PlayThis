@@ -13,7 +13,7 @@ class Api::UsersController < ApplicationController
 
   def index
     @users = User.includes(:followed_playlists, :followed_users, :followers).all
-    render 'api/users/index.json.jbuilder'
+    render :index
   end
 
   def update
@@ -23,7 +23,7 @@ class Api::UsersController < ApplicationController
     @user.followed_user_ids = followed_users
     @user.followed_playlist_ids = followed_playlists
     @users = User.includes(:followed_playlists, :followed_users, :followers).all
-    render 'api/users/index.json.jbuilder'
+    render :index
   end
 
   private

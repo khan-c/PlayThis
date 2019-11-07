@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/rails/jbuilder.git
+  revision: e5f57cff32275afda17ac1674ff79f0451e5ce40
+  specs:
+    jbuilder (2.9.1)
+      activesupport (>= 5.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -907,8 +914,6 @@ GEM
       rspec (>= 2.99.0, < 4.0)
     i18n (1.7.0)
       concurrent-ruby (~> 1.0)
-    jbuilder (2.9.1)
-      activesupport (>= 4.2.0)
     jmespath (1.4.0)
     jquery-rails (4.3.5)
       rails-dom-testing (>= 1, < 3)
@@ -1034,6 +1039,8 @@ GEM
     shoulda-matchers (4.1.2)
       activesupport (>= 4.2.0)
     spring (2.1.0)
+    spring-commands-rspec (1.0.4)
+      spring (>= 0.9.1)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
       spring (>= 1.2, < 3.0)
@@ -1082,7 +1089,7 @@ DEPENDENCIES
   figaro
   font-awesome-sass
   guard-rspec
-  jbuilder (~> 2.5)
+  jbuilder!
   jquery-rails
   launchy
   listen (>= 3.0.5, < 3.2)
@@ -1097,7 +1104,8 @@ DEPENDENCIES
   selenium-webdriver
   shoulda-matchers
   spring
-  spring-watcher-listen (~> 2.0.0)
+  spring-commands-rspec
+  spring-watcher-listen
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
