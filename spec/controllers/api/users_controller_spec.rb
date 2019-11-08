@@ -21,20 +21,20 @@ RSpec.describe Api::UsersController, type: :controller do
         post :create, params: { use_route: 'api/users',
           user: { username: 'username', password: 'password' }
         }
-          expect(response).to have_http_status 422
-          expect(errors.any? { |e| response.body.include? e }).to be true
-
+        expect(response).to have_http_status 422
+        expect(errors.any? { |e| response.body.include? e }).to be true
+        
         post :create, params: { use_route: 'api/users',
           user: { email: 'email', password: 'password' }
         }
-          expect(response).to have_http_status 422
-          expect(errors.any? { |e| response.body.include? e }).to be true
+        expect(response).to have_http_status 422
+        expect(errors.any? { |e| response.body.include? e }).to be true
 
         post :create, params: { use_route: 'api/users',
           user: { username: '', password: '', email: '' }
         }
-          expect(response).to have_http_status 422
-          expect(errors.any? { |e| response.body.include? e }).to be true
+        expect(response).to have_http_status 422
+        expect(errors.any? { |e| response.body.include? e }).to be true
       end
     end
   end
