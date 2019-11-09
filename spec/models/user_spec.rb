@@ -46,7 +46,7 @@ RSpec.describe User, type: :model do
     end
 
     it "returns user that matches username and password" do
-      expect(User.find_by_credentials("username", "password")).to eq(@user)
+      expect(User.find_by_credentials(@user.username, @user.password)).to eq(@user)
     end
 
     it "returns nil if user cannot be found" do
