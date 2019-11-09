@@ -16,7 +16,7 @@ class Artist < ApplicationRecord
   has_many :songs
 
   def self.top_five_results(query_params)
-    param = "%" + query_params + "%"
+    param = query_params + "%"
     Artist.where('name ILIKE ?', param).limit(5)
   end
 end

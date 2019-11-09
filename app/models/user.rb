@@ -82,6 +82,6 @@ class User < ApplicationRecord
 
   def self.top_five_results(query_params)
     param = "%" + query_params + "%"
-    User.where('username ILIKE ?', param).limit(5)
+    User.where('username ILIKE ?', param).order(:username).limit(5)
   end
 end
