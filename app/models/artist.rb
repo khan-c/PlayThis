@@ -17,6 +17,6 @@ class Artist < ApplicationRecord
 
   def self.top_five_results(query_params)
     param = query_params + "%"
-    Artist.where('name ILIKE ?', param).limit(5)
+    Artist.where('name ILIKE ?', param).order(:name).limit(5)
   end
 end
