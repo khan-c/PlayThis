@@ -56,6 +56,7 @@ group :test do
   gem 'capybara'
   gem 'launchy'
   gem 'shoulda-matchers'
+  gem 'rails-controller-testing'
 end
 
 group :development do
